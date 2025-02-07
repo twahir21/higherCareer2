@@ -2,7 +2,13 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
-export const CardAnn = ({ tag, date, month, title, description, timeAgo, className }) => {
+export const CardAnn = ({ tag, date, month, title, description, timeAgo}) => {
+
+  // Dynamically assign a class based on the tag
+  const className =
+  tag === "Event" ? "event" :
+  tag === "Academic" ? "academic" : "";
+  
   return (
     <div className={`announcement-card ${className}`}>
       <div className={`card-tag ${className}`}>{tag}</div>
