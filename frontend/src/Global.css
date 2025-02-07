@@ -1,0 +1,122 @@
+/*=============== VARIABLES CSS ===============*/
+:root {
+    --header-height: 3.5rem;
+    
+    /*========== Colors ==========*/
+    --first-color: hsl(220, 68%, 54%);
+    --first-color-lighten: hsl(220, 68%, 97%);
+    --title-color: hsl(220, 48%, 28%);
+    --text-color: hsl(220, 12%, 45%);
+    --body-color: hsl(220, 100%, 99%);
+    
+    /*========== Font and typography ==========*/
+    --body-font: "Poppins", sans-serif;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+    
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #00d2ff;
+    --dark-color: #2c3e50;
+    --text-color: #6c757d;
+    --light-color: #f8f9fa;
+    --navbar-height: 70px;
+}
+html{
+    scroll-behavior: smooth;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*========== Responsive typography for screens up to 1200px (tablets) ==========*/
+@media screen and (max-width: 1200px) {
+    :root {
+        --normal-font-size: 0.9rem;    /* Slightly smaller font-size for tablets */
+        --small-font-size: 0.8rem;     /* Adjusted smaller font size */
+        --smaller-font-size: 0.75rem;  /* Adjusted for smaller tablets */
+    }
+}
+
+/*========== Responsive typography for screens up to 1024px (large tablets and small devices) ==========*/
+@media screen and (max-width: 1023px) {
+    :root {
+        --normal-font-size: 0.875rem;  /* Slightly smaller font-size for smaller tablets */
+        --small-font-size: 0.75rem;    /* Adjusted smaller font size */
+        --smaller-font-size: 0.688rem; /* Adjusted for extra small tablets or large phones */
+    }
+}
+
+/*========== Responsive typography for screens up to 768px (small tablets or large mobile phones) ==========*/
+@media screen and (max-width: 768px) {
+    :root {
+        --normal-font-size: 0.85rem;   /* Smaller font-size for small tablets */
+        --small-font-size: 0.75rem;    /* Slightly smaller font size */
+        --smaller-font-size: 0.625rem; /* Smaller font size for very small devices */
+    }
+}
+
+/*========== Responsive typography for screens up to 480px (small mobile phones) ==========*/
+@media screen and (max-width: 480px) {
+    :root {
+        --normal-font-size: 0.8rem;    /* Smallest font size for very small screens */
+        --small-font-size: 0.7rem;     /* Small font size for mobile screens */
+        --smaller-font-size: 0.625rem; /* Adjusted font size for extremely small devices */
+    }
+}
+
+/*========== Responsive typography for screens up to 320px (extra small mobile devices) ==========*/
+@media screen and (max-width: 320px) {
+    :root {
+        --normal-font-size: 0.75rem;   /* Font size for extra small screens */
+        --small-font-size: 0.625rem;   /* Further reduced font size */
+        --smaller-font-size: 0.563rem; /* Minimum font size for very tiny screens */
+    }
+}
