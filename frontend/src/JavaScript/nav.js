@@ -24,7 +24,8 @@
             // 2. Select each button click
             dropdownButton.addEventListener('click', () => {
                 // 7. Select the current show-dropdown class
-                const showDropdown = document.querySelector('.show-dropdown')
+                const showDropdown = document.querySelector('.show-dropdown');
+                console.log("clicked")
         
                 // 5. Call the toggleItem function
                 toggleItem(item)
@@ -73,13 +74,3 @@
         }
         
         addEventListener('resize', removeStyle)
-
-
-// Scroll Progress Bar
-const progressBar = document.querySelector('.progress-bar');
-window.addEventListener('scroll', () => {
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollPercentage = (scrollTop / scrollHeight) * 100;
-    progressBar.style.width = `${scrollPercentage}%`;
-});

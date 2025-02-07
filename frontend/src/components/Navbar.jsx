@@ -1,13 +1,36 @@
 import "../styles/Navbar.css";
-// import "./JavaScript/nav.js";
 import { useEffect } from "react";
+import useNavDropdown from "../hooks/useNavDropdown.js";
 import logo from "../images/logo.png";
 
 const Navbar = () => {
-    useEffect(() => {
-    
+    useNavDropdown();
+
+  useEffect(() => {
+        // Scroll Progress Bar
+        const progressBar = document.querySelector('.progress-bar');
+
+        const updateScrollBar = () => {
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+
+            if(progressBar) {
+                progressBar.style.width = `${scrollPercentage}%`;
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollBar)
+
+
     // clean the function after finished (unmount)
-    }, [])
+    return () => {
+        window.removeEventListener('scroll', updateScrollBar)
+    }
+    }, []);
+
+
+
   return (
     <>
     <header className="header">
