@@ -537,7 +537,7 @@
     backdrop-filter: blur(5px);
 }
 
-.stat-card i {
+.stat-card .fas {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
@@ -1014,7 +1014,7 @@
     box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
 }
 
-.feature-icon i {
+.feature-icon .fas {
     font-size: 2.2rem;
     color: white;
     transition: transform 0.5s ease;
@@ -1047,7 +1047,7 @@
     transform: scale(1.1);
 }
 
-.feature-card:hover .feature-icon i {
+.feature-card:hover .feature-icon .fas {
     background: linear-gradient(135deg, #007bff, #00d2ff);
     -webkit-background-clip: text;
     background-clip: unset;

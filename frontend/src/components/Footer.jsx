@@ -24,10 +24,10 @@ const Footer = () => {
             <p>Empowering education through technology</p>
             <div className="social-links">
               <a href="https://www.facebook.com/highercareerschool/">
-                <FontAwesomeIcon icon={faFacebook} style={{ color: "#0000ff", fontSize: "24px" }} />
+                <FontAwesomeIcon icon={faFacebook} style={{ color: "#0000ff", fontSize: "24px" }} shake/>
               </a>
               <a href="https://www.youtube.com/channel/UCpxS5hLLn-E5Iz7Br-5IgTg">
-                <FontAwesomeIcon icon={faYoutube} style={{ color: "#FF0000", fontSize: "24px" }} />
+                <FontAwesomeIcon icon={faYoutube} style={{ color: "#FF0000", fontSize: "24px" }} shake/>
               </a>
             </div>
           </div>

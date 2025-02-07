@@ -1,0 +1,67 @@
+
+ b, p{
+  color: #2c3e50;
+  padding: 13px 0;
+}
+
+.links{
+    padding: 13px 0;
+}
+
+.lists{
+    padding: 13px;
+}
+
+.connect{
+  caret-color: transparent;
+}
+
+
+
+.about-title, .subtitle-about{
+  color: #3c41e4;
+  padding: 12px 0;
+}
+
+.team{
+  padding: 7px 0;
+}
+
+i{
+  padding: 0 5px;
+}
+
+.about-wrapper{
+  animation: popup 3s ease;
+  animation-delay: .3s;
+  padding: 10px 40px;
+
+}
+
+@keyframes popup{
+  0%{
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  25%{
+    opacity: .25;
+    width: 25%;
+    height: 25%;  
+  }
+  50%{
+    opacity: .5;
+    width: 50%;
+    height: 50%;
+  }
+  75%{
+    opacity: .75;
+    width: 75%;
+    height: 75%;
+  }
+  100%{
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+  }
+}
