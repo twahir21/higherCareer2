@@ -1,80 +1,83 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faGraduationCap, 
+  faUserGraduate, 
+  faChalkboardTeacher, 
+  faUsers, 
+  faCalendarAlt, 
+  faArrowRight 
+} from "@fortawesome/free-solid-svg-icons";
+
 const Features = () => {
   return (
-    <div>
-        <section className="features-section">
-    <div className="container">
+    <section className="features-section">
+      <div className="container">
         <div className="section-header">
-            <h2>Our Features</h2>
-            <p>Discover what makes Higher Career Academy special</p>
+          <h2>Our Features</h2>
+          <p>Discover what makes Higher Career Academy special</p>
         </div>
 
         <div className="features-grid">
-            {/* <!-- Academic Management --> */}
-            <div className="feature-card">
-                <div className="feature-icon">
-                    <i className="fas fa-graduation-cap"></i>
-                </div>
-                <h3>Academic Management</h3>
-                <p>Comprehensive course management, grading systems, and academic tracking</p>
-                <a href="/academics" className="feature-link">Learn More <i className="fas fa-arrow-right"></i></a>
+          {/* Academic Management */}
+          <div className="feature-card">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faGraduationCap} className="fas" />
             </div>
+            <h3>Academic Management</h3>
+            <p>Comprehensive course management, grading systems, and academic tracking</p>
+          </div>
 
-            {/* <!-- Student Portal --> */}
-            <div className="feature-card">
-                <div className="feature-icon">
-                    <i className="fas fa-user-graduate"></i>
-                </div>
-                <h3>Student Portal</h3>
-                <p>Access to assignments, grades, schedules, and educational resources</p>
-                <a href="/student-portal" className="feature-link">Learn More <i className="fas fa-arrow-right"></i></a>
+          {/* Student Portal */}
+          <div className="feature-card">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faUserGraduate} className="fas" />
             </div>
+            <h3>Student Portal</h3>
+            <p>Parents can access grades, schedules, and attendance of student</p>
+            <a href="/parent-register" className="feature-link">
+              Sign up today <FontAwesomeIcon icon={faArrowRight} className="fas" />
+            </a>
+          </div>
 
-            {/* <!-- Teacher Dashboard --> */}
-            <div className="feature-card">
-                <div className="feature-icon">
-                    <i className="fas fa-chalkboard-teacher"></i>
-                </div>
-                <h3>Teacher Dashboard</h3>
-                <p>Tools for attendance, grading, and student performance tracking</p>
-                <a href="/teacher-portal" className="feature-link">Learn More <i className="fas fa-arrow-right"></i></a>
+          {/* Teacher Dashboard */}
+          <div className="feature-card">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faChalkboardTeacher} className="fas" />
             </div>
+            <h3>Teacher Dashboard</h3>
+            <p>Tools for attendance, grading, and student performance tracking</p>
+            <a href="/teacher-register" className="feature-link">
+              Get Started <FontAwesomeIcon icon={faArrowRight} className="fas" />
+            </a>
+          </div>
 
-            {/* <!-- Parent Access --> */}
-            <div className="feature-card">
-                <div className="feature-icon">
-                    <i className="fas fa-users"></i>
-                </div>
-                <h3>Parent Access</h3>
-                <p>Real-time updates on student progress and school communications</p>
-                <a href="/parent-portal" className="feature-link">Learn More <i className="fas fa-arrow-right"></i></a>
+          {/* Parent Access */}
+          <div className="feature-card">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faUsers} className="fas" />
             </div>
+            <h3>Parent Access</h3>
+            <p>Real-time updates on student progress and school communications</p>
+            <a href="/parent-register" className="feature-link">
+              Get Started <FontAwesomeIcon icon={faArrowRight} className="fas" />
+            </a>
+          </div>
 
-            {/* <!-- Fee Management --> */}
-            <div className="feature-card">
-                <div className="feature-icon">
-                    <i className="fas fa-credit-card"></i>
-                </div>
-                <h3>Fee Management</h3>
-                <p>Efficient tracking of fee payments, outstanding balances, and reports</p>
-                <a href="/fee-management" className="feature-link">Learn More <i className="fas fa-arrow-right"></i></a>
+          {/* Event Management */}
+          <div className="feature-card">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faCalendarAlt} className="fas" />
             </div>
-
-            {/* <!-- Event Management --> */}
-            <div className="feature-card">
-                <div className="feature-icon">
-                    <i className="fas fa-calendar-alt"></i>
-                </div>
-                <h3>Event Management</h3>
-                <p>Stay updated with school events, sports, and extracurricular activities</p>
-                <a href="/event-management" className="feature-link">Learn More <i className="fas fa-arrow-right"></i></a>
-            </div>
-
-
+            <h3>Event Management</h3>
+            <p>Stay updated with school events, sports, and extracurricular activities</p>
+            <a href="#" className="feature-link">
+              Check for updates <FontAwesomeIcon icon={faArrowRight} className="fas" />
+            </a>
+          </div>
         </div>
-    </div>
-</section>
-    </div>
-  )
-}
+      </div>
+    </section>
+  );
+};
 
-export default Features
+export default Features;

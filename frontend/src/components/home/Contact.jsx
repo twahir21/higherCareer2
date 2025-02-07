@@ -35,7 +35,7 @@ const Contact = () => {
           <h4 className="form-cta"><i>Let&apos;s Start a Conversation!</i></h4>
           
           <p className="form-message">
-            <FontAwesomeIcon icon={faHeart} /> 
+            <FontAwesomeIcon icon={faHeart} className="fas"/> 
             <i> We value every message and typically respond within 24 hours. Your journey to excellence begins with a simple hello!</i>
           </p>
         </form>

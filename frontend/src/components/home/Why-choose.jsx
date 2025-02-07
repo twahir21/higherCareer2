@@ -6,7 +6,6 @@ import {
   faChild, 
   faUserEdit, 
   faHandsHelping, 
-  faArrowRight 
 } from "@fortawesome/free-solid-svg-icons";
 
 const WhyChoose = () => {
@@ -27,9 +26,6 @@ const WhyChoose = () => {
               </div>
               <h3>Academic Excellence</h3>
               <p>Consistently high academic standards and outstanding achievement records</p>
-              <a href="/excellence" className="card-link">
-                Learn More <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right" />
-              </a>
             </div>
 
             {/* Expert Faculty */}
@@ -39,9 +35,6 @@ const WhyChoose = () => {
               </div>
               <h3>Expert Faculty</h3>
               <p>Experienced educators dedicated to nurturing student potential</p>
-              <a href="/faculty" className="card-link">
-                Learn More <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right" />
-              </a>
             </div>
 
             {/* Modern Facilities */}
@@ -51,9 +44,6 @@ const WhyChoose = () => {
               </div>
               <h3>Modern Facilities</h3>
               <p>State-of-the-art infrastructure and learning environments</p>
-              <a href="/facilities" className="card-link">
-                Learn More <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right" />
-              </a>
             </div>
 
             {/* Holistic Development */}
@@ -63,9 +53,6 @@ const WhyChoose = () => {
               </div>
               <h3>Holistic Development</h3>
               <p>Focus on academic, social, and personal growth</p>
-              <a href="/development" className="card-link">
-                Learn More <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right" />
-              </a>
             </div>
 
             {/* Personalized Learning */}
@@ -75,9 +62,6 @@ const WhyChoose = () => {
               </div>
               <h3>Personalized Learning</h3>
               <p>Tailored learning experiences designed to meet individual student needs</p>
-              <a href="/personalized-learning" className="card-link">
-                Learn More <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right" />
-              </a>
             </div>
 
             {/* Strong Community Engagement */}
@@ -87,9 +71,6 @@ const WhyChoose = () => {
               </div>
               <h3>Strong Community Engagement</h3>
               <p>Building meaningful connections with students, parents, and the community</p>
-              <a href="/community-engagement" className="card-link">
-                Learn More <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right" />
-              </a>
             </div>
 
           </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CardAnn } from "./CardAnn";
 import axios from "axios";
 
-import "../../styles/Loader.css"
+import Loader from "../includes/Loader";
 
 const Announcements = () => {
   const [events, setEvents] = useState([]);
@@ -33,7 +33,7 @@ const Announcements = () => {
         </div>
 
         {loading ? (
-          <div className="loader"></div>
+          <Loader />
         ) : error ? (
           <p style={{ color: "red" }}>{error}</p>
         ) : (

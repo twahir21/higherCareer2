@@ -1,5 +1,4 @@
-import "../styles/Footer.css";
-// import "../JavaScript/footer.js";
+import "../../styles/Footer.css";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faYoutube} from '@fortawesome/free-brands-svg-icons';

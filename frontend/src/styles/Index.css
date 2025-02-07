@@ -293,8 +293,8 @@
     background: #ff6b6b;
 }
 
-.feature-icon i,
-.card-icon i {
+.feature-icon .fas,
+.card-icon .fas {
     font-size: 2rem;
     color: white;
     transition: color 0.3s ease;
@@ -332,11 +332,12 @@
     background-color: white;
 }
 
-.feature-card:hover .feature-icon i {
+.feature-card:hover .feature-icon .fas {
     color: #007bff;
+    background: #ffff !important;
 }
 
-.why-choose-card:hover .card-icon i {
+.why-choose-card:hover .card-icon .fas {
     color: #ff6b6b;
 }
 
@@ -632,7 +633,7 @@
     transform: translateX(10px);
 }
 
-.contact-info i {
+.contact-info .fas {
     color: #ffffff !important;
     font-size: 1.5rem;
     width: 30px;
@@ -702,12 +703,13 @@
 
 .form-message {
     color: var(--text-color);
+    color: #ff6b6b;
     font-size: .9rem;
     line-height: 1.5;
     font-style: italic;
 }
 
-.form-message i {
+.form-message .fas {
     color: #ff6b6b;
     margin: 0 0.3rem;
     animation: beat 1.5s infinite;

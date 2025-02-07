@@ -1,7 +1,7 @@
-import "../styles/Navbar.css";
+import "../../styles/Navbar.css";
 import { useEffect } from "react";
-import useNavDropdown from "../hooks/useNavDropdown.js";
-import logo from "../images/logo.png";
+import useNavDropdown from "../../hooks/useNavDropdown.js";
+import logo from "../../images/logo.png";
 
 const Navbar = () => {
     useNavDropdown();
