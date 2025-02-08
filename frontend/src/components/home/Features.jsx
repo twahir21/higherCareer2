@@ -8,6 +8,8 @@ import {
   faArrowRight 
 } from "@fortawesome/free-solid-svg-icons";
 
+import { Link } from "react-router-dom";
+
 const Features = () => {
   return (
     <section className="features-section">
@@ -70,9 +72,9 @@ const Features = () => {
             </div>
             <h3>Event Management</h3>
             <p>Stay updated with school events, sports, and extracurricular activities</p>
-            <a href="#" className="feature-link">
+            <Link to="/#announcements-section" className="feature-link">
               Check for updates <FontAwesomeIcon icon={faArrowRight} className="fas" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

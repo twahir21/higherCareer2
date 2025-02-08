@@ -110,7 +110,7 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <Link to="/news&announcements" className="dropdown__link">News & Announcements</Link>
+                                            <Link to="/#announcements-section" className="dropdown__link">News & Announcements</Link>
                                         </li>
 
                                     </ul>

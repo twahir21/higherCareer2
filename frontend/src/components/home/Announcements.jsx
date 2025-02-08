@@ -25,7 +25,7 @@ const Announcements = () => {
   }, []);
 
   return (
-    <section className="announcements-section">
+    <section className="announcements-section" id="announcements-section">
       <div className="announcements-container">
         <div className="section-header">
           <h2>Latest Updates</h2>
