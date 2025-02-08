@@ -12,6 +12,8 @@ import NotFound from "./components/errors/NotFound.jsx";
 import Req from "./components/report/Req.jsx";
 import Faq from "./pages/Faq.jsx";
 import Vision from "./pages/Vision.jsx";
+import Terms from "./pages/Terms.jsx";
+import Privacy from "./pages/Privacy.jsx";
 
 
 const App = () => {
@@ -33,6 +35,8 @@ const App = () => {
         <Route path="/req" element={<Req />}></Route>
         <Route path="/faq" element={<Faq />}></Route>
         <Route path="/vision" element={<Vision />}></Route>
+        <Route path="/terms" element={<Terms />}></Route>
+        <Route path="/privacy-policy" element={<Privacy />}></Route>
         <Route path="*" element={<NotFound />}></Route>
     </Routes>
 
