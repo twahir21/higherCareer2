@@ -2,9 +2,14 @@ import { fairyDustCursor } from "./Lib/Cursor.js";
 import Footer from "./components/includes/Footer.jsx";
 import Navbar from "./components/includes/Navbar.jsx";
 import { useEffect } from "react";
+
 import { HomePage } from "./pages/HomePage.jsx";
+import { Routes, Route } from "react-router-dom";
+import About from "./pages/About.jsx";
 
 import { ToastContainer } from "react-toastify";
+import NotFound from "./components/errors/NotFound.jsx";
+import Req from "./components/report/Req.jsx";
 
 
 const App = () => {
@@ -20,7 +25,12 @@ const App = () => {
     <Navbar/>
     <ToastContainer position="top-right" autoClose={3000} />
     
-    <HomePage />
+    <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/about-us" element={<About />}></Route>
+        <Route path="/req" element={<Req />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+    </Routes>
 
     <Footer/>
     </>

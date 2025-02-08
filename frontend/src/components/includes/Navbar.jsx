@@ -2,6 +2,7 @@ import "../../styles/Navbar.css";
 import { useEffect } from "react";
 import useNavDropdown from "../../hooks/useNavDropdown.js";
 import logo from "../../images/logo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     useNavDropdown();
@@ -36,11 +37,11 @@ const Navbar = () => {
     <header className="header">
         <nav className="nav container">
             <div className="nav__data">
-                <a href="#" className="nav__logo">
+                <Link to="#" className="nav__logo">
                     <span className="logo">
                         <img src={logo} alt="logo" />
                     </span>HigherCareer
-                </a>
+                </Link>
 
                 <div className="nav__toggle" id="nav-toggle">
                     <i className="ri-menu-line nav__toggle-menu"></i>
@@ -51,7 +52,7 @@ const Navbar = () => {
             <div className="nav__menu" id="nav-menu">
                 <ul className="nav__list">
                     <li>
-                        <a href="/" className="nav__link">Home</a>
+                        <Link to="/" className="nav__link">Home</Link>
                     </li>
 
                     <li className="dropdown__item">
@@ -70,11 +71,11 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/nursery-join" className="dropdown__link">Nursery Joining Instruction</a>
+                                            <Link to="/nursery-join" className="dropdown__link">Nursery Joining Instruction</Link>
                                         </li>
 
                                         <li>
-                                            <a href="/primary-join" className="dropdown__link">Primary Joining Instruction</a>
+                                            <Link to="/primary-join" className="dropdown__link">Primary Joining Instruction</Link>
                                         </li>
 
                                     </ul>
@@ -89,11 +90,11 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/nursery-fees" className="dropdown__link">Nursery Tuition and fees</a>
+                                            <Link to="/nursery-fees" className="dropdown__link">Nursery Tuition and fees</Link>
                                         </li>
 
                                         <li>
-                                            <a href="/primary-fees" className="dropdown__link">Primary Tuition and fees</a>
+                                            <Link to="/primary-fees" className="dropdown__link">Primary Tuition and fees</Link>
                                         </li>
 
                                     </ul>
@@ -109,7 +110,7 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/news&announcements" className="dropdown__link">News & Announcements</a>
+                                            <Link to="/news&announcements" className="dropdown__link">News & Announcements</Link>
                                         </li>
 
                                     </ul>
@@ -125,7 +126,7 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/vision" className="dropdown__link">Our Mission and vision</a>
+                                            <Link to="/vision" className="dropdown__link">Our Mission and vision</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -150,15 +151,15 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/login" className="dropdown__link">Login</a>
+                                            <Link to="/login" className="dropdown__link">Login</Link>
                                         </li>
 
                                         <li>
-                                            <a href="/parent-register" className="dropdown__link">Parent Registration form</a>
+                                            <Link to="/parent-register" className="dropdown__link">Parent Registration form</Link>
                                         </li>
 
                                         <li>
-                                            <a href="/teacher-register" className="dropdown__link">Teacher Registration form</a>
+                                            <Link to="/teacher-register" className="dropdown__link">Teacher Registration form</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -172,12 +173,12 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="https://www.google.com/maps/dir/-6.852042,39.2894836/higher+career+academy+location/@-6.4816381,38.9349168,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x185d29c7bd114ef7:0xdca4e8d9e0fe08ad!2m2!1d39.3621196!2d-6.1357295?entry=ttu" 
+                                            <Link to="https://www.google.com/maps/dir/-6.852042,39.2894836/higher+career+academy+location/@-6.4816381,38.9349168,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x185d29c7bd114ef7:0xdca4e8d9e0fe08ad!2m2!1d39.3621196!2d-6.1357295?entry=ttu" 
                                             className="dropdown__link" 
                                             target="_blank"
                                             rel="noopener noreferrer">
                                                 <span>Our location</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -186,7 +187,7 @@ const Navbar = () => {
                     </li>
 
                     <li>
-                        <a href="/faq" className="nav__link">FAQs</a>
+                        <Link to="/faq" className="nav__link">FAQs</Link>
                     </li>
 
                     <li className="dropdown__item">
@@ -205,11 +206,11 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/about-us" className="dropdown__link">About us</a>
+                                            <Link to="/about-us" className="dropdown__link">About us</Link>
                                         </li>
 
                                         <li>
-                                            <a href="/contact-us" className="dropdown__link">Contact us</a>
+                                            <Link to="/contact-us" className="dropdown__link">Contact us</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -223,11 +224,11 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <a href="/terms" className="dropdown__link">Terms and Condition</a>
+                                            <Link to="/terms" className="dropdown__link">Terms and Condition</Link>
                                         </li>
 
                                         <li>
-                                            <a href="/privacy-policy" className="dropdown__link">Privacy Policy</a>
+                                            <Link to="/privacy-policy" className="dropdown__link">Privacy Policy</Link>
                                         </li>
                                     </ul>
                                 </div>

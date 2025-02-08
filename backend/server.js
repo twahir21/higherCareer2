@@ -19,6 +19,22 @@ import emailRouter from "./routes/sendEmail.js";
 app.use('/api', eventRouter);
 app.use("/api", emailRouter);
 
+
+// Request counter
+let rootRequests = 0;
+
+
+// Handle requests to "/"
+app.get("/", (req, res) => {
+    rootRequests++;
+    res.sendStatus(204); // No content response
+  });  
+
+// API endpoint to send request data to frontend
+app.get("/api/req", (req, res) => {
+  res.json({ rootRequests });
+});
+
 database.connect()
     .then(() => console.log("Database connected successfully"))
     .then(() => {

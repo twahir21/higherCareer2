@@ -1,0 +1,136 @@
+.wrapper-404 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4a6fa1; /* Bluish text color */
+    overflow: hidden;
+  }
+
+  .container.link-404 {
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container.link-404 h1 {
+    font-size: 2rem; /* Reduced size */
+    margin: 0.5rem 0; /* Added margin for spacing */
+    color: #4a6fa1; /* Bluish color */
+    font-weight: 600;
+  }
+
+  .container.link-404 p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #4a6fa1; /* Bluish color */
+  }
+
+  .container.link-404 a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #85a2f1; 
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .container.link-404 a:hover {
+    background: #d32f2f; /* Darker reddish on hover */
+    color: #fff;
+  }
+
+  .error-404 .text, .error-404 .shadow, .error-404{
+      border: none;
+      background-color: transparent;
+      border-radius: 7px;
+      padding: 10px;
+      box-shadow: transparent;
+      outline: none;
+    }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .side-image {
+    width: 100%;
+    max-width: 400px; /* Reduced width for better balance */
+    margin-top: 20px;
+    animation: slideIn 1s ease-in-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container.link-404 {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .container.link-404 h1 {
+      font-size: 3rem;
+    }
+
+    .side-image {
+      margin-top: 0;
+      margin-left: 20px;
+      border-radius: 50%;
+    }
+  }
+
+  .error-404 {
+        position: relative;
+        display: inline-block;
+    }
+
+    .error-404 .text {
+        font-size: 100px;
+        font-weight: bold;
+        color: #5471c0;
+        position: relative;
+        z-index: 2;
+        border: none;
+    }
+
+    .error-404 .shadow {
+        font-size: 100px;
+        font-weight: bold;
+        color: #a3d4ff;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+        .error-404 .text, .error-404 .shadow {
+            font-size: 100px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .error-404 .text, .error-404 .shadow {
+            font-size: 70px;
+        }
+    }
