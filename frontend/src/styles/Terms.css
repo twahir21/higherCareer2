@@ -1,0 +1,75 @@
+header.terms-header {
+    background: #c2e59c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    animation: terms-slideInDown 1s ease-out;
+    }
+    
+    .terms-container {
+        padding: 20px;
+        background: #FDF7F4;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        animation: terms-fadeIn 2s ease-in;
+    }
+    h2.terms-subtitle {
+        color: #007bff;
+        padding-bottom: 12px;
+    }
+    
+    h1.terms-main-title{
+        color: #525e6a;
+        text-align: center;
+        padding-bottom: 12px;
+    }
+    h2.terms-subtitle {
+        margin-top: 40px;
+    }
+    p.terms-text {
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    p.terms-highlight>strong {
+        color: #2c3e50;
+    }
+    ul.terms-list {
+        margin-left: 20px;
+    }
+    ul.terms-list li.terms-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    ul.terms-list li.terms-item .fas {
+        color: #007bff;
+        margin-right: 10px;
+    }
+    
+    /* Animations */
+    @keyframes terms-slideInDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes terms-fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .terms-fade-in {
+        animation: terms-fadeIn 1.5s ease-in;
+    }

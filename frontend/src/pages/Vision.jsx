@@ -5,7 +5,7 @@ import { faBullseye, faLightbulb, faBalanceScale, faGraduationCap } from "@forta
 const Vision = () => {
   return (
     <div className="wrapper-vision">
-      <div className="container">
+      <div className="container-vision">
         {/* Mission Card */}
         <div className="card">
           <div className="icon mission">

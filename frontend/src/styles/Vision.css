@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.container {
+.container-vision {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -104,7 +104,7 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
+    .container-vision {
         flex-direction: column;
         align-items: center;
     }
