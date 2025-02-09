@@ -7,7 +7,7 @@ dotenv.config();
 // Function to hash the password
 async function hashPassword(password) {
     try {
-        const salt =  await bcrypt.genSalt(process.env.SALT); // Generate a salt
+        const salt =  await bcrypt.genSalt(10); // Generate a salt
         const hashedPassword = await bcrypt.hash(password, salt); // Hash the password
         return hashedPassword;
     } catch (error) {
@@ -60,7 +60,7 @@ async function saveToJSONFile(data, filePath) {
 
 // Export the functions
 
-export default {
+export {
     hashPassword,
     saveToJSONFile
 }

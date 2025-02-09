@@ -1,0 +1,41 @@
+[
+  {
+    "username": "Ally29",
+    "password": "$2a$10$3bzO7lonj8qKt7QlX4Xt4u/WRdC97.ORMytvZhIfMO40dk2djPpXK",
+    "fullName": "Ally Sudi",
+    "email": "twahirsoud3@gmail.com",
+    "tel": "+255674291598",
+    "relationship": "Parent",
+    "student_fullName": "Juma Ally",
+    "student_class": "standard3",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-09T13:44:19.608Z"
+  },
+  {
+    "username": "Mbappe21",
+    "password": "$2a$10$DUu6sE2PBkUezgt3vZOnneZSs5PF2MqNAk/78yw0UCRYQ/HfIs3Wi",
+    "fullName": "Mbappe junior",
+    "email": "twahirsoud32@gmail.com",
+    "tel": "+255674291592",
+    "relationship": "Parent",
+    "student_fullName": "Juma Mbappe",
+    "student_class": "standard3",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-09T13:45:40.769Z"
+  },
+  {
+    "username": "Kaseja",
+    "password": "$2a$10$KistTYkZse9Ks4bT6e9IGOx2UqmVtgMbsONj9rF5uJ7G5ipOfGGbS",
+    "fullName": "Kaseja jumanne",
+    "email": "twahirsoud113@gmail.com",
+    "tel": "+255674291597",
+    "relationship": "Parent",
+    "student_fullName": "Juma Kaseja",
+    "student_class": "standard3",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-09T15:33:14.451Z"
+  }
+]

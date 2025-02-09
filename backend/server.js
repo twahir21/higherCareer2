@@ -6,21 +6,25 @@ dotenv.config();
 
 import database from "./config/db.js";
 // libs
-import cors from "cors"
+import cors from "cors";
+import compression from "compression";
 
 // middlewares
 app.use(cors());
 app.use(express.json());
+app.use(compression());
 
 // routes
 import eventRouter from "./routes/event.js";
 import emailRouter from "./routes/sendEmail.js";
 import parentRouter from "./routes/parent.js";
+import parentRegRouter from "./routes/parentReg.js";
 
 // usage
 app.use('/api', eventRouter);
 app.use("/api", emailRouter);
 app.use("/api", parentRouter);
+app.use("/api", parentRegRouter)
 
 
 // Request counter
