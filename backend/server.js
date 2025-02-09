@@ -15,9 +15,12 @@ app.use(express.json());
 // routes
 import eventRouter from "./routes/event.js";
 import emailRouter from "./routes/sendEmail.js";
+import parentRouter from "./routes/parent.js";
+
 // usage
 app.use('/api', eventRouter);
 app.use("/api", emailRouter);
+app.use("/api", parentRouter);
 
 
 // Request counter
