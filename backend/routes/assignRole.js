@@ -3,7 +3,7 @@ import {
     deleteUser, 
     fetchAllUsers, 
     updateUserRole 
-} from "../controllers/assignRoleController";
+} from "../controllers/assignRoleController.js";
 
 const assignRoleRouter = express.Router();
 

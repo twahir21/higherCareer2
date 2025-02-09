@@ -39,19 +39,19 @@ const Privacy = () => {
                         </h2>
                         <div className="custom-list">
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faUser} /> <strong>Account:</strong> A unique profile created for accessing our service.
+                                <FontAwesomeIcon icon={faUser} className='custom-list-icon'/> <strong style={{paddingRight: "6px"}}>Account:</strong> A unique profile created for accessing our service.
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faCookie} /> <strong>Cookies:</strong> Small files stored on your device for tracking website activity.
+                                <FontAwesomeIcon icon={faCookie} className='custom-list-icon'/> <strong style={{paddingRight: "6px"}}>Cookies:</strong> Small files stored on your device for tracking website activity.
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faGlobe} /> <strong>Website:</strong> Higher Career Academy accessible at <a href="https://highercareer.academy" target="_blank" className="custom-link">our website</a>.
+                                <FontAwesomeIcon icon={faGlobe} className='custom-list-icon'/> <strong style={{paddingRight: "6px"}}>Website:</strong> Higher Career Academy accessible at <a href="https://www.highercareer.academy" target="_blank" className="custom-link" style={{padding: "0 6px"}}>our website</a>.
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faFlag} /> <strong>Country:</strong> Tanzania.
+                                <FontAwesomeIcon icon={faFlag} className='custom-list-icon'/> <strong style={{paddingRight: "6px"}}>Country:</strong> Tanzania.
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faLaptop} /> <strong>Device:</strong> Any device that can access the Service such as a computer, a cellphone, or a digital tablet.
+                                <FontAwesomeIcon icon={faLaptop} className='custom-list-icon'/> <strong style={{paddingRight: "6px"}}>Device:</strong> Any device that can access the Service such as a computer, a cellphone, or a digital tablet.
                             </div>
                         </div>
                     </section>
@@ -60,16 +60,16 @@ const Privacy = () => {
                         <h2 className="content-section-title">
                             <FontAwesomeIcon icon={faUserShield} /> Data Collection
                         </h2>
-                        <h4 className="content-subsubtitle">Types of Data</h4>
+                        <h4 className="content-subsubtitle" style={{paddingBottom: "8px"}}>Types of Data</h4>
                         <div className="custom-list">
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faEnvelope} /> Email Address
+                                <FontAwesomeIcon icon={faEnvelope} className='custom-list-icon'/> Email Address
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faUser} /> Name
+                                <FontAwesomeIcon icon={faUser} className='custom-list-icon'/> Name
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faPhone} /> Phone Number
+                                <FontAwesomeIcon icon={faPhone} className='custom-list-icon'/> Phone Number
                             </div>
                         </div>
                     </section>
@@ -102,10 +102,10 @@ const Privacy = () => {
                         </h2>
                         <div className="custom-list">
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faEnvelope} /> Email: <a href="mailto:info@highercareer.academy" className="custom-link">info@highercareer.academy</a>
+                                <FontAwesomeIcon icon={faEnvelope} className='custom-list-icon'/> Email: <a href="mailto:highercareer@gmail.com" className="custom-link" style={{padding: "0 6px"}}>highercareer@gmail.com</a>
                             </div>
                             <div className="custom-list-item">
-                                <FontAwesomeIcon icon={faGlobe} /> Website: <a href="https://highercareer.academy/contact" target="_blank" className="custom-link">Contact Us</a>
+                                <FontAwesomeIcon icon={faGlobe} className='custom-list-icon'/> Website: <a href="https://www.highercareer.academy/contact" target="_blank" className="custom-link" style={{padding: "0 6px"}}>Contact Us</a>
                             </div>
                         </div>
                     </section>
