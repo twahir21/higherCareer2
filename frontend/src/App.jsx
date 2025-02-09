@@ -14,6 +14,7 @@ import Faq from "./pages/Faq.jsx";
 import Vision from "./pages/Vision.jsx";
 import Terms from "./pages/Terms.jsx";
 import Privacy from "./pages/Privacy.jsx";
+import ParentRegister from "./pages/ParentRegister.jsx";
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/vision" element={<Vision />}></Route>
         <Route path="/terms" element={<Terms />}></Route>
         <Route path="/privacy-policy" element={<Privacy />}></Route>
+        <Route path="/parent-register" element={<ParentRegister />}></Route>
         <Route path="*" element={<NotFound />}></Route>
     </Routes>
 

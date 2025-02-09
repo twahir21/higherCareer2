@@ -1,0 +1,214 @@
+    
+    /* Container for the whole page */
+    .register-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: clamp(3vh, 5vh + 5vw, 5vh);
+      padding-left: clamp(3vw, 5vh + 5vw, 5vw);
+      width: 100%;
+      height: 100%;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+    
+    .register-wrapper {
+      width: fit-content;
+      display: flex;
+      flex-direction: row;
+      animation: slideUp 1s ease-out;
+    }
+    
+    /* Register Form */
+    .register-form {
+      background-color: #fff;
+      padding: 20px;
+      border: 2.3px dashed #08AEEA;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      border-radius: 6px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      max-width: 400px;
+    }
+    
+    /* Register Form heading */
+    .register-form h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    /* Input Group Styles */
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .input-group .icon-parent {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #aaa;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 10px 40px;
+      caret-color: black;
+      font-family: "Ubuntu", serif;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    
+    /* Button Styles */
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-image: linear-gradient(60deg, #08AEEA 0%, #2AF598 100%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #2AF598;
+    }
+    
+    /* Register Banner */
+    .register-banner {
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      background: -webkit-linear-gradient(120deg, #08AEEA 0%, #2AF598 100%);  
+      background-image: linear-gradient(120deg, #08AEEA 0%, #2AF598 100%);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 6px;
+      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+    
+    .register-banner h1 {
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    
+    .person-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 15px 0;
+      border: 4px solid white;
+      background-color: #ccc;
+    }
+    
+    .register-banner p {
+      font-size: 1rem;
+      color: #ffffff;
+    }
+  
+    /* Additional Styling for Student Class Dropdown */
+  .select-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .select-group .icon-parent {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+  }
+  
+  .select-group select {
+    width: 100%;
+    padding: 10px 40px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none; /* Remove default dropdown styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  /* Add a custom arrow icon-parent */
+  .select-group::after {
+    content: "\f0d7"; /* FontAwesome down arrow icon-parent */
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+  }
+  
+    
+    /* Animations */
+    input:focus, .btn:hover, input:hover {
+      animation: glow 0.5s infinite alternate;
+    }
+  
+    /* Keyframes for slide-in animation */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+
+    
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px #08AEEA;
+      }
+      to {
+        box-shadow: 0 0 15px #2AF598;
+      }
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .register-wrapper {
+        flex-direction: column;
+      }
+      .register-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .register-form {
+        max-width: 90%;
+      }
+    
+      .register-banner {
+        width: 90%;
+        max-width: 400px;
+      }
+    
+      .register-banner h1 {
+        font-size: 1.5rem;
+      }
+    }
+    
