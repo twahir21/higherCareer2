@@ -19,12 +19,14 @@ import eventRouter from "./routes/event.js";
 import emailRouter from "./routes/sendEmail.js";
 import parentRouter from "./routes/parent.js";
 import parentRegRouter from "./routes/parentReg.js";
+import assignRoleRouter from "./routes/assignRole.js";
 
 // usage
-app.use('/api', eventRouter);
+app.use("/api", eventRouter);
 app.use("/api", emailRouter);
 app.use("/api", parentRouter);
 app.use("/api", parentRegRouter)
+app.use("/api", assignRoleRouter);
 
 
 // Request counter

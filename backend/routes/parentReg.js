@@ -26,7 +26,6 @@ parentRegRouter.post(
         body('student_fullName').notEmpty().withMessage('Student full name is required').trim().escape(),
     ],
     async (req, res, next) => {
-        console.log(req.body);
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

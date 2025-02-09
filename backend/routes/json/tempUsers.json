@@ -37,5 +37,44 @@
     "isApproved": false,
     "isVerified": false,
     "createdAt": "2025-02-09T15:33:14.451Z"
+  },
+  {
+    "username": "Dhahira",
+    "password": "$2a$10$scZVOKmU87xWSAHNqj1g9OCZ/eQqz//0fijSK/vriyOypa4Bm4qY.",
+    "fullName": "Dhahira Soud",
+    "email": "dhahiraabdi@gmail.com",
+    "tel": "+255674291591",
+    "relationship": "Parent",
+    "student_fullName": "Abdi sudi",
+    "student_class": "standard5",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-09T15:45:38.977Z"
+  },
+  {
+    "username": "Dhahira21",
+    "password": "$2a$10$4kmtC3Sqvh5NlFxtKzI2puNQAhrfnCZ99HxkAnvamTHysi.9nLtMO",
+    "fullName": "Dhahira wSoud",
+    "email": "dhahiraabd2i@gmail.com",
+    "tel": "+255674291531",
+    "relationship": "Parent",
+    "student_fullName": "Abdi sudi",
+    "student_class": "standard5",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-09T15:46:38.485Z"
+  },
+  {
+    "username": "Dhahira213",
+    "password": "$2a$10$BstQXj1XrC0aLzMuT7eSl.SxtmJNaPMKTe0KIjaDSJKLdGAPjVy9C",
+    "fullName": "Dhahira wSoudq",
+    "email": "dhahiraabd2ei@gmail.com",
+    "tel": "+255674291533",
+    "relationship": "Parent",
+    "student_fullName": "Abdi sudi",
+    "student_class": "standard5",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-09T15:48:10.163Z"
   }
 ]
