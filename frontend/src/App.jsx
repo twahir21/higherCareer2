@@ -15,6 +15,8 @@ import Vision from "./pages/Vision.jsx";
 import Terms from "./pages/Terms.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import ParentRegister from "./pages/ParentRegister.jsx";
+import NurseryFees from "./pages/NurseryFees.jsx";
+import PrimaryFees from "./pages/PrimaryFees.jsx";
 
 
 const App = () => {
@@ -39,6 +41,8 @@ const App = () => {
         <Route path="/terms" element={<Terms />}></Route>
         <Route path="/privacy-policy" element={<Privacy />}></Route>
         <Route path="/parent-register" element={<ParentRegister />}></Route>
+        <Route path="/nursery-fees" element={<NurseryFees />}></Route>
+        <Route path="/primary-fees" element={<PrimaryFees />}></Route>
         <Route path="*" element={<NotFound />}></Route>
     </Routes>
 
