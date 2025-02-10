@@ -1,4 +1,4 @@
-import "../styles/joinNursery.css";
+// import "../styles/joinNursery.css";
 
 const JoinNursery = () => {
   return (

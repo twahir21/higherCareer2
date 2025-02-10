@@ -3,6 +3,8 @@ import Footer from "./components/includes/Footer.jsx";
 import Navbar from "./components/includes/Navbar.jsx";
 import { useEffect } from "react";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { HomePage } from "./pages/HomePage.jsx";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About.jsx";
