@@ -3,7 +3,6 @@ import Footer from "./components/includes/Footer.jsx";
 import Navbar from "./components/includes/Navbar.jsx";
 import { useEffect } from "react";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { HomePage } from "./pages/HomePage.jsx";
 import { Routes, Route } from "react-router-dom";
@@ -21,7 +20,7 @@ import NurseryFees from "./pages/NurseryFees.jsx";
 import PrimaryFees from "./pages/PrimaryFees.jsx";
 import Login from "./pages/Login.jsx";
 import JoinNursery from "./pages/JoinNursery.jsx";
-// import Admin from "./pages/Admin.jsx";
+import Admin from "./pages/Admin.jsx";
 
 
 const App = () => {
@@ -53,7 +52,7 @@ const App = () => {
 
 
         {/* Authentication routes  */}
-        {/* <Route path="/admin" element={<Admin />}></Route> */}
+        <Route path="/admin" element={<Admin />}></Route>
         <Route path="/login" element={<Login />}></Route>
 
 
