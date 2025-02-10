@@ -18,6 +18,7 @@ import ParentRegister from "./pages/ParentRegister.jsx";
 import NurseryFees from "./pages/NurseryFees.jsx";
 import PrimaryFees from "./pages/PrimaryFees.jsx";
 import Login from "./pages/Login.jsx";
+import JoinNursery from "./pages/JoinNursery.jsx";
 // import Admin from "./pages/Admin.jsx";
 
 
@@ -46,6 +47,8 @@ const App = () => {
         <Route path="/parent-register" element={<ParentRegister />}></Route>
         <Route path="/nursery-fees" element={<NurseryFees />}></Route>
         <Route path="/primary-fees" element={<PrimaryFees />}></Route>
+        <Route path="/nursery-join" element={<JoinNursery />}></Route>
+
 
         {/* Authentication routes  */}
         {/* <Route path="/admin" element={<Admin />}></Route> */}

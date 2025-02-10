@@ -135,7 +135,7 @@ body {
     gap: 10px;
     margin: 20px 0;
     width: 28rem;
-    padding: 10px;
+    padding: 5px 10px;
     background: #faf7f7; /* Light Gray */
     border: 1px solid #A3D4FF; /* Light Blue */
     border-radius: 8px;
@@ -145,6 +145,7 @@ body {
 .search input {
     flex: 1;
     border: none;
+    padding: 10px;
     outline: none;
     font-size: 16px;
     color: #333333; /* Dark Gray */

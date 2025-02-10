@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 
 const Faq = () => {
 
@@ -16,10 +18,10 @@ const Faq = () => {
         
         <div className="title-faq">
             <h2>❓ Frequently Asked Questions</h2>
-            <p>Find answers to common questions about the HigherCareer system, or <a href="#">contact our support</a></p>
+            <p>Find answers to common questions about the HigherCareer system, or <Link to="/#contact-section">contact our support</Link></p>
 
             <div className="search">
-                <i className="fa-solid fa-magnifying-glassName"></i>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
     
                 <input type="search" name="search" id="search"  placeholder="Search ..." />
             </div>

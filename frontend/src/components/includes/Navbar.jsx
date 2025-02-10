@@ -210,7 +210,7 @@ const Navbar = () => {
                                         </li>
 
                                         <li>
-                                            <Link to="/contact-us" className="dropdown__link">Contact us</Link>
+                                            <Link to="/#contact-section" className="dropdown__link">Contact us</Link>
                                         </li>
                                     </ul>
                                 </div>
