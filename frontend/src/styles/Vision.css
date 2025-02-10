@@ -1,5 +1,5 @@
 
-.wrapper-vision{
+.vision-wrapper{
     background: #f9f9f9;
     color: #333;
     margin: 0;
@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.container-vision {
+.vision-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -18,7 +18,7 @@
 }
 
 /* Card Styles */
-.card {
+.vision-card {
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -29,19 +29,19 @@
     animation: fadeIn 1.5s ease-in-out;
 }
 
-.card h2 {
+.vision-card h2 {
     font-size: 1.5rem;
     margin: 20px 0 10px;
     color: #003366;
 }
 
-.card p {
+.vision-card p {
     font-size: 1rem;
     line-height: 1.6;
 }
 
 /* Icon Styles */
-.icon {
+.vision-icon {
     font-size: 50px;
     padding: 20px;
     animation: bounce 2s infinite;
@@ -58,7 +58,7 @@
 }
 
 
-.content{
+.vision-content{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -66,15 +66,19 @@
     margin: 0 20px;
 }
 
-.icon.mission{
+.vision-icon.mission{
   color: #FF5733;
 }
 
-.icon.vision{
+.vision-icon.vision{
     color: #33B5FF;
 }
 
-.icon.values{
+.vision-icon.motto{
+    color: #23944e;
+}
+
+.vision-icon.valuesIcon{
     color: #FFC107;
 }
 
@@ -104,18 +108,18 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container-vision {
+    .vision-container {
         flex-direction: column;
         align-items: center;
     }
 
-    .card {
+    .vision-card {
         width: 100%;
         max-width: 400px;
         flex-direction: column;
     }
 
-    .card.reverse{
+    .vision-card.reverse{
         flex-flow: column-reverse;
     }
 }
