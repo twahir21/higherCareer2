@@ -20,7 +20,7 @@ import NurseryFees from "./pages/NurseryFees.jsx";
 import PrimaryFees from "./pages/PrimaryFees.jsx";
 import Login from "./pages/Login.jsx";
 import JoinNursery from "./pages/JoinNursery.jsx";
-import Admin from "./pages/Admin.jsx";
+// import Admin from "./pages/Admin.jsx";
 
 
 const App = () => {
@@ -52,7 +52,7 @@ const App = () => {
 
 
         {/* Authentication routes  */}
-        <Route path="/admin" element={<Admin />}></Route>
+        {/* <Route path="/admin" element={<Admin />}></Route> */}
         <Route path="/login" element={<Login />}></Route>
 
 

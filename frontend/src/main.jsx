@@ -6,8 +6,8 @@ import './Global.css'
 import App from './App.jsx';
 
 // Import AdminLTE CSS & Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-import "admin-lte/dist/css/adminlte.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "admin-lte/dist/css/adminlte.min.css";
 
 // Import jQuery, Bootstrap JS & AdminLTE JS
 import "jquery/dist/jquery.min.js";
