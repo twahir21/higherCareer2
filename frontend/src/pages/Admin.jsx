@@ -6,6 +6,10 @@ import { Notification } from "../components/admin/Notification.jsx";
 import { Profile } from "../components/admin/Profile.jsx";
 import { SideLinks } from "../components/admin/SideLinks.jsx";
 
+// Import AdminLTE CSS & Bootstrap CSS
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "admin-lte/dist/css/adminlte.min.css";
+
 
 const Admin = () => {
   useEffect(() => {
