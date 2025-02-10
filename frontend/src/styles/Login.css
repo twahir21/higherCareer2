@@ -1,0 +1,183 @@
+/* General styles */
+    /* Container for the whole page */
+    .login-container {
+      margin-top: clamp(3vh, 5vh + 5vw, 5vh);
+      padding-left: clamp(3vw, 5vh + 5vw, 5vw);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      flex-wrap: wrap;
+      flex-direction: row; /* Default direction for desktop */
+    }
+    
+    .wrapper-login{
+      width: fit-content;
+      display: flex;
+      flex-direction: row;
+      animation: slideDown 1s ease-out;
+    }
+    
+    /* Login Form */
+    .login-form {
+      background-color: #fff;
+      border: 4.3px double #50c9c3;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      border-radius: 6px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      max-width: 400px;
+    }
+    
+    /* Login Form heading */
+    .login-form h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    /* Input Group Styles */
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .input-group .fas {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #aaa;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 10px 40px; /* Added padding for spacing */
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    
+    /* Button Styles */
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #4a90e2, #50c9c3);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #4a90e280;
+    }
+    
+    /* Forgot Password Link */
+    .forgot-password {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .forgot-password a {
+      color: #4a90e2cc;
+      text-decoration: none;
+    }
+    
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Login Banner */
+    .login-banner {
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      background: linear-gradient(135deg, #4a90e2, #50c9c3);
+      caret-color: transparent;
+      padding: 20px;
+      border: none;
+      border-radius: 6px;
+      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+    
+    .login-banner h1 {
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    
+    .person-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 15px 0;
+      border: 4px solid white;
+      background-color: #ccc;
+    }
+    
+    .login-banner p {
+      font-size: 1rem;
+      color: #666;
+      color: #ffffff;
+    }
+    
+    /* Animations */
+    input:focus, .btn:hover, input:hover {
+      animation: glow 0.5s infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px #4a90e280;
+      }
+      to {
+        box-shadow: 0 0 15px #4a90e2cc;
+      }
+    }
+    
+    
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .wrapper{
+        flex-direction: column;
+      }
+      .login-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .login-form {
+        max-width: 90%;
+      }
+    
+      .login-banner {
+        width: 90%;
+        max-width: 400px;
+      }
+    
+      .login-banner h1 {
+        font-size: 1.5rem;
+      }
+    }
+    

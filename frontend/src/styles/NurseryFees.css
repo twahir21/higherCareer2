@@ -38,7 +38,7 @@
     animation: fadeInLeft 0.8s ease-in-out;
   }
   
-  table {
+  .nursery-table {
     width: 100%;
     border-collapse: collapse;
     margin: 1rem 0;
@@ -47,19 +47,19 @@
     animation: fadeInUp 1s ease-in-out;
   }
   
-  table th, table td {
+  .nursery-table .nursery-th, .nursery-td {
     padding: 0.8rem;
     text-align: left;
     border: 1px solid #ddd;
   }
   
-  table th {
+  .nursery-table .nursery-th {
     background: #ff6b6b;
     color: white;
     font-weight: bold;
   }
   
-  table tbody tr:nth-child(even) {
+  .nursery-table tbody tr:nth-child(even) {
     background: #f9f9f9;
   }
   

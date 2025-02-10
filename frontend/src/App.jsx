@@ -17,6 +17,8 @@ import Privacy from "./pages/Privacy.jsx";
 import ParentRegister from "./pages/ParentRegister.jsx";
 import NurseryFees from "./pages/NurseryFees.jsx";
 import PrimaryFees from "./pages/PrimaryFees.jsx";
+import Login from "./pages/Login.jsx";
+// import Admin from "./pages/Admin.jsx";
 
 
 const App = () => {
@@ -33,6 +35,7 @@ const App = () => {
     <ToastContainer position="top-right" autoClose={3000} />
     
     <Routes>
+        {/* Pages for all people  */}
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/about-us" element={<About />}></Route>
         <Route path="/req" element={<Req />}></Route>
@@ -43,6 +46,12 @@ const App = () => {
         <Route path="/parent-register" element={<ParentRegister />}></Route>
         <Route path="/nursery-fees" element={<NurseryFees />}></Route>
         <Route path="/primary-fees" element={<PrimaryFees />}></Route>
+
+        {/* Authentication routes  */}
+        {/* <Route path="/admin" element={<Admin />}></Route> */}
+        <Route path="/login" element={<Login />}></Route>
+
+
         <Route path="*" element={<NotFound />}></Route>
     </Routes>
 
