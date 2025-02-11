@@ -1,6 +1,6 @@
 import { fairyDustCursor } from "./Lib/Cursor.js";
-import Footer from "./components/includes/Footer.jsx";
-import Navbar from "./components/includes/Navbar.jsx";
+// import Footer from "./components/includes/Footer.jsx";
+// import Navbar from "./components/includes/Navbar.jsx";
 import { useEffect } from "react";
 
 
@@ -19,6 +19,7 @@ import ParentRegister from "./pages/ParentRegister.jsx";
 import NurseryFees from "./pages/NurseryFees.jsx";
 import PrimaryFees from "./pages/PrimaryFees.jsx";
 import Login from "./pages/Login.jsx";
+import Admin from "./pages/Admin.jsx";
 
 
 const App = () => {
@@ -31,7 +32,8 @@ const App = () => {
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
+
     <ToastContainer position="top-right" autoClose={3000} />
     
     <Routes>
@@ -50,12 +52,14 @@ const App = () => {
 
         {/* Authentication routes  */}
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/admin" element={<Admin />}></Route>
+
 
 
         <Route path="*" element={<NotFound />}></Route>
     </Routes>
 
-    <Footer/>
+    {/* <Footer/> */}
     </>
   )
 }
