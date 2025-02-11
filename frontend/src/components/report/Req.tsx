@@ -10,7 +10,7 @@ const Req = () => {
         const response = await fetch("http://localhost:3000/api/req");
         const data = await response.json();
         
-        setRootRequests(data.rootRequests/2);
+        setRootRequests(data.rootRequests);
       } catch (error) {
         console.error("Error fetching request data:", error);
       }
