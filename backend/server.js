@@ -34,8 +34,7 @@ app.use("/api", assignRoleRouter);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve React frontend from "frontend/dist"
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
 
 // Serve Admin Page with EJS
 app.set("view engine", "ejs");
@@ -45,16 +44,23 @@ app.set("views", path.join(__dirname, "views"));
 // Request counter
 let rootRequests = 0;
 
+
+
+// Handle requests to "/"
+app.use((req, res, next) => {
+  if (req.path === "/") {
+    rootRequests++;  
+  }
+  next(); // Move to the next middleware or route handler
+});
+
 // API endpoint to send request data to frontend
 app.get("/api/req", (req, res) => {
   res.json({ rootRequests });
 });
 
-// Handle requests to "/"
-app.get("/", (req, res) => {
-    rootRequests++;
-    res.sendStatus(204); // No content response
-});  
+// Serve React frontend from "frontend/dist"
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Serve all pages from React frontend
 // Catch-all: Serve React frontend for any other route
