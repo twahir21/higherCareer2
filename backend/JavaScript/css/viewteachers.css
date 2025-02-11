@@ -1,0 +1,194 @@
+
+
+.teacher-container{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+
+/* #========== SEARCH SYSTEM ===========*/
+.search{
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+h1{
+    color: #303972;
+}
+
+.left select{
+    padding: 8px 12px;
+}
+
+.right > input{
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.right{
+    border: 1px solid #858386;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    width: 20rem;
+}
+
+.right > i{
+    color: #858386;
+    padding: 0 10px;
+}
+
+/* #========== CARDS ===========*/
+
+.cards{
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.4rem, 1.6rem + 1vw, 2rem);
+    caret-color: transparent;
+}
+
+.card{
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* #========== UPPER PART ===========*/
+
+.upper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upper > img{
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 50%;
+}
+
+.action{
+    position: relative;
+}
+
+.action > button{
+    padding: 5px 12px;
+    background: #EBEBF9;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .6s ease;
+}
+
+.action > button:hover{
+    background: #b8b8bd;
+}
+
+.action button > i {
+    font-size: 1.6rem;
+}
+
+.edit-del{
+    background: #ece9e9;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 2;
+    left: -7rem;
+    padding: 5px 0;
+    margin-top: 10px;
+    display: none;
+}
+
+.edit-del > p {
+    margin: 0;
+    padding: 4px 10px;
+    width: 9rem;
+    cursor: pointer;
+    color: #747179;
+}
+
+.edit-del > p:hover{
+    background-color: #b8b8bd;
+}
+
+.active{
+    display: flex;
+    flex-direction: column;
+}
+
+/* #========== CENTRAL PART ===========*/
+
+
+.center > h3{
+    color: #303972;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 20px 0 0 0;
+}
+
+.center > p{
+    color: #A098AE;
+    font-size: .85rem;
+}
+
+.subjects{
+    display: flex;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.subjects > h5{
+    padding: 4px;
+    border-radius: 5px;
+    font-size: .8rem;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.math{
+    color: #1eba62;
+    background-color: #DDFAEA;
+}
+
+.arts{
+    background: #ffeaea;
+    color: #fd5353;
+}
+
+.science{
+    color: #fb7d5b;
+    background: #fff3f0;
+}
+
+/* #========== LOWER PART ===========*/
+
+.lower{
+    display: flex;
+    justify-content: space-between;
+}
+
+.lower .profile{
+    background: #4d44b5;
+    color: #fff;
+}
+
+.lower .chat{
+    background: #EBEBF9;
+    color: #303972;
+}
+
+.lower button{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+}
+
+.lower button > i{
+    padding: 0 7px;
+}
