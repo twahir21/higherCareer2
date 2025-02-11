@@ -1,0 +1,51 @@
+<!--Verify user Section-->
+<%- include("../layout/verifyUser") %>
+
+        <section id="teacherSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <%- include("../layout/teachers") %>         
+        </section>
+
+        <section id="parentSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Parents</h1>
+            <%- include("../layout/parent") %>         
+        </section>
+
+        
+        <section id="teacherProfile" class="content-wrapper" style="display:none;">
+            <!-- Teacher Profile -->
+            <h1>Teacher Profile</h1>
+            <%- include("../layout/teachDet") %>         
+        </section>
+
+        <section id="studentSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Students</h1>
+            <%- include("../layout/student") %>         
+        </section>
+
+        <section id="studentDetails" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Students Details</h1>
+            <%- include("../layout/studentDet") %>         
+        </section>
+
+        <section id="classManagementSection" class="content-wrapper" style="display:none;">
+            <!-- Teacher Management Content -->
+            <h1>Class Management Content</h1>
+        </section>
+        <section id="attendanceSection" class="content-wrapper" style="display:none;">
+            <!-- Attendance Content -->
+            <h1 style="padding: 14px;">Attendance Tracking</h1>
+            <%- include('../layout/attendance') %>
+        </section>
+        <section id="communicationSection" class="content-wrapper" style="display:none;">
+            <!-- Communication Content -->
+            <h1>Communication Content</h1>
+        </section>
+        <section id="settingsSection" class="content-wrapper" style="display:none;">
+            <!-- Settings Content -->
+            <h1>Joining Instructions</h1>
+            <%- include("../layout/viewPDF") %>         
+        </section>

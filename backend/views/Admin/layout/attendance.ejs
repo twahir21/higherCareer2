@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/css/attendance.css">
+<div class="attendance-container">
+    <div class="select-date">
+        <div class="date-attendance">  
+            <label for="date">Select Date:</label>
+            <input type="date" id="date-selected">
+        </div>
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" style="padding: 0 10px;">
+        </div>
+
+        <div class="grade">
+            <label for="grade">Class:</label>
+            <select name="grade" id="class">
+                <option value="KG-1">KG-1</option>
+                <option value="KG-2">KG-2</option>
+                <option value="Standard-1">Standard-1</option>
+                <option value="Standard-2">Standard-2</option>
+                <option value="Standard-3">Standard-3</option>
+                <option value="Standard-4">Standard-4</option>
+                <option value="Standard-5">Standard-5</option>
+                <option value="Standard-6">Standard-6</option>
+                <option value="Standard-7">Standard-7</option>
+            </select>
+        </div>
+
+        <button class="dateBtn">Search</button>
+    </div>
+
+    <div class="attendace-body">
+        <h2 id="date-details" class="date-details" style="padding: 10px;"></h2>
+        <table class="table-attendance">
+            <tr id="table-header">
+                <th>Student-ID</th>
+                <th>Student Name</th>
+            </tr>
+
+            <tr class="table-row">
+                <td>1</td>
+                <td>John Doe</td>
+            </tr>
+
+            <tr class="table-row">
+                <td>2</td>
+                <td>Mac Donald</td>
+            </tr>
+
+            <tr class="table-row">
+                <td>3</td>
+                <td>Max Clement</td>
+            </tr>
+
+            <tr class="table-row">
+                <td>4</td>
+                <td>Wazir Rajab</td>
+            </tr>
+
+            <tr class="table-row">
+                <td>5</td>
+                <td>Hassan Mwakinyo</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="/attendance.js"></script>

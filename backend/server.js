@@ -22,6 +22,7 @@ import emailRouter from "./routes/sendEmail.js";
 import parentRouter from "./routes/parent.js";
 import parentRegRouter from "./routes/parentReg.js";
 import assignRoleRouter from "./routes/assignRole.js";
+import adminCodes from "./code/Admin.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -33,6 +34,13 @@ app.use("/api", assignRoleRouter);
 // Convert ES module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Serve JavaScript assets
+app.use(express.static(path.join(__dirname, "JavaScript")));
+
+// usage for SSR
+app.use(adminCodes);
+
 
 
 

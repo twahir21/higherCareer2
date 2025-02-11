@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<style>
+
+
+.container.teacherDet{
+        position: relative;
+        max-width: 1000px;
+        caret-color: transparent;
+    }
+
+    .upper.teacher{
+        background: #4d44b5;
+        height: 200px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 50px;
+        align-items: flex-start;
+        overflow: hidden;
+        position: relative;
+        border-radius: 14px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .rect{
+        width: 350px;
+        border-radius: 50%;
+        height: 350px;
+        border: 20px solid #FCC737;
+        background: transparent;
+        margin: 0;
+        position: absolute;
+        top: 50px;
+    }
+
+    .rect-1{
+        width: 300px;
+        border-radius: 50%;
+        padding: 0;
+        margin: 0;
+        height: 300px;
+        border: 20px solid tomato;
+        position: absolute;
+        background: transparent;
+        top: 120px;
+        right: 240px;
+
+    }
+
+
+
+    .container.teacherDet > img{
+        position: absolute;
+        top: 35px;
+        margin: 20px;
+        left: 12px;
+        width: 230px;
+        height: 230px;
+        border: 12px solid #fff;
+        border-radius: 50%;
+    }
+
+    .bottom{
+        padding: 120px 0 20px 40px;
+        background: #fff;
+        border-bottom-right-radius: 14px;
+        border-bottom-left-radius: 14px;
+    }
+
+    .bottom h1{
+        color: #303972;
+        font-size: 1.6rem;
+        font-weight: 600;
+        padding: 0;
+    }
+
+    .bottom p{
+        color: #4d44b5;
+        font-weight: 500;
+        padding: 0;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 30px;
+    }
+
+    .element{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .element .icon{
+        background: #fb7d5b;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+    }
+
+
+    .element .parent h3, .element .parent p{
+        padding: 0 10px;
+        margin: 0;
+    }
+
+    .element .parent h3{
+        color: #A098ae;
+        font-size: .92rem;
+        font-weight: 300;
+    }
+
+    .element .parent p{
+        color: #303972;
+        font-weight: 600;
+    }
+</style>
+<body>
+    <div class="container teacherDet">
+        <div class="upper teacher">
+            <div class="rect-1"></div>
+            <div class="rect"></div>
+        </div>
+
+        <div class="bottom">
+            <h1>Latifa Sudi</h1>
+            <p>Teacher</p>
+
+            <div class="details">
+                <div class="element">
+                    <div class="icon">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <div class="parent">
+                        <h3>Parent Name:</h3>
+                        <p>Soud Abdi</p>
+                    </div>
+                </div>
+
+                <div class="element">
+                    <div class="icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="parent">
+                        <h3>Address:</h3>
+                        <p>Kitomanga road, 123 street Dar es Salaam, Tanzania</p>
+                    </div>
+                </div>
+
+                <div class="element">
+                    <div class="icon">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <div class="parent">
+                        <h3>Email:</h3>
+                        <p>Soudabdi@yahoo.com</p>
+                    </div>
+                </div>
+
+                <div class="element">
+                    <div class="icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="parent">
+                        <h3>Contact:</h3>
+                        <p>+255-674-192-2783</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <img src="/images/9.jpg" alt="none">
+    </div>
+</body>
+</html>
