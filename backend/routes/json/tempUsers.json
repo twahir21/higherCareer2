@@ -76,5 +76,18 @@
     "isApproved": false,
     "isVerified": false,
     "createdAt": "2025-02-09T15:48:10.163Z"
+  },
+  {
+    "username": "twahir213",
+    "password": "$2a$10$BxbwPFWUTerJYWGS4R7mGugqJVtwWkwO99qEm4dD/5.JhuU/f8/o.",
+    "fullName": "Twahir Abdi",
+    "email": "mon@gamil.com",
+    "tel": "+244674291587",
+    "relationship": "parent",
+    "student_fullName": "Twahir Abdi",
+    "student_class": "standard1",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-12T08:03:47.296Z"
   }
 ]
