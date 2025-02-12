@@ -44,19 +44,35 @@ h1{
 
 /* #========== CARDS ===========*/
 
-.cards{
-    margin: 2rem 0;
+.cards {
+    margin: 2rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Auto-responsive */
     gap: clamp(1.4rem, 1.6rem + 1vw, 2rem);
     caret-color: transparent;
 }
 
-.card{
+.card {
     background: #fff;
     border-radius: 8px;
     padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* 📌 MEDIA QUERY for small screens */
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr; /* Stack cards in one column */
+        margin: 20px;
+    }
+}
+
 
 /* #========== UPPER PART ===========*/
 
