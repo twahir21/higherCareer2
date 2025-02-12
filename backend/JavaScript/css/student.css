@@ -91,13 +91,37 @@
     .darasa .other1{
         background: #fb7d5b;
     }
-    
+   
+    .darasa .other2{
+        background: #fcc43e;
+    }
+
     .darasa .other3{
         background: #4d44b5;
     }
-    
-    .darasa .other2{
-        background: #fcc43e;
+
+    .darasa .other4{
+        background: #3F4F44;
+    }
+
+    .darasa .other5{
+        background: #4d4;
+    }
+
+    .darasa .other6{
+        background: #7886C7;
+    }
+
+    .darasa .other7{
+        background: #854836;
+    }
+
+    .darasa .other8{
+        background: #B5828C;
+    }
+
+    .darasa .other9{
+        background: #DD88CF;
     }
 
     .head > th{
@@ -142,4 +166,7 @@
         color: #DBE2EF;
         background: #3F72AF;
     
+    }
+    .search .admin-parent-search{
+        caret-color: black;
     }

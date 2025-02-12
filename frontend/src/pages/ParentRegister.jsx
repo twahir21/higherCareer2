@@ -141,7 +141,7 @@ const ParentRegister = () => {
                             <FontAwesomeIcon icon={faSchool} className="icon-parent" />
                             <select name="student_className" required onChange={handleChange} defaultValue="">
                                 <option value="" disabled>Choose Student Class</option>
-                                {["KG1 (Nursery)", "KG2 (Nursery)", "Standard 1", "Standard 2", "Standard 3", "Standard 4", "Standard 5", "Standard 6", "Standard 7"].map((className, index) => (
+                                {["KG 1", "KG 2", "Standard 1", "Standard 2", "Standard 3", "Standard 4", "Standard 5", "Standard 6", "Standard 7"].map((className, index) => (
                                     <option key={index} value={className.toLowerCase().replace(/\s+/g, '')}>
                                         {className}
                                     </option>
