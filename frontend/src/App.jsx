@@ -19,6 +19,7 @@ import ParentRegister from "./pages/ParentRegister.jsx";
 import NurseryFees from "./pages/NurseryFees.jsx";
 import PrimaryFees from "./pages/PrimaryFees.jsx";
 import Login from "./pages/Login.jsx";
+import TeacherReg from "./pages/TeacherReg.jsx";
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/terms" element={<Terms />}></Route>
         <Route path="/privacy-policy" element={<Privacy />}></Route>
         <Route path="/parent-register" element={<ParentRegister />}></Route>
+        <Route path="/teacher-register" element={<TeacherReg />}></Route>
         <Route path="/nursery-fees" element={<NurseryFees />}></Route>
         <Route path="/primary-fees" element={<PrimaryFees />}></Route>
 
