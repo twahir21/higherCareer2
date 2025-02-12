@@ -2,8 +2,7 @@ import express from "express";
 import { 
     deleteParent, 
     fetchAllParents, 
-    fetchParent, 
-    updateParent
+    fetchParent
 } from "../controllers/parentController.js";
 
 const parentRouter = express.Router();
@@ -15,6 +14,5 @@ parentRouter.get("/parents/:id", fetchParent);
 
 parentRouter.delete("/parents/:id", deleteParent);
 
-parentRouter.put("/parents/:id", updateParent);
 
 export default parentRouter;

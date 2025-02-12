@@ -10,6 +10,7 @@ const fetchAllParents = async () => {
 
         const result = await response.json();
         const data = result.data;
+        console.log(data);
 
         // Extract required fields and update student_class
         const classMapping = {
@@ -30,8 +31,6 @@ const fetchAllParents = async () => {
             student_class: classMapping[student_class] || student_class, // Convert standard1-7 to Roman numerals
             createdat: new Date(createdat) // Convert to Date object for sorting
         }));
-
-        console.log(filteredData); // Debugging
 
         // ✅ Display initially without filtering
         displayParent(filteredData);
@@ -90,8 +89,7 @@ const displayParent = (data) => {
                 <td class="icon"><i class="fa-regular fa-message"></i></td>
                 <td class="darasa"><p class="${className}">${student_class} A</p></td>
                 <td>
-                    <button class="edit">Edit</button>
-                    <button class="del">Delete</button>
+                    <button class="del" onclick="deleteParent(${id})">Delete</button>
                 </td>
             </tr>
         `;
@@ -111,16 +109,105 @@ document.querySelector(".admin-parent-search").addEventListener("input", (event)
     displayParent(filteredResults);
 });
 
-// ✅ Sorting Function (Newest / Oldest)
-document.getElementById("searchIndex").addEventListener("change", (event) => {
+document.getElementById("searchIndexStudent").addEventListener("change", (event) => {
     const sortOrder = event.target.value;
 
-    const sortedData = [...filteredData].sort((a, b) =>
+    // Sort only the currently displayed data instead of full filteredData
+    const tableRows = document.querySelectorAll(".admin-parent tr:not(.head)");
+    
+    let displayedData = [...tableRows].map(row => ({
+        student_fullname: row.querySelector(".student_profile").textContent,
+        id: row.querySelector(".id").textContent,
+        fullname: row.querySelector(".parent_profile").textContent,
+        student_class: row.querySelector(".darasa p").textContent.split(" ")[0],
+        createdat: new Date(filteredData.find(item => item.id == row.querySelector(".id").textContent)?.createdat) 
+    }));
+
+    const sortedData = displayedData.sort((a, b) =>
         sortOrder === "Newest" ? b.createdat - a.createdat : a.createdat - b.createdat
     );
 
     displayParent(sortedData);
 });
 
-// Call fetch function to load data
-fetchAllParents();
+let currentPage = 1;
+const rowsPerPage = 5;
+
+// ✅ Function to update pagination display
+const updatePagination = () => {
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+    document.getElementById("pageInfoAdminStudent").textContent = `Page ${currentPage} of ${totalPages}`;
+
+    // Enable/Disable buttons based on page
+    document.getElementById("prevPageAdminStudent").disabled = currentPage === 1;
+    document.getElementById("nextPageAdminStudent").disabled = currentPage === totalPages;
+};
+
+// ✅ Function to display paginated data
+const displayPaginatedData = () => {
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedData = filteredData.slice(start, end);
+
+    displayParent(paginatedData); // Display only the required data
+    updatePagination(); // Update pagination controls
+};
+
+// ✅ Handle Next Page Click
+document.getElementById("nextPageAdminStudent").addEventListener("click", () => {
+    if (currentPage < Math.ceil(filteredData.length / rowsPerPage)) {
+        currentPage++;
+        displayPaginatedData();
+    }
+});
+
+// ✅ Handle Previous Page Click
+document.getElementById("prevPageAdminStudent").addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        displayPaginatedData();
+    }
+});
+
+// ✅ Call fetch function to load data
+fetchAllParents().then(() => {
+    displayPaginatedData(); // Display first page initially
+});
+
+// deleting the parent
+const deleteParent = async (parentId) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to undo this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`/api/parents/${parentId}`, {
+                    method: "DELETE",
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to delete parent!");
+                }
+
+                // Remove parent from `filteredData`
+                filteredData = filteredData.filter(parent => parent.id !== parentId);
+
+                // Re-render table
+                displayParent(filteredData);
+
+                Swal.fire("Deleted!", "Parent has been deleted.", "success");
+            } catch (error) {
+                console.error("Error:", error);
+                Swal.fire("Error!", "Failed to delete parent. Please try again.", "error");
+            }
+        }
+    });
+};
+

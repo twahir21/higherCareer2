@@ -162,11 +162,39 @@
     }
     
     
-    td .edit{
-        color: #DBE2EF;
-        background: #3F72AF;
-    
-    }
     .search .admin-parent-search{
         caret-color: black;
     }
+
+    .pagination-admin-students {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .pagination-admin-students button {
+        padding: 8px 15px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    .pagination-admin-students button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    
+    #pageInfo {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    #pageInfoAdminStudent{
+        padding-top: 15px;
+    }
+    

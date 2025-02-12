@@ -40,11 +40,6 @@ export const fetchParent = async (req, res) => {
     }
 }
 
-// update parent
-export const updateParent = async (req, res) => {
-    // const {name} = req.body;
-}
-
 // delete parent
 export const deleteParent = async (req, res) => {
     const { id } = req.params;
