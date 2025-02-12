@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin: 20px;
 }
 
 .select-date > div{
@@ -66,4 +67,11 @@ body{
 
 table tr:nth-child(2n){
     background: #f8f7f7;
+}
+
+.attendance-container .attendance-body{
+    width: 76vw;
+    overflow-x: auto; /* Enable horizontal scroll */
+    white-space: nowrap; 
+    margin-left: 40px;
 }
