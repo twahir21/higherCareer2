@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteTeachers, updateTeacher } from "../controllers/teacherControllers";
+import { deleteTeachers, fetchAllTeachers, fetchTeacher, updateTeacher } from "../controllers/teacherControllers";
 
 const teacherRouter = express.Router();
 
@@ -7,12 +7,14 @@ const teacherRouter = express.Router();
 
 
 // fetch all
-teacherRouter.get("/teachers");
+teacherRouter.get("/teachers", fetchAllTeachers);
 // fetch one
-teacherRouter.get("/teachers/:id");
+teacherRouter.get("/teachers/:id", fetchTeacher);
 
 // delete
 teacherRouter.delete("/teachers/:id", deleteTeachers);
 
 // update
-teacherRouter.patch("/teachers/:id", updateTeacher)
+teacherRouter.patch("/teachers/:id", updateTeacher);
+
+export default teacherRouter;
