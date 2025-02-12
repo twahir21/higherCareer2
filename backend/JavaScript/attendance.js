@@ -53,3 +53,35 @@ const clearTable = () => {
      
 updateTable();
 setDateDetails();
+
+// now fetching data from the server
+const fetchAllStudents = async () => {
+    try {
+        const response  = await fetch("/api/parents");
+        
+        if(!response.ok) {
+            throw new Error("Internal Server Error!")
+        }
+
+        const result = await response.json();
+
+        const data = result.data;
+
+
+        const attendanceData = data.map(({id, student_fullname}) => ({
+            id,
+            fullname: student_fullname
+        }))
+
+        displayStudent(attendanceData);
+    } catch (error) {
+        console.log("Server can not be reached", error.message)
+    }
+}
+
+fetchAllStudents();
+
+
+const displayStudent = (data) => {
+
+}

@@ -10,7 +10,6 @@ const fetchAllParents = async () => {
 
         const result = await response.json();
         const data = result.data;
-        console.log(data);
 
         // Extract required fields and update student_class
         const classMapping = {
