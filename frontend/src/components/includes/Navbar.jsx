@@ -30,6 +30,24 @@ const Navbar = () => {
     }
     }, []);
 
+    const handlePrimaryJoin = async (event) => {
+        event.preventDefault(); // Prevent default link behavior
+    
+        try {
+            const response = await fetch("/primary-join", { method: "GET" });
+    
+            if (response.ok) {
+                window.location.href = "/primary-join"; // Redirect to the server-handled page
+            } else {
+                alert("Server error! Unable to load Primary Joining Instruction.");
+            }
+        } catch (error) {
+            console.error("Request failed:", error);
+            alert("Failed to reach the server.");
+        }
+    };
+    
+
 
 
   return (
@@ -75,7 +93,9 @@ const Navbar = () => {
                                         </li>
 
                                         <li>
-                                            <Link to="/primary-join" className="dropdown__link">Primary Joining Instruction</Link>
+                                            <a className="dropdown__link" onClick={handlePrimaryJoin}>
+                                                Primary Joining Instruction
+                                            </a>
                                         </li>
 
                                     </ul>

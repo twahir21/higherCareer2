@@ -25,6 +25,7 @@ import assignRoleRouter from "./routes/assignRole.js";
 import adminCodes from "./code/Admin.js";
 import teacherRouter from "./routes/teacher.js";
 import teacherRegRouter from "./routes/teacherReg.js";
+import joiningRouter from "./code/joiningForms.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, "JavaScript")));
 
 // usage for SSR
 app.use(adminCodes);
+app.use(joiningRouter);
 
 
 
