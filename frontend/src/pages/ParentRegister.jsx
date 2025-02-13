@@ -156,7 +156,7 @@ const ParentRegister = () => {
                             <FontAwesomeIcon icon={faLock} className="icon-parent" />
                             <input type="password" name="parent_confirmPswd" placeholder="Confirm Password" required autoComplete="current-password" onChange={handleChange} />
                         </div>
-                        <button type="submit" className="btn">Register</button>
+                        <button type="submit" className="btn Parentregbtn">Register</button>
                     </form>
                 </div>
                 <div className="register-banner">

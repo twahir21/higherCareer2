@@ -161,8 +161,10 @@
   
     
     /* Animations */
-    input:focus, .btn:hover, input:hover {
-      animation: glow 0.5s infinite alternate;
+    .input-group input:focus, 
+    .btn.Parentregbtn:hover, 
+    .input-group input:hover {
+      animation: glow2 0.5s infinite alternate;
     }
   
     /* Keyframes for slide-in animation */
@@ -179,7 +181,7 @@
 
 
     
-    @keyframes glow {
+    @keyframes glow2 {
       from {
         box-shadow: 0 0 5px #08AEEA;
       }

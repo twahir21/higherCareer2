@@ -1,0 +1,212 @@
+
+      /* Container for the whole page */
+    .register-container-teacher {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: clamp(3vh, 5vh + 5vw, 5vh);
+      padding-left: clamp(3vw, 5vh + 5vw, 5vw);
+      width: 100%;
+      height: 100%;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+    
+    .register-wrapper-teacher {
+      width: fit-content;
+      display: flex;
+      flex-direction: row;
+      animation: slideUp 1s ease-out;
+    }
+    
+    /* Register Form */
+    .register-form-teacher {
+      background-color: #fff;
+      padding: 20px;
+      border: 2.4px dotted #ff8e53;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      border-radius: 6px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      max-width: 400px;
+    }
+    
+    /* Register Form heading */
+    .register-form h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    /* Input Group Styles */
+    .input-group-teacher {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .input-group-teacher .icon-teacher {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #aaa;
+    }
+    
+    .input-group-teacher input {
+      width: 100%;
+      padding: 10px 40px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    
+    /* Button Styles */
+    .btn-teacher {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53); /* Different color scheme */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #4a90e280;
+    }
+    
+    /* Register Banner */
+    .register-banner-teacher {
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53); /* Different color scheme */
+      padding: 20px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 6px;
+      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+    
+    .register-banner-teacher h1 {
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    
+    .person-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 15px 0;
+      border: 4px solid white;
+      background-color: #ccc;
+    }
+    
+    .register-banner-teacher p {
+      font-size: 1rem;
+      color: #ffffff;
+    }
+  
+    /* Additional Styling for Student Class Dropdown */
+  .select-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .select-group .icon-teacher {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+  }
+  
+  .select-group select {
+    width: 100%;
+    padding: 10px 40px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none; /* Remove default dropdown styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  /* Add a custom arrow icon */
+  .select-group::after {
+    content: "\f0d7"; /* FontAwesome down arrow icon */
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+  }
+  
+    
+    /* Animations */
+    .input-group-teacher input:focus,
+    .btn-teacher:hover, 
+    .input-group-teacher input:hover {
+      animation: glow 0.5s infinite alternate;
+    }
+  
+    /* Keyframes for slide-in animation */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+    
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px #ff6b6b;
+      }
+      to {
+        box-shadow: 0 0 15px #ff8e53;
+      }
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+      .register-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .register-form {
+        max-width: 90%;
+      }
+    
+      .register-banner-teacher {
+        width: 90%;
+        max-width: 400px;
+      }
+    
+      .register-banner-teacher h1 {
+        font-size: 1.5rem;
+      }
+    }
+    
