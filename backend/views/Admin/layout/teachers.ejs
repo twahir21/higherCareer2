@@ -8,158 +8,25 @@
         <div class="search">
             <div class="right">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="search" placeholder="Search here...">
+                <input type="search" placeholder="Search by teacher's name..." id="teacherAdminSearch">
             </div>
 
             <div class="left">
-                <select name="SearchIndex" id="searchIndex">
+                <select name="SearchIndex" id="searchIndexAdminTeacher">
                     <option value="Newest">Newest</option>
                     <option value="Oldest">Oldest</option>
-                    <option value="recent">Recent</option>
                 </select>
             </div>
         </div>
 
-        <div class="cards">
-            <div class="card">
-                <div class="upper">
-                    <img src="/img/placeholder.jpg" alt="teacher_img">
-                </div>
+        <div class="cards" id="cardsAdmin">
+            <!-- DATA WILL BE DISPLAYED HERE BY JAVASCRIPT  -->
+        </div>
 
-                <div class="center">
-                    <h3>Latifa Sudi</h3>
-                    <p>Teacher</p>
-                    <div class="subjects">
-                        <h5 class="math">Mathematics</h5>
-                        <h5 class="science">Science</h5>
-                        <h5 class="arts">Arts</h5>
-                    </div>
-                </div>
-
-                <div class="lower">
-                    <button class="profile teacher_profile"><i class="fa-solid fa-user"></i> Profile</button>
-                    <button class="chat">
-                        <i class="fa-solid fa-trash"></i>
-                        Delete</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="upper">
-                    <img src="/img/placeholder2.jpg" alt="teacher_img">
-                </div>
-
-                <div class="center">
-                    <h3>Latifa Sudi</h3>
-                    <p>Teacher</p>
-                    <div class="subjects">
-                        <h5 class="math">Mathematics</h5>
-                        <h5 class="science">Science</h5>
-                        <h5 class="arts">Arts</h5>
-                    </div>
-                </div>
-
-                <div class="lower">
-                    <button class="profile teacher_profile"><i class="fa-solid fa-user"></i> Profile</button>
-                    <button class="chat">
-                        <i class="fa-solid fa-trash"></i>
-                        Delete</button>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="upper">
-                    <img src="/img/placeholder.jpg" alt="teacher_img">
-                </div>
-
-                <div class="center">
-                    <h3>Latifa Sudi</h3>
-                    <p>Teacher</p>
-                    <div class="subjects">
-                        <h5 class="math">Mathematics</h5>
-                        <h5 class="science">Science</h5>
-                        <h5 class="arts">Arts</h5>
-                    </div>
-                </div>
-
-                <div class="lower">
-                    <button class="profile teacher_profile"><i class="fa-solid fa-user"></i> Profile</button>
-                    <button class="chat">
-                        <i class="fa-solid fa-trash"></i>
-                        Delete</button>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="upper">
-                    <img src="/img/placeholder2.jpg" alt="teacher_img">
-                </div>
-
-                <div class="center">
-                    <h3>Latifa Sudi</h3>
-                    <p>Teacher</p>
-                    <div class="subjects">
-                        <h5 class="math">Mathematics</h5>
-                        <h5 class="science">Science</h5>
-                        <h5 class="arts">Arts</h5>
-                    </div>
-                </div>
-
-                <div class="lower">
-                    <button class="profile teacher_profile"><i class="fa-solid fa-user"></i> Profile</button>
-                    <button class="chat">
-                        <i class="fa-solid fa-trash"></i>
-                        Delete</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="upper">
-                    <img src="/img/placeholder.jpg" alt="teacher_img">
-                </div>
-
-                <div class="center">
-                    <h3>Latifa Sudi</h3>
-                    <p>Teacher</p>
-                    <div class="subjects">
-                        <h5 class="math">Mathematics</h5>
-                        <h5 class="science">Science</h5>
-                        <h5 class="arts">Arts</h5>
-                    </div>
-                </div>
-
-                <div class="lower">
-                    <button class="profile teacher_profile"><i class="fa-solid fa-user"></i> Profile</button>
-                    <button class="chat">
-                        <i class="fa-solid fa-trash"></i>
-                        Delete</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="upper">
-                    <img src="/img/placeholder.jpg" alt="teacher_img">
-                </div>
-
-                <div class="center">
-                    <h3>Latifa Sudi</h3>
-                    <p>Teacher</p>
-                    <div class="subjects">
-                        <h5 class="math">Mathematics</h5>
-                        <h5 class="science">Science</h5>
-                        <h5 class="arts">Arts</h5>
-                    </div>
-                </div>
-
-                <div class="lower">
-                    <button class="profile teacher_profile"><i class="fa-solid fa-user"></i> Profile</button>
-                    <button class="chat">
-                        <i class="fa-solid fa-trash"></i>
-                        Delete</button>
-                </div>
-            </div>
+        <div class="pagination-admin-Teacher">
+            <button id="prevPageAdmiTeacher" disabled>Previous</button>
+            <p id="pageInfoAdminTeacher">Page 1 of 5</p>
+            <button id="nextPageAdmiTeacher">Next</button>
         </div>
     </div>
-<script src="/admin-Teachers.js"></script>
+<script defer src="/admin-Teachers.js"></script>

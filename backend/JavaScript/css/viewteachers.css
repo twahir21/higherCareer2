@@ -27,6 +27,7 @@ h1{
     border: none;
     outline: none;
     width: 100%;
+    caret-color: black;
 }
 
 .right{
@@ -168,20 +169,55 @@ h1{
     font-weight: 600;
 }
 
+
+
 .math{
     color: #1eba62;
     background-color: #DDFAEA;
 }
 
-.arts{
+.english{
     background: #ffeaea;
     color: #fd5353;
 }
 
-.science{
+.dini{
     color: #fb7d5b;
     background: #fff3f0;
 }
+
+.cas{
+    background: #a3948f;
+    color: #f3f1f0;
+}
+
+.env{
+    background: #fcc43e;
+}
+
+.kisw{
+    background: #aba4f7;
+    color: #303972;
+}
+
+
+.social{
+    background: #3F4F44;
+    color: white;
+}
+
+.science{
+    background: #4d4;
+}
+
+.french{
+    background: #7886C7;
+}
+
+.default-class{
+    background: #B5828C;
+}
+
 
 /* #========== LOWER PART ===========*/
 
@@ -209,3 +245,33 @@ h1{
 .lower button > i{
     padding: 0 7px;
 }
+
+
+.pagination-admin-Teacher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination-admin-Teacher button {
+    padding: 5px 15px;
+    border: none;
+    background-color: #ec4d8a;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.pagination-admin-Teacher button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#pageInfoAdminTeacher{
+    font-weight: bold;
+    padding-top: 12px;
+}
+
