@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joining Instruction</title>
+    <link rel="stylesheet" href="/css/primary_join.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <%- include("../includes/nav.ejs") %>
+    <div class="joining-container">
+
+        <div class="joining-titles">
+            <h2><i class="fas fa-school"></i>FOMU YA KUJIUNGA NA SKULI YA MSINGI (PRIMARY) MWAKA 2025-2026</h2>
+            <h3><i class="fas fa-info-circle"></i>MAELEKEZO</h3>
+            <p class="joining-text">Tumia herufi kubwa TU kujaza fomu hii. Hakikisha kila sehemu imejazwa kiukamilifu</p>
+        </div>
+
+        <ol class="all-details">
+
+            <div class="maelezo_binafsi page" id="page-1">
+                <li class="sub-title"><i class="fas fa-user"></i>MAELEZO BINAFSI:</li>
+
+                <!-- Form 1 -->
+                <form action="#" id="form-1">
+                    <label for="student_name">
+                        JINA LA MWANAFUNZI:
+                        <input type="text" id="student_name" name="student_name" required>  
+                    </label>
+
+                    <label for="birth_date">
+                        TAREHE YAKUZALIWA:
+                        <input type="date" id="birth_date" name="birth_date" required>
+                    </label>
+
+                    <label for="gender">
+                        JINSIA:
+                        <input type="radio" name="gender" value="M/ME" id="gender_male"><span class="gender">M/ME</span>
+                        <input type="radio" name="gender" value="M/KE" id="gender_female"><span class="gender">M/KE</span>
+                    </label>
+
+                    <label for="school_name">
+                        JINA LA SKULI ANAYOTOKA MWANAFUNZI: 
+                        <input type="text" id="school_name" name="school_name" required>
+                    </label>
+
+                    <label for="join_year">
+                        MWAKA ALIOJIUNGA NA SKULI HIYO: 
+                        <input type="text" id="join_year" name="join_year" required>
+                    </label>
+
+                    <label for="class">
+                        DARASA ALILOFIKA:
+                        <input type="text" id="class" name="class" required>
+                    </label>
+                </form>
+            </div>
+
+            <div class="taarifa_mzazi page" id="page-2">
+                <li class="sub-title">TAARIFA ZA MZAZI/MLEZI:</li>
+                <!-- Form 2 -->
+                <form action="#" id="form-2">
+                    <label for="parent_name">
+                        JINA KAMILI LA MZAZI/MLEZI:
+                        <input type="text" id="parent_name" name="parent_name" required>
+                    </label>
+
+                    <label for="home">
+                        MAHALA ANAPOISHI MZAZI: 
+                        <input type="text" id="home" name="home" required>
+                    </label>
+
+                    <label for="house_no">
+                        NAMBARI YA NYUMBA:
+                        <input type="text" id="house_no" name="house_no" required>
+                    </label>
+
+                    <label for="phone">
+                        NAMBARI YA SIMU YA MZAZI:
+                        <input type="text" id="phone" name="phone" required>
+                    </label>
+
+                    <label for="optional_1">
+                        AU (sio lazima):
+                        <input type="text" id="optional_1" name="phone_optional" >
+                    </label>
+
+                    <label for="optional_2">
+                        AU (sio lazima):
+                        <input type="text" id="optional_2" name="phone_optional_2">
+                    </label>
+
+                    <label for="date">
+                        TAREHE YA KUJAZA FOMU:
+                        <input type="date" id="fill_date" name="date" required>
+                    </label>
+
+                    <label for="submit_date">
+                        TAREHE YA KUTUMA FOMU:
+                        <input type="date" id="submit_date" name="date_submitted" required>
+                    </label>
+                </form>
+            </div>
+
+            <div class="ada page" id="page-3">
+                <li class="sub-title">ADA YA SKULI NA TARATIBU ZA MALIPO</li>
+                <ol type="a">
+    
+                   <li>Mwanafunzi kujiunga na skuli ni lazima akubali na afuate taratibu na masharti yote yaliyoainishwa kwenye hii fomu.</li> 
+                    <li>Mzazi/Mlezi ni lazima ajaze fomu kwa ukamilifu asiache hata kipengele kimoja.</li>
+                    <li>Fomu inatakiwa iambatanishwe na vitu vifuatavyo
+                        <ul style="list-style-type: disc;">
+                            <li>Kivuli cha cheti cha kuzaliwa</li>
+                            <li>Picha mbili a paspoti saizi</li>
+                            <li>barua ya uhamisho ya skuli aliyotoka</li>
+                            <li>Kadi ya maendeleo ya shule anayotoka</li>
+                        </ul>
+                    </li>
+    
+                    <li>Usajili wa Mwanafunzi
+                        <ul style="list-style-type: lower-roman;">
+                            <li>Ada ya  kuchukua fomu ni Tsh 5,000/= haitorejeshwa</li>
+                            <li>Ada ya Usajili wa skuli ni Tsh 30,000/= haitarejeshwa</li>
+                            <li>Fulana Tsh 15,000/=</li>
+                            <li>Vipimo vya afya 20,000/=</li>
+                            <li>Ada ya chuo kwa mwezi ni Tsh 30,000/= italipwa miezi mitatu mitatu (Tsh 90,000/=)</li>
+                            <li>Ada ya Usafiri inatozwa kulingana na sehemu anayoishi mwanaunzi husika</li>
+                            <li>Ada ya Mahafali ni Tsh 20,000/= na safari ya kimasomo ni Tsh 20,000/=</li>
+                        </ul>
+                    </li>
+    
+                    <li>Ada ya masomo kwa mihula miwili  ni shs 600,000/=</li>
+                    <li>Mzazi/Mlezi atatakiwa kulipa kwa utaratibu ufuatao:-
+                        <ul style="list-style-type: lower-roman;">
+                            <li>Kulipa mihula yote miwili kwa pamoja AU</li>           
+                            <li>Mara mbili kwa muhula yaani Tsh 340, 000/= kwa kila mwanzo wa muhula na zilizobakia atamalizia muhula wa Pili  (Tsh. 260,000/=) AU</li>
+                            <li>Asilimia 70% sawa na Tsh 238,000/= kwa kila mwanzo wa muhula na atamalizia asilimia 30 (Tsh 102,000/=) iliobaki katikati ya muhula.</li>
+                            <li>Asilimia 70% sawa na Tsh 182,000/= kwa kila mwanzo wa muhula wa pili na atamalizia asilimia 30 Tsh 78,000/= iliobaki katikati ya muhula.</li>
+                        </ul>
+                    </li>
+    
+                    <li>Malipo yote yafanywe kupitia benki ya Kiislamu ya PBZ kwa akaunti namba 0726551001 JINA: AB HIGHER CAREER ACADEMIC LTD na kuwasilisha fomu ya malipo (Pay slip) katika ofisi yetu kwa ajili ya kupatiwa risiti 
+                        N.B. HAKUNA MALIPO YOYOTE YATAKAYOPOKELEWA SKULI.</li>
+                    
+                    <li>Mzazi/Mlezi wa mwanafunzi anatakiwa awasilishe vifaa vifuatavyo:-
+    
+
+             
+                        <table class="tools">
+                            <tr class="tr">
+                                <th class="th">S/No.</th>
+                                <th class="th">VIFAA</th>
+                                <th class="th">IDADI</th>
+                            </tr>
+    
+                            <tr class="tr">
+                                <td class="td">1</td>
+                                <td class="td">RIMU/KARATASI</td>
+                                <td class="td">1</td>
+                            </tr>
+                        </table>
+                    </li>
+    
+                    <li>Mzazi/Mlezi ataependa kulipa ada ya mwaka mzima kwa mara moja anaruhusiwa kulipa mwanzo wa mwaka na sio kati wala mwisho wa mwaka.</li>
+                    <li>Mzazi analazimika kuitikia wito wa skuli anapoitwa</li>
+                    <li>Mwanafunzi yeyote hatoruhusiwa kufanya mtihani wake wa muhula ikiwa hajakamilisha malipo yake yote ya muhula huo.</li>
+                    <li>Baada ya ada kulipwa haitorejeshwa kwa sababu ya kumuhamisha mwanafunzi au sababu nyengine yeyote.</li>
+                    <li>Skuli itatoa masomo yafuatayo kwa darasa la kwanza hadi la saba.</li>
+                </ol>
+            </div>
+
+            <div class="masomo page" id="page-4">
+                <li class="sub-title">MASOMO YALIYOMO</li>
+                <p>Na masomo yote yatasomeshwa kwa lugha ya kingereza isipokuwa masomo ya lugha ya Kiswahili, Kiarabu, Elimu ya dini ya kiislam kulingana na darasa alilokuwepo. Masomo yatakayosomeshwa ni:-</p>
+                <ol>
+                    <li>Kiswahili</li>
+                    <li>Mathematics</li>
+                    <li>English</li>
+                    <li>Social Science</li>
+                    <li>Science &Tech</li>
+                    <li>Dini & Arabic </li>
+                    <li>C.A.S.</li>
+                    <li>French</li>
+                </ol>
+            </div>
+
+            <div class="fomu-mzazi page" id="page-5">
+                <li class="sub-title">SEHEMU HII INATAKIWA KUJAZWA NA MLEZI / MZAZI:</li>
+                <!-- Form 3 -->
+                <form action="#" id="form-3">
+                    <label for="form3_name">Mimi,
+                        <input type="text" id="form3_name" name="parent_name" required>
+                    </label>
+
+                    <label for="form3_student_name">
+                        Mzazi/Mlezi wa:
+                        <input type="text" id="form3_student_name" name="student_name" required>
+                    </label>
+
+                    <label for="explanations">
+                        Naahidi kwamba, nitalipa Ada zote husika kwa wakati, aidha, naahidi kufuata taratibu zote na kanuni za skuli ya Higher Career Academy pamoja na kuhakikisha kwamba mtoto wangu atahudhuria masomo kwa wakati na nitawajibika kwa kosa lolote la kinidhamu.
+                        <input type="text" name="explanations" required>
+                    </label>
+
+                    <label for="form3_parent_name" class="footer_name">
+                        <input type="text" id="form3_parent_name" name="parent_name" required>
+                        JINA LA MZAZI
+                    </label>
+
+                    <label for="signature" class="footer_sign">
+                        <div class="signature-container">
+                            <canvas id="signature-pad"></canvas>
+                            <div class="sahihi">SAHIHI</div>
+                            <div class="button">
+                                <button id="clear-button">Futa</button>
+                                <button id="save-button">Hifadhi</button>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label for="form3_date" class="footer_date">
+                        <input type="date" id="form3_date" name="date" required>
+                        TAREHE
+                    </label>
+
+                    <label for="NB:" class="nb">
+                        NB:  MALIPO YOTE YALIPWE ISLAMIC BANK PBZ ACCONT NO: 0726551001 JINA: AB HIGHER CAREER ACADEMIC LTD
+                    </label>
+                </form>
+
+            </div>
+
+            <div class="sheria_skuli page" id="page-6">
+                <li class="sub-title">MASHARTI NA SHERIA ZA SKULI</li>
+                
+                <p>Kila Mzazi/Mlezi/Mwanafunzi atalazimika kuzifuata na kuzitii sheria na masharti ya skuli:-</p>
+                <ol>
+            <li class="mini-title">MASOMO NA MITIHANI
+                <ol type="a">
+                    <li>Mwanafunzi atalazimika kufanya vyema masomo yake pamoja na kuandika na kufanya kazi zote za darasani na nyumbani ( H/W)</li>
+                    <li>Mwanafunzi atalazimika kufanya majaribio yote ya mwezi.</li>
+                    <li>Mwanafunzi atatakiwa kufanya mitihani kwa wakati uliopangwa.</li>
+                    <li>Mwanafunzi hatakiwi kufanya udanganyifu katika mitihani.</li>
+                </ol>
+            </li>
+        
+            <li class="mini-title">Mwanafunzi haruhusiwi kuyafanya yafuatayo:-
+                <ol>
+                    <li>Utoro</li>
+                    <li>Kutoandika darasani</li>
+                    <li>Kutofanya kazi ya nyumbani na darasani</li>
+                    <li>Kutodurusu masomo yake nyumbani</li>
+                </ol>
+            </li>
+        
+            <li class="mini-title">Endapo hatotimiza yaliotajwa hapo juu adhabu ni:-
+                <ol>
+                    <li>Kuonywa</li>
+                    <li>kupewa adhabu na mwalimu</li>
+                    <li>kurudishwa nyumbani</li>
+                    <li>kuitwa mzazi</li>
+                </ol>
+            </li>
+        
+            <li class="mini-title">Mwanafunzi atarudishwa nyumbani/kuitwa mzazi endapo ataendelea kua sugu na moja ya mambo yaliorodheshwa hapo juu.</li>
+        
+            <li class="mini-title">SARE ZA SKULI </li>
+            <ol type="i" class="nested-ol-joining">
+                <li>Mwanafunzi atalazimika kuvaa sare maalum zilizopangwa na skuli na anawajibu wakulipiwa gharama zote za sare na Mzazi/Mlezi wake.</li>
+                <li>Wanafunzi wa kiume wanatakiwa wavae suruali ya bluu (isiburutike) shati ya blue na viatu vya kuvika (veusi) na soksi nyeupe pamoja na mkanda mweusi</li>
+                <li>Wanafunzi wa kike watatakiwa wavae shati ya blue na sketi ya blu shungi la blue na viatu vya kuvika rangi nyeusi  na soksi nyeupe.</li>
+                <li>Mwanafunzi atatakiwa kuvaa sare inayokubalika na skuli, kutovaliwa sehemu moja tu ya sare kama vile aina ya viatu au rangi isiyokubalika, mwanafunzi hatoruhusiwa kuingia darasani</li>
+            </ol>
+        
+            <li class="mini-title">MUDA WA KUFIKA SKULI</li>
+            <ol type="i" class="nested-ol-joining">
+                <li>Mzazi /Mlezi ahakikishe kijana wake amefika skuli saa 12:45 za asubuhi.</li>
+                <li>Endapo akachelewa adhabu ni kama ifuatavyo:-</li>
+                <ol class="sub-nested-ol-joining">
+                    <li>Kuonywa</li>
+                    <li>Kurudishwa nyumbani</li>
+                    <li>kuitwa mzazi</li>
+                </ol>
+            </ol>
+        
+            <li class="mini-title">USAFI</li>
+            <ol type="i" class="nested-ol-joining">
+                <li>Mwanafunzi anapaswa kutunza usafi wa mazingira yote ya skuli.</li>
+                <li>Mwanafunzi anatakiwa awe msafi kuanzia Nguo/sare, mwili, madaftari na mkoba</li>
+                <li>Endapo atakuja skuli si msafi adhabu ni kama ifuatavyo:-</li>
+                <ol class="sub-nested-ol-joining">
+                    <li>Kupewa adhabu na mwalimu</li>
+                    <li>Kuonywa</li>
+                    <li>Kurudishwa nyumbani</li>
+                    <li>Kuitwa mzazi</li>
+                </ol>
+            </ol>
+        
+            <li class="mini-title">NIDHAMU</li>
+            <ol type="i" class="nested-ol-joining">
+                <li>Ni lazima mwanafunzi awe na nidhamu na atii kanuni na sheria zote za skuli, kuacha kufuata sheria za skuli kunaweza kumpelekea kufukuzwa skuli.</li>
+                <li>Pia mwanafunzi aweke heshima kwa walimu, wafanyakazi na wanafunzi wenzake.</li>
+                <li>Mwanafunzi huruhusiwi kufanya yafuatayo:-</li>
+                <ol class="sub-nested-ol-joining">
+                    <li>Wizi wa aina yoyote</li>
+                    <li>Kupigana</li>
+                    <li>Kutumia lugha za matusi</li>
+                    <li>Kuharibu mali za skuli</li>
+                </ol>
+                <li>Endapo atafanya yaliorodheshwa hapo juu adhabu ni kama ifuatavyo:-</li>
+                <ol class="sub-nested-ol-joining">
+                    <li>Kuonywa</li>
+                    <li>kupewa adhabu</li>
+                    <li>kurudishwa nyumbani</li>
+                    <li>kuitwa kwa mzazi</li>
+                    <li>kulipa mali ya skuli</li>
+                </ol>
+            </ol>
+        
+            <li class="mini-title">MENGINEYO</li>
+            <ol type="i" class="nested-ol-joining">
+                <li>Mzazi/Mlezi atalazimika kufuatilia maendeleo ya mwanafunzi kila mwezi pamoja na kutoa ushirikiano kwa pale panapojitokeza dharura ya msingi itakayomfanya mwanafunzi ashindwe kuhudhuria skuli basi mzazi/ mlezi atalazimika kutoa taarifa mapema iwezekanavyo.</li>
+                <li>Mzazi/Mlezi analazimika kuitikia wito wa skuli anapoitwa na kushiriki vikao vyote vitakavyoitishwa na uongozi wa skuli.</li>
+                <li>Mwanafunzi watakaohitaji usafiri ni lazima wafanye malipo kwa wakati ili kuepusha usumbufu wa huduma hiyo.</li>
+                <li>Mwanafunzi anaehitaji Madrassa utaratibu wa malipo ni ule wa miezi mitatu mitatu na malipo yote yanafanyika benki, gharama za madrasa zimeorodheswa kwenye mchanganuo wa malipo.</li>
+                <li>Mwanafunzi ni lazima afanyiwe vipimo vya afya kabla ya kuanza masomo na vipimo akafanyiwe skuli.</li>
+                <li>Mwanafunzi atatakiwa kufanya kazi zote za darasani atakazopewa na walimu.</li>
+                <li>Ni marufuku kuja na simu skuli, simu  yoyote  itakayokamatwa itahifadhiwa na uongozi wa skuli kwa muda wa miezi sita, ndipo atakabidhiwa mzazi wa mwanafunzi. Halitokuwa ni jukumu la skuli kwa kufa au kuharibika kwa simu hiyo.</li>
+        
+                <li>Mzazi atatakiwa kutoa taarifa halisi za kijana wake, kama vile ugonjwa mkubwa au ulemavu wa viungo na kadhalika.</li>
+        
+                <li>Nywele kubwa na mikato ya kiajabu ajabu haitoruhusika kwa mwanafunzi yoyote wa kiume kwa muda wake wote wa masomo ndani ya shule</li>
+        
+                <li>Mtindo wa nywele unaoruhusika ni nywele ndogo staili ya mchicha zilizokatwa sawa sawa kichwa kizima au hata para</li>
+        
+                <li>Wakati wa saa za masomo mwanafunzi hatoruhusiwa kuwa nje ya mipaka ya skuli, Mzee/Mlezi anatakiwa atoe taarifa mapema kuhusu mwanawe, kucheleweshwa kwa taarifa kutapelekea kusimamishwa masomo kwa mwanafunzi.</li>
+        
+                <li>Mwanafunzi atapaswa kufaulu mitihani yote na watakaopata kiwango chini ya asilimia 45% ya jumla ya masomo yote atalazimika kurudia mwaka.</li>
+        
+                <li>Kwa wanafunzi wa darasa la sita watatakiwa kupasi angalau kuanzia kiwango cha asilimia 45% chini ya hapo atalazimika kurejea darasa.</li>
+        
+                <li>Mwanafunzi hatoruhusiwa kula, kunywa na kutafuna ubani akiwemo darasani.</li>
+        
+            <li>Mwanafunzi hatoruhusiwa kuvaa mapambo kama vile herine, bangili, pete, mkufu kupaka wanja, piko rangi ya mdomo, kutia dawa nywele n.k.</li>
+        
+            <li>Ni marufuku wanafunzi wa kiume kuvaa mapambo ya kike kama vile mkufu, herini na kadhalika na ni marufuku wanafunzi wa kike kuvaa mavazi ya kiume au kujifananiza na wanaume kama vile suruali za kiume.</li>
+        
+            <li>Kwa wanafunzi wa darasa la mitihani ya taifa (Mfano, Std 7 n.k) kutakua na malipo ya masomo ya ziada.</li>
+            </ol>
+        
+            <li class="mini-title">AHADI</li>
+            <!-- Form 4 -->
+            <form action="#" id="form-4">
+                <label for="form4_name" class="ahadi-input">
+                    Mimi, <input type="text" id="form4_name" name="parent_name" required> .
+                </label>
+
+                <label for="explanations" class="ahadi-input">
+                    Niko tayari kushirikiana na uongozi wa skuli katika kumlea kijana wangu, pia niko tayari kumsimamia kufuata muongozo na masharti ya skuli kama yalivyoelezwa 
+                    <input type="text" name="explanations" required>
+                </label>
+
+                <label for="signature" class="footer_sign">
+                    <div class="signature-container">
+                        <img id="image_signature" width="400" height="150" src="" alt="chora sahihi page namba 5">
+                        <div class="sahihi">SAHIHI</div>
+                    </div>
+                </label>
+
+                <label for="form4_date">Tarehe 
+                    <input type="date" id="form4_date" name="date" required>
+                </label>
+            </form>
+
+            <!-- Single Submit Button -->
+            <button id="nurseryBtn" class="primaryBtn">Tuma fomu</button>
+                </ol>
+            </div>
+        </ol>
+
+        <!-- Pagination Controls -->
+        <div id="pagination" class="pagination"></div>
+    </div>
+    <%- include("../includes/footer.ejs") %>
+    <script src="/js/primary_join.js"></script>
+</body>
+</html>
