@@ -1,0 +1,6 @@
+CREATE TABLE Classes (
+    ClassID SERIAL PRIMARY KEY,
+    ClassName VARCHAR(50) NOT NULL,
+    TeacherID INT REFERENCES Teacher(TeacherID) ON DELETE SET NULL,
+    Subject VARCHAR(100) NOT NULL
+);

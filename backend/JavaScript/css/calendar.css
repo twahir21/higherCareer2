@@ -5,6 +5,10 @@
 }
 
 
+.cardEvent{
+    max-width: 100vw;
+}
+
 .calendar{
     width: 380px;
     height: auto;
