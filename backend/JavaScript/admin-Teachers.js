@@ -1,4 +1,5 @@
-let allTeachers = [];  // Store all teachers globally
+document.addEventListener("DOMContentLoaded", () => {
+    let allTeachers = [];  // Store all teachers globally
 let filteredTeachers = []; // Store filtered data after search
 let currentPage = 1;
 const itemsPerPage = 6; // Adjust as needed
@@ -141,3 +142,5 @@ document.getElementById("nextPageAdmiTeacher").addEventListener("click", () => {
         paginateData();
     }
 });
+
+})
