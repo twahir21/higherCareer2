@@ -4,24 +4,22 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     faUser, faEnvelope, faPhone, faLock, 
-    faChalkboardTeacher,
-    faGraduationCap
+    faChalkboardTeacher, faGraduationCap 
 } from "@fortawesome/free-solid-svg-icons";
 import "react-toastify/dist/ReactToastify.css";
-
 import "../styles/TeacherReg.css";
 import regImg from "../images/register.jpg";
 
 const TeacherReg = () => {
     const formRef = useRef(null);
+
     const [formData, setFormData] = useState({
         teacher_UserName: "",
         teacher_fullName: "",
         teacher_email: "",
         teacher_tel: "",
-        relationship: "",
-        student_fullName: "",
-        student_className: "",
+        subject: "",
+        qualifications: "",
         teacher_password: "",
         teacher_confirmPswd: "",
     });
@@ -44,11 +42,7 @@ const TeacherReg = () => {
 
     // Validate form data
     const validateForm = () => {
-        const {
-            teacher_UserName, teacher_fullName, teacher_email, teacher_tel,
-            relationship, student_fullName, student_className, 
-            teacher_password, teacher_confirmPswd
-        } = formData;
+        const { teacher_UserName, teacher_fullName, teacher_email, teacher_tel, subject, qualifications, teacher_password, teacher_confirmPswd } = formData;
 
         if (!usernameRegex.test(teacher_UserName)) {
             toast.error("Username must be 3-20 alphanumeric characters.");
@@ -66,16 +60,12 @@ const TeacherReg = () => {
             toast.error("Please enter a valid phone number.");
             return false;
         }
-        if (!fullNameRegex.test(relationship)) {
-            toast.error("Enter a valid relationship to the student.");
+        if (!subject.trim()) {
+            toast.error("Subject is required.");
             return false;
         }
-        if (!fullNameRegex.test(student_fullName)) {
-            toast.error("Enter a valid student name.");
-            return false;
-        }
-        if (!student_className) {
-            toast.error("Please select a student class.");
+        if (!qualifications.trim()) {
+            toast.error("Qualifications are required.");
             return false;
         }
         if (!passwordRegex.test(teacher_password)) {
@@ -103,7 +93,7 @@ const TeacherReg = () => {
             toast.success(response.data.message);
             setTimeout(() => {
                 window.location.href = response.data.redirect;
-            }, 2000);
+            }, 4000);
         } catch (error) {
             toast.error(error.response?.data?.message || "Network error, please try again.");
         }
@@ -142,7 +132,7 @@ const TeacherReg = () => {
 
                         <div className="input-group-teacher">
                             <FontAwesomeIcon icon={faLock} className="icon-teacher" />
-                            <input type="password" name="techer_password" placeholder="Password" required autoComplete="new-password" onChange={handleChange} />
+                            <input type="password" name="teacher_password" placeholder="Password" required autoComplete="new-password" onChange={handleChange} />
                         </div>
                         <div className="input-group-teacher">
                             <FontAwesomeIcon icon={faLock} className="icon-teacher" />
@@ -161,4 +151,4 @@ const TeacherReg = () => {
     );
 };
 
-export default TeacherReg
+export default TeacherReg;

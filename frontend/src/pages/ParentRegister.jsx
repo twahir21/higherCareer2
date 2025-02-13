@@ -101,7 +101,7 @@ const ParentRegister = () => {
             toast.success(response.data.message);
             setTimeout(() => {
                 window.location.href = response.data.redirect;
-            }, 2000);
+            }, 4000);
         } catch (error) {
             toast.error(error.response?.data?.message || "Network error, please try again.");
         }

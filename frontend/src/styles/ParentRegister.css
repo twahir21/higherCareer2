@@ -147,10 +147,8 @@
     -moz-appearance: none;
   }
   
-  /* Add a custom arrow icon-parent */
   .select-group::after {
-    content: "\f0d7"; /* FontAwesome down arrow icon-parent */
-    font-family: 'FontAwesome';
+    content: "▼"; 
     position: absolute;
     top: 50%;
     right: 10px;
