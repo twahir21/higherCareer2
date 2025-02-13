@@ -137,7 +137,14 @@ saveButton.addEventListener('click', () => {
   const dataURL = canvas.toDataURL();
 
   img.src = `${dataURL}`;
-  alert('signature saved successfully')
+  Swal.fire({
+    title: "Success!",
+    text: "Signature saved successfully",
+    icon: "success",
+    showConfirmButton: false, // Hides the confirm button
+    timer: 2000, // Closes the alert after 2 seconds
+});
+
 });
 
 function validateForm(formId) {
