@@ -23,7 +23,8 @@ import parentRouter from "./routes/parent.js";
 import parentRegRouter from "./routes/parentReg.js";
 import assignRoleRouter from "./routes/assignRole.js";
 import adminCodes from "./code/Admin.js";
-import teacherRouter from "./routes/teacherReg.js";
+import teacherRouter from "./routes/teacher.js";
+import teacherRegRouter from "./routes/teacherReg.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -31,7 +32,8 @@ app.use("/api", emailRouter);
 app.use("/api", parentRouter);
 app.use("/api", parentRegRouter)
 app.use("/api", assignRoleRouter);
-app.use("/api", teacherRouter)
+app.use("/api", teacherRouter);
+app.use("/api", teacherRegRouter);
 
 // Convert ES module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
