@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
     let filteredData = []; // Store global data for search & sorting
 
 const fetchAllParents = async () => {
@@ -212,4 +211,3 @@ const deleteParent = async (parentId) => {
 };
 
 
-})
