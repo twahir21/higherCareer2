@@ -1,0 +1,31 @@
+
+    <link rel="stylesheet" href="/css/viewteachers.css">
+
+
+    <h1>Teachers</h1>
+    <div class="teacher-container">
+        <div class="search">
+            <div class="right">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search by teacher's name..." id="teacherAdminSearch">
+            </div>
+
+            <div class="left">
+                <select name="SearchIndex" id="searchIndexAdminTeacher">
+                    <option value="Newest">Newest</option>
+                    <option value="Oldest">Oldest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="cards" id="cardsAdmin">
+            <!-- DATA WILL BE DISPLAYED HERE BY JAVASCRIPT  -->
+        </div>
+
+        <div class="pagination-admin-Teacher">
+            <button id="prevPageAdmiTeacher" disabled>Previous</button>
+            <p id="pageInfoAdminTeacher">Page 1 of 5</p>
+            <button id="nextPageAdmiTeacher">Next</button>
+        </div>
+    </div>
+<script defer src="/admin-Teachers.js"></script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <link rel="stylesheet" href="/css/student.css">
+
+</head>
+<body>
+    <div class="student-container">
+        <div class="search">
+            <div class="right">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search by student name..." class="admin-parent-search">
+            </div>
+
+            <div class="left">
+                <select name="SearchIndex" id="searchIndexStudent">
+                    <option value="Newest">Newest</option>
+                    <option value="Oldest">Oldest</option>
+                </select>
+            </div>
+        </div>
+
+        <table class="admin-parent">
+            <!-- Data will be displayed here ... -->
+        </table>
+
+        <div class="pagination-admin-students">
+            <button id="prevPageAdminStudent" disabled>Previous</button>
+            <p id="pageInfoAdminStudent">Page 1 of 5</p>
+            <button id="nextPageAdminStudent">Next</button>
+        </div>
+        
+    </div>
+    <script src="./admin-Parent.js"></script>
+</body>
+</html>

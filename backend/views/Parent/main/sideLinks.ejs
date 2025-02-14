@@ -1,0 +1,111 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a class="brand-link">
+        <span class="brand-text font-weight-light">Welcome <%= message %></span>
+    </a>
+    <div class="sidebar">
+        <nav class="mt-2">
+
+            <!--Side Navigations-->
+            <ul class="nav nav-pills nav-sidebar flex-column">
+                <!-- Dashboard -->
+                <li class="nav-item" id="dashboard">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                <!-- Verify users-->
+                 <li class="nav-item" id="verifyUsers">
+                    <a class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Verify Users</p>
+                    </a>
+                 </li>
+
+                <!-- Teacher -->
+                <li class="nav-item" id="teacher">
+                    <a class="nav-link">
+                        <i class="fas fa-user-tie nav-icon"></i>
+
+                        <p>Teacher</p>
+                    </a>
+                </li>
+
+
+                <!-- Student  -->
+                <li class="nav-item" id="student">
+                    <a class="nav-link" id="studentLink">
+                        <i class="fas fa-solid fa-user nav-icon"></i>
+                        <p>Parents</p>
+                    </a>
+                </li>
+
+                <!-- Subject management  -->
+                <li class="nav-item" id="student">
+                    <a class="nav-link" id="studentLink">
+                        <i class="fas fa-user-graduate nav-icon"></i>
+                        <p>Subject Management</p>
+                    </a>
+                </li>
+
+                <!-- Subject management  -->
+                <li class="nav-item" id="student">
+                    <a class="nav-link" id="studentLink">
+                        <i class="fas fa-user-graduate nav-icon"></i>
+                        <p>Report Management</p>
+                    </a>
+                </li>
+
+                <!-- Class Management -->
+                <li class="nav-item" id="classManagement">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>
+                            Class Management
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Attendance -->
+                <li class="nav-item" id="attendance">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-calendar-check"></i>
+                        <p>Attendance</p>
+                    </a>
+                </li>
+
+                <!-- Communication -->
+                <li class="nav-item" id="communication">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-regular fa-calendar"></i>
+                        <p>
+                            Event Management
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Joining Instruction -->
+                <li class="nav-item" id="settings">
+                    <a class="nav-link">
+                        <i class="nav-icon fa-solid fa-file-lines"></i>
+                        <p>Joining Instructions</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const treeviewItems = document.querySelectorAll('.nav-item.has-treeview > a');
+    treeviewItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const treeviewMenu = this.nextElementSibling;
+            treeviewMenu.style.display = treeviewMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+});
+</script>
