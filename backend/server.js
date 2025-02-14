@@ -26,6 +26,8 @@ import adminCodes from "./code/Admin.js";
 import teacherRouter from "./routes/teacher.js";
 import teacherRegRouter from "./routes/teacherReg.js";
 import joiningRouter from "./code/joiningForms.js";
+import routerForm from "./routes/generatePDF.js";
+import handlePDFRouter from "./routes/handlePDF.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -35,13 +37,17 @@ app.use("/api", parentRegRouter)
 app.use("/api", assignRoleRouter);
 app.use("/api", teacherRouter);
 app.use("/api", teacherRegRouter);
+app.use(routerForm)
+app.use(handlePDFRouter);
 
 // Convert ES module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve JavaScript assets
+// Serve JavaScript assets and Download documents
 app.use(express.static(path.join(__dirname, "JavaScript")));
+app.use('/downloads', express.static(path.join(__dirname, 'downloads')));
+
 
 // usage for SSR
 app.use(adminCodes);
@@ -78,7 +84,10 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Serve all pages from React frontend
 // Catch-all: Serve React frontend for any other route
-app.get("*", (req, res) => {
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith("/downloads")) {
+    return next(); // Let Express handle static files in /downloads
+  }
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 

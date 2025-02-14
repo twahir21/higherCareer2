@@ -46,6 +46,24 @@ const Navbar = () => {
             alert("Failed to reach the server.");
         }
     };
+
+
+    const handleNurseryJoin = async (event) => {
+        event.preventDefault(); // Prevent default link behavior
+    
+        try {
+            const response = await fetch("/nursery-join", { method: "GET" });
+    
+            if (response.ok) {
+                window.location.href = "/nursery-join"; // Redirect to the server-handled page
+            } else {
+                alert("Server error! Unable to load Nursery Joining Instruction.");
+            }
+        } catch (error) {
+            console.error("Request failed:", error);
+            alert("Failed to reach the server.");
+        }
+    };
     
 
 
@@ -89,7 +107,9 @@ const Navbar = () => {
 
                                     <ul className="dropdown__list">
                                         <li>
-                                            <Link to="/nursery-join" className="dropdown__link">Nursery Joining Instruction</Link>
+                                            <a className="dropdown__link" onClick={handleNurseryJoin}>
+                                                Nursery Joining Instruction
+                                            </a>
                                         </li>
 
                                         <li>

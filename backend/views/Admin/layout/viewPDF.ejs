@@ -151,7 +151,6 @@
         deleteButton.onclick = () => deletePdf(pdf.name);
         actionCell.appendChild(deleteButton);
         row.appendChild(actionCell);
-
         row.onclick = () => previewPdf(pdf.url); // Preview PDF on row click
         tableBody.appendChild(row);
     });
@@ -187,6 +186,7 @@
     // Function to preview the PDF in the iframe
     function previewPdf(url) {
         const iframe = document.getElementById('pdfPreview');
+        console.log(url);
         iframe.src = url;
     }
 

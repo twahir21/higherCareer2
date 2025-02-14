@@ -1,0 +1,313 @@
+/* #=========== MAIN ==============*/
+body {
+    background: linear-gradient(120deg, #ff8e53, #ffffff);
+    font-family: 'Poppins';
+    height: fit-content;
+    min-height: 100vh;
+}
+
+.joining-container {
+    padding: 20px;
+    max-width: 860px;
+    margin: 1.5rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.joining-container > *{
+    color: #656e81;
+    color: #333;
+}
+
+/*============== TITLES ====================*/
+
+.joining-titles h2{
+    color: #253c6a;
+    padding: 20px;
+    text-align: center;
+}
+
+.joining-titles h2 i{
+    color: #253c6a;
+}
+
+.joining-titles h2 i, .joining-titles h3 i{
+    padding: 0 7px;
+}
+
+.joining-titles h3 i, .joining-titles h3{
+    color: #ff8e53;
+    margin: 0;
+}
+
+.joining-titles .joining-text{
+    padding: 7px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============== ALL DETAILS =============*/
+.all-details .page .sub-title i{
+    padding: 0 7px;
+    color: #ff8e53;
+    margin: 0;
+}
+
+.all-details .page .sub-title {
+    color: #ff8e53;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+
+/* ============ CREATING PAGINATION ==================*/
+.page{
+    background: #F5F5F5;
+    padding: 1.4rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid #ff8e53; 
+
+}
+
+.page {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.6s ease-in-out;
+    animation: fadeIn 0.9s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .page.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .pagination button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #ff8e53;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .pagination button:hover:not(:disabled) {
+    background-color: #f8b692;
+  }
+
+/* ============= FORMS =============*/
+.all-details input{
+    border: none;
+    border-bottom: 3px dotted #333;
+    padding: 0 5px;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+}
+
+.all-details label{
+    display: block;
+    margin: .5rem;
+}
+
+.all-details .gender{
+    padding: 0 1em 0 .4em;
+}
+
+
+/*  ============ADA DIV ============  */
+.ada{
+    padding: 1rem 2rem;
+}
+
+.ada ul {
+    padding: .2rem 2.5rem;
+}
+.ada .tools {
+    margin: 20px 0;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.ada .th, .ada .td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.ada .th {
+    background-color: #ff8e53;
+    color: white;
+    font-weight: bold;
+}
+
+.ada .tr:nth-child(even) {
+    background-color: #ece8e8;
+}
+
+.ada .tr:hover {
+    background-color: #ddd;
+}
+
+.ada .td {
+    color: #333;
+}
+
+
+/*===== MASOMO DIV =====*/
+.masomo.page ol{
+    padding: .6rem 2.5rem;
+}
+
+
+/* ==== MZAZI ======*/
+.fomu-mzazi.page label{
+    display: inline;
+}
+
+.fomu-mzazi.page .footer_name{
+    padding: .7rem;
+}
+
+.fomu-mzazi.page .footer_name input, 
+.fomu-mzazi.page .footer_sign, 
+.fomu-mzazi.page .footer_date,
+.fomu-mzazi.page .footer_date input,
+.fomu-mzazi.page .nb{
+    display: block;
+}
+
+/* ==== SIGNATURE ======*/
+
+.fomu-mzazi.page .footer_sign .signature-container .button button{
+    padding: .4rem .7rem;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff8e53;
+    color: #fff;
+    cursor: pointer;
+}
+
+.fomu-mzazi.page .footer_sign .signature-container canvas{
+    border: 3px solid #000;
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+/* ==== SHERIA SKULI =====*/
+.sheria_skuli.page{
+    padding: 1rem 2rem;
+}
+.sheria_skuli.page li ol{
+    padding: 1rem 2.5rem;
+}
+
+.sheria_skuli.page .mini-title{
+    padding-top: .6rem;
+    color: #b96234;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.sheria_skuli.page .mini-title > *{
+    color: #333;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.nested-ol-joining{
+    padding: .7rem 2.5rem;
+}
+
+.sub-nested-ol-joining{
+    padding: .3rem 3.5rem;
+}
+
+.all-details .ahadi-input{
+    display: inline;
+}
+
+.footer_sign .signature-container img{
+    border: 3px solid #000;
+    background: #ffffff;
+    border-radius: 5px;
+    min-height: 9.4rem;
+    min-width: 25rem;
+}
+
+
+/*============ canva ============*/
+.signature-container canvas{
+    max-width: 400px;
+    max-height: 150px;
+    min-width: 200px;
+}
+
+#nurseryBtn{
+    padding: 7px 20px;
+    background: #ff8e53;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 1rem;
+    transition: opacity .5s ease;
+    animation: glow 1.3s ease-in-out infinite alternate;
+}
+
+#nurseryBtn:hover{
+    cursor: pointer;
+    opacity: .8;
+    animation-play-state: paused; /* Pauses the animation on hover */
+}
+
+@keyframes glow {
+    from{
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #638C6D;
+        transform: translateX(13px);
+    }
+    to{
+        transform: scale(1);
+        box-shadow: 0 0 25px #2A004E;
+        transform: translateX(-13px);
+    }
+  }
+
+
+  .homePageNursery{
+    padding: 10px 20px;
+    color: #2e303f;
+    border: 2px solid #2e303f;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  }

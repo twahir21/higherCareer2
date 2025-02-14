@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joining Instruction</title>
     <link rel="stylesheet" href="/css/nursery_join.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Load SweetAlert2 from a CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
-    <%- include("../includes/nav.ejs") %>
+    <button class="homePageNursery" onclick="redirectHome()">Go Homepage</button>
     <div class="joining-container">
 
         <div class="joining-titles">
@@ -447,7 +451,26 @@
         <!-- Pagination Controls -->
         <div id="pagination" class="pagination"></div>
     </div>
-    <%- include("../includes/footer.ejs") %>
-    <script src="/js/primary_join.js"></script>
+    <script src="/primary_join.js"></script>
+    <script>
+
+        function redirectHome() {
+    fetch("/", {
+        method: "GET",
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "/"; // Redirect to homepage
+        } else {
+            alert("Error redirecting to homepage.");
+        }
+    })
+    .catch(error => {
+        console.error("Request failed:", error);
+        alert("Failed to reach the server.");
+    });
+}
+
+    </script>
 </body>
 </html>

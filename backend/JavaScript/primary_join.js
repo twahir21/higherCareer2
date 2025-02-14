@@ -216,9 +216,22 @@ document.getElementById('nurseryBtn').addEventListener('click', function(event) 
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              alert("PDF generated successfully.");
+              Swal.fire({
+                title: "Success 😊",
+                text: "Your PDF is generated Successfully!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000
+            });
+            
+
           } else {
-              alert("An error occurred.");
+              Swal.fire({
+                title: "An Error Occurred 😢",
+                text: "Something went wrong. Please try again!",
+                icon: "error",
+                confirmButtonText: "OK",
+            });
           }
       })
       .catch(error => {

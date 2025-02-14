@@ -1,8 +1,13 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
+import { fileURLToPath } from "url";
 
 const handlePDFRouter = express.Router();
+
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Endpoint to get all PDF files in the downloads folder
 handlePDFRouter.get('/api/pdfs', (req, res) => {
