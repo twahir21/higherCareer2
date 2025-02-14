@@ -115,102 +115,124 @@
         </div>
     </div>
 
-<script>
-    // Fetch PDF data from backend API
-    async function fetchPdfData() {
-        try {
-            const response = await fetch('/api/pdfs');
-            const pdfFiles = await response.json();
-            populateTable(pdfFiles);
-        } catch (error) {
-            console.error('Error fetching PDF data:', error);
-        }
-    }
-
-    // Function to populate the table with data
-    function populateTable(pdfFiles) {
-    const tableBody = document.getElementById('pdfTableBody');
-    const err = document.getElementById('err');
-    tableBody.innerHTML = ''; // Clear any existing rows
-    err.innerText = ''; // Clear error message
-
-    if (pdfFiles.length === 0) {
-        err.innerText = 'No pdf found.';
-    }
-
-    pdfFiles.forEach((pdf) => {
-        const row = document.createElement('tr');
-        
-        const nameCell = document.createElement('td');
-        nameCell.textContent = pdf.name;
-        row.appendChild(nameCell);
-        
-        const actionCell = document.createElement('td');
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.onclick = () => deletePdf(pdf.name);
-        actionCell.appendChild(deleteButton);
-        row.appendChild(actionCell);
-        row.onclick = () => previewPdf(pdf.url); // Preview PDF on row click
-        tableBody.appendChild(row);
-    });
-}
-
-
-    // Function to filter table rows based on search input
-    function filterTable() {
-    const searchValue = document.getElementById('searchInput').value.toLowerCase();
-    const rows = document.getElementById('pdfTableBody').getElementsByTagName('tr');
-    const err = document.getElementById('err');
-    let found = false; // Track if any results match the search
-    
-    Array.from(rows).forEach(row => {
-        const pdfName = row.cells[0].textContent.toLowerCase();
-        if (pdfName.includes(searchValue)) {
-            row.style.display = '';
-            found = true; // Match found
-        } else {
-            row.style.display = 'none';
-        }
-    });
-    
-    // Show the "No pdf found" message if no match is found
-    if (!found) {
-        err.innerText = 'No pdf found.';
-    } else {
-        err.innerText = ''; // Clear the error message if matches are found
-    }
-    }
-
-
-    // Function to preview the PDF in the iframe
-    function previewPdf(url) {
-        const iframe = document.getElementById('pdfPreview');
-        console.log(url);
-        iframe.src = url;
-    }
-
-    // Function to delete a PDF from the list (and backend)
-    async function deletePdf(pdfName) {
-        const confirmation = confirm(`Are you sure you want to delete ${pdfName}?`);
-        if (confirmation) {
+    <script>
+        // Fetch PDF data from backend API
+        async function fetchPdfData() {
             try {
-                const response = await fetch(`/api/pdfs/${pdfName}`, { method: 'DELETE' });
-                if (response.ok) {
-                    alert('PDF deleted successfully!');
-                    fetchPdfData(); // Re-fetch data after deletion
-                } else {
-                    alert('Error deleting PDF.');
-                }
+                const response = await fetch('/api/pdfs');
+                const pdfFiles = await response.json();
+                populateTable(pdfFiles);
             } catch (error) {
-                console.error('Error deleting PDF:', error);
+                console.error('Error fetching PDF data:', error);
             }
         }
-    }
-
-    // Initial population of the table
-    fetchPdfData();
-</script>
+    
+        // Function to populate the table with data
+        function populateTable(pdfFiles) {
+            const tableBody = document.getElementById('pdfTableBody');
+            const err = document.getElementById('err');
+            tableBody.innerHTML = ''; // Clear any existing rows
+            err.innerText = ''; // Clear error message
+    
+            if (pdfFiles.length === 0) {
+                err.innerText = 'No pdf found.';
+            }
+    
+            pdfFiles.forEach((pdf) => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.textContent = pdf.name;
+                row.appendChild(nameCell);
+                
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deletePdf(pdf.name);
+                actionCell.appendChild(deleteButton);
+                row.appendChild(actionCell);
+                row.onclick = () => previewPdf(pdf.url); // Preview PDF on row click
+                tableBody.appendChild(row);
+            });
+        }
+    
+        // Function to filter table rows based on search input
+        function filterTable() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.getElementById('pdfTableBody').getElementsByTagName('tr');
+            const err = document.getElementById('err');
+            let found = false; // Track if any results match the search
+            
+            Array.from(rows).forEach(row => {
+                const pdfName = row.cells[0].textContent.toLowerCase();
+                if (pdfName.includes(searchValue)) {
+                    row.style.display = '';
+                    found = true; // Match found
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Show the "No pdf found" message if no match is found
+            if (!found) {
+                err.innerText = 'No pdf found.';
+            } else {
+                err.innerText = ''; // Clear the error message if matches are found
+            }
+        }
+    
+        // Function to preview the PDF in the iframe
+        function previewPdf(url) {
+            const iframe = document.getElementById('pdfPreview');
+            console.log(url);
+            iframe.src = url;
+        }
+    
+        // Function to delete a PDF from the list (and backend) with SweetAlert confirmation
+        async function deletePdf(pdfName) {
+            Swal.fire({
+                title: "Are you sure? 🤔",
+                text: `You are about to delete ${pdfName}. This action cannot be undone!`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it! ❌",
+                cancelButtonText: "Cancel",
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    try {
+                        const response = await fetch(`/api/pdfs/${pdfName}`, { method: 'DELETE' });
+                        if (response.ok) {
+                            Swal.fire({
+                                title: "Deleted! ✅",
+                                text: "PDF deleted successfully.",
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            fetchPdfData(); // Re-fetch data after deletion
+                        } else {
+                            Swal.fire({
+                                title: "Error! 😢",
+                                text: "Error deleting PDF.",
+                                icon: "error",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Error deleting PDF:', error);
+                    }
+                }
+            });
+        }
+    
+        // Initial population of the table
+        fetchPdfData();
+    </script>
+    
+    
 
 </body>
 </html>
