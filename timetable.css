@@ -1,0 +1,48 @@
+table{
+    background: #d5ebeb;
+    padding: 5px;
+    border-radius: 10px;
+    border: 3px double #a8a8a8;
+    border-collapse: collapse; /* Remove the space between the cells */
+    margin: 20px auto; /* Center the table horizontally */
+}
+
+table tr{
+    padding: 5px;
+}
+
+table th{
+    border: 2px solid #868585;
+    padding: 10px 0; 
+}
+
+table td{
+    border: 2px solid #868585;
+    padding: 20px 30px;
+}
+
+
+
+.Maths{
+    background: #f3f3a8;
+}
+
+.Science{
+    background: #f3a8a8;
+}
+
+.English{
+    background: #a8f3a8;
+}
+
+.Swahili{
+    background: #a8a8f3;
+}
+
+.Arabic{
+    background: #f3a8f3;
+}
+
+.Break{
+    background: #dddfdd;
+}

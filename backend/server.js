@@ -29,6 +29,7 @@ import joiningRouter from "./code/joiningForms.js";
 import routerForm from "./routes/generatePDF.js";
 import handlePDFRouter from "./routes/handlePDF.js";
 import classRouter from "./routes/assignClass.js";
+import timetableRouter from "./routes/timetable.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -39,6 +40,7 @@ app.use("/api", assignRoleRouter);
 app.use("/api", teacherRouter);
 app.use("/api", teacherRegRouter);
 app.use("/api", classRouter);
+app.use("/api", timetableRouter);
 
 // Forms for joining school
 app.use(routerForm)

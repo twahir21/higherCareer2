@@ -1,0 +1,37 @@
+{
+    "class": "Grade 10",
+    "stream": "A",
+    "timeSlots": [
+        "8:00 - 8:30",
+        "8:30 - 9:00",
+        "9:00 - 9:30",
+        "9:30 - 10:00",
+        "10:00 - 10:30",
+        "10:30 - 11:00",
+        "11:00 - 11:30",
+        "11:30 - 12:00",
+        "12:00 - 12:30"
+    ],
+    "timetable": [
+        {
+            "day": "Mon",
+            "subjects": ["Math", "Break", "Science", "English", "Break", "History", "Physics", "Chemistry", "PE"]
+        },
+        {
+            "day": "Tue",
+            "subjects": ["English", "Break", "Math", "Science", "Break", "Biology", "Geography", "Computer", "Art"]
+        },
+        {
+            "day": "Wed",
+            "subjects": ["Physics", "Break", "Chemistry", "Math", "Break", "English", "Music", "History", "Drama"]
+        },
+        {
+            "day": "Thu",
+            "subjects": ["Geography", "Break", "Biology", "Physics", "Break", "Chemistry", "English", "Math", "Computer"]
+        },
+        {
+            "day": "Fri",
+            "subjects": ["History", "Break", "Math", "Science", "Break", "English", "PE", "Art", "Music"]
+        }
+    ]
+}
