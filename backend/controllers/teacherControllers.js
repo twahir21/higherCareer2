@@ -78,3 +78,15 @@ export const deleteTeachers = async (req, res) => {
         res.status(500).json({success: false, error: "Server is down!"})
     }
 }
+
+
+// assign class
+export const assignClass = async (req, res) => {
+    try {
+        const result = await database.query("SELECT id, fullname FROM teacher ORDER BY fullname ASC");
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
+}

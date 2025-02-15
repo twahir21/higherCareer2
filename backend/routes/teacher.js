@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteTeachers, 
+import { assignClass, deleteTeachers, 
     fetchAllTeachers, 
     fetchTeacher, 
     updateTeacher 
@@ -20,5 +20,10 @@ teacherRouter.delete("/teachers/:id", deleteTeachers);
 
 // update
 teacherRouter.patch("/teachers/:id", updateTeacher);
+
+
+// getting teachers for assign classes
+teacherRouter.get('/getTeachers', assignClass);
+
 
 export default teacherRouter;
