@@ -28,6 +28,7 @@ import teacherRegRouter from "./routes/teacherReg.js";
 import joiningRouter from "./code/joiningForms.js";
 import routerForm from "./routes/generatePDF.js";
 import handlePDFRouter from "./routes/handlePDF.js";
+import classRouter from "./routes/assignClass.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -37,6 +38,9 @@ app.use("/api", parentRegRouter)
 app.use("/api", assignRoleRouter);
 app.use("/api", teacherRouter);
 app.use("/api", teacherRegRouter);
+app.use("/api", classRouter);
+
+// Forms for joining school
 app.use(routerForm)
 app.use(handlePDFRouter);
 

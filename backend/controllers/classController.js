@@ -1,13 +1,16 @@
 // create class
+import database from "../config/db.js";
 
 export const createClass = async (req, res) => {
-    const { classname, stream, capacity, teacher_id } = req.body;
+    const { classname, stream, capacity, teacher_name } = req.body;
     try {
-        await pool.query("INSERT INTO classes (classname, stream, capacity, teacher_id) VALUES ($1, $2, $3, $4)", 
-                        [classname, stream, capacity, teacher_id]);
-        res.status(200).send("Class Assigned Successfully");
+        await database.query(
+            "INSERT INTO classes (classname, stream, capacity, teacher_name) VALUES ($1, $2, $3, $4)", 
+            [classname, stream, capacity, teacher_name]
+        );
+        res.status(200).json({ success: true, message: "Class Assigned Successfully" });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error assigning class");
+        res.status(500).send("Error while assigning a class");
     }
-}
+};
