@@ -61,7 +61,6 @@ const displayParent = (data) => {
             <th>Student Name</th>
             <th>ID</th>
             <th>Parent Name</th>
-            <th>Chat</th>
             <th>Grade</th>
             <th>Action</th>
         </tr>
@@ -85,7 +84,6 @@ const displayParent = (data) => {
                 <td class="name student_profile">${student_fullname}</td>
                 <td class="id">${id}</td>
                 <td class="parent parent_profile">${fullname}</td>
-                <td class="icon"><i class="fa-regular fa-message"></i></td>
                 <td class="darasa"><p class="${className}">${student_class} A</p></td>
                 <td>
                     <button class="del" onclick="deleteParent(${id})">Delete</button>
