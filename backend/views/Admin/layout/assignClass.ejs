@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Class</title>
+</head>
+<style>
+
+
+.container-class {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    min-width: 600px;
+    max-width: 850px;
+
+}
+
+.flexClass{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+}
+
+.container-class h2 {
+    text-align: center;
+    color: #333;
+}
+
+.container-class form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-class label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.container-class input, .container-class select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.container-class .searchTeacher{
+    margin: 13px 0;
+}
+
+.container-class button {
+    margin-top: 15px;
+    background: #578FCA;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-class button:hover {
+    background: #0056b3;
+}
+
+.classLinks{
+    display: flex;
+    justify-content: space-around;
+    background: #578FCA;
+    padding: 10px 20px;
+    margin: 15px 0;
+}
+
+</style>
+<body>
+    <div class="classLinks">
+        <button>View classes</button>
+        <button>Delete a class</button>
+        <button>Edit classes</button>
+        <button>Create a class</button>
+    </div>
+    <div class="flexClass">
+        <div class="container-class">
+            <h2>Create Class</h2>
+            <form id="classForm">
+                <label for="classname">Class Name:</label>
+                <select id="classname">
+                    <option value="kg1">KG1</option>
+                    <option value="kg2">KG2</option>
+                    <option value="standard1">Standard 1</option>
+                    <option value="standard2">Standard 2</option>
+                    <option value="standard3">Standard 3</option>
+                    <option value="standard4">Standard 4</option>
+                    <option value="standard5">Standard 5</option>
+                    <option value="standard6">Standard 6</option>
+                    <option value="standard7">Standard 7</option>
+                </select>
+    
+                <label for="stream">Stream:</label>
+                <select id="stream">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                </select>
+    
+                <label for="capacity">Capacity:</label>
+                <input type="number" id="capacity" placeholder="Enter class capacity" required>
+    
+                <label for="teacherSearch">Supervisor (Teacher):</label>
+                <input type="text" id="teacherSearch" placeholder="Search teacher..." onkeyup="filterTeachers()" class="searchTeacher">
+                <select id="teacherList"></select>
+    
+                <button type="submit" id="assignClass">Assign Class</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+    const teacherList = document.getElementById("teacherList");
+    const teacherSearch = document.getElementById("teacherSearch");
+    const classForm = document.getElementById("classForm");
+
+    async function fetchTeachers() {
+        const response = await fetch('http://localhost:3000/api/getTeachers');
+        const teachers = await response.json();
+        teacherList.innerHTML = teachers.map(t => `<option value="${t.fullname}">${t.fullname}</option>`).join('');
+    }
+
+    fetchTeachers();
+
+    window.filterTeachers = () => {
+        let filter = teacherSearch.value.toLowerCase();
+        let options = teacherList.options;
+        for (let option of options) {
+            option.style.display = option.text.toLowerCase().includes(filter) ? "" : "none";
+        }
+    };
+
+    classForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const classname = document.getElementById("classname").value;
+        const stream = document.getElementById("stream").value;
+        const capacity = document.getElementById("capacity").value;
+        const teacher_name = document.getElementById("teacherList").value; // Get name instead of ID
+
+        if (!classname || !stream || !capacity || !teacher_name) {
+            alert("All fields are required!");
+            return;
+        }
+
+        const data = { classname, stream, capacity, teacher_name };
+
+        try {
+            const response = await fetch("http://localhost:3000/api/assignClass", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert("Class assigned successfully!");
+                classForm.reset();
+            } else {
+                alert("Error assigning class");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Failed to connect to the server");
+        }
+    });
+});
+
+    </script>
+</body>
+
+</html>
