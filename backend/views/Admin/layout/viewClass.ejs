@@ -1,8 +1,29 @@
   <div class="class-management">
-        <h2>Class Management</h2>
+        <h2>Lists of All classes</h2>
+        <style>
+            .edit-btn, .delete-btn{
+                padding: 10px 20px;
+            }
+
+            .edit-btn{
+                background: #3674B5;
+                color: #A1E3F9;
+            }
+
+            .delete-btn{
+                background: #A1E3F9;
+                color: #3674B5;
+            }
+        </style>
     
-        <input type="text" id="search" placeholder="Search class, stream, teacher..." style="margin-bottom: 10px;">
-        <select id="sort">
+        <input 
+        type="text" 
+        id="search" placeholder="Search class, stream, teacher..." 
+        style="margin-bottom: 10px; padding: 7px 20px; border-radius: 8px;
+        width: 20rem;"
+        />
+        <select id="sort"
+        style="padding: 7px 20px; border-radius: 8px; width: 10rem;">
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
         </select>
@@ -22,9 +43,9 @@
         </table>
     
         <div class="pagination">
-            <button id="prevPage">Prev</button>
-            <span id="pageInfo">Page 1</span>
-            <button id="nextPage">Next</button>
+            <button id="prevPage" style="background: #BAD8B6;">Prev</button>
+            <span id="pageInfo" style="padding: 10px 20px;">Page 1</span>
+            <button id="nextPage" style="background: #BAD8B6;">Next</button>
         </div>
     
         <!-- Edit Modal -->
@@ -32,7 +53,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Edit Class</h2>
-                    <button class="close-btn" onclick="closeModal()">✖</button>
+                    <button class="close-btn5" onclick="closeModal()">✖</button>
                 </div>
                 <form id="editForm">
                     <div class="form-group">

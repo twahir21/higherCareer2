@@ -1,8 +1,8 @@
 .class-management {
-    font-family: Arial, sans-serif;
     margin: 20px;
     position: relative;
     padding: 0;
+    caret-color: black;
 }
 
 .class-management table {
@@ -54,8 +54,8 @@
 }
 
 .class-management .modal.active {
-    width: 100vw;
-    height: 100vh;
+    width: 85vw;
+    height: 85vh;
     opacity: 1;
     visibility: visible;
 }
@@ -86,8 +86,6 @@
 .class-management .close-btn {
     cursor: pointer;
     font-size: 20px;
-    background: none;
-    border: none;
 }
 
 .class-management .form-group {
