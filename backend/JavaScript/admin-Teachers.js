@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const result = await response.json();
-            console.log(result.data);
 
             allTeachers = result.data.map(({ fullname, subjecttaught, createdat, id }) => ({
                 id, // ✅ Add ID for deletion
