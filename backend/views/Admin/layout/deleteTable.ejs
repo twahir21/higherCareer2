@@ -1,1 +1,71 @@
-<h1>Delete table</h1>
+<h3 style="color: #415a58; text-align: center;">Delete Timetable</h3>
+
+<table id="deleteTable" class="deleteTable">
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Stream</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const tableBody = document.querySelector("#deleteTable tbody");
+
+    const fetchDataAPI = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/api/getTimetable");
+
+            if (!response.ok) {
+                alert("Failed to process the request, try again later");
+                return;
+            }
+
+            const timetables = await response.json();
+
+            timetables.forEach(timetable => {
+                const row = tableBody.insertRow();
+                row.dataset.id = timetable.id; // Store ID in row for easy deletion
+                row.innerHTML = `
+                    <td>${timetable.class}</td>
+                    <td>${timetable.stream}</td>
+                    <td><button class="deleteBtn">Delete</button></td>
+                `;
+            });
+
+        } catch (error) {
+            console.log("Server not found! Check your network connection.");
+        }
+    };
+
+    // Event delegation for delete buttons
+    tableBody.addEventListener("click", async (event) => {
+        if (event.target.classList.contains("deleteBtn")) {
+            const row = event.target.closest("tr");
+            const id = row.dataset.id;
+
+            const isConfirmed = confirm("Are you sure you want to delete?");
+            if (!isConfirmed) return;
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/deleteTimetable/${id}`, { method: 'DELETE' });
+
+                if (!response.ok) {
+                    alert("Failed to communicate with the server");
+                } else {
+                    alert("Timetable deleted successfully");
+                    row.remove(); // Remove row from table after successful deletion
+                }
+
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+    });
+
+    fetchDataAPI();
+});
+</script>

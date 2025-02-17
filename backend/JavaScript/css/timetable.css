@@ -1,3 +1,4 @@
+/* VIEW TABLE  */
 .timeTableLinks{
     display: flex;
     justify-content: space-around;
@@ -101,4 +102,96 @@
 
 .Break{
     background: #dddfdd;
+}
+
+/* =========== CREATE TABLE ========= */
+
+.time-table-container {
+    margin-top: 20px;
+}
+.createTable{
+    width: 96%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.createTable th, .createTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+.createTable th {
+    background: #28a745;
+    color: white;
+}
+.createTable th > input {
+    background: transparent;
+    color: white;
+}
+input {
+    width: 100%;
+    border: none;
+    padding: 10px 5px;
+    text-align: center;
+}
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button:hover {
+    background: #218838;
+}
+
+/* ===== DELETE TABLE ====== */
+
+.deleteTable{
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.deleteTable th, 
+.deleteTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.deleteTable th {
+    background-color: #960f0f;
+    color: white;
+    font-size: 18px;
+}
+
+.deleteTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.deleteTable tr:hover {
+    background-color: #ddd;
+}
+
+/* Button Styles */
+.deleteTable button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+}
+
+.deleteTable button:hover {
+    background-color: #cc0000;
 }

@@ -1,1 +1,180 @@
-<h1>Add table</h1>
+
+<style>
+    .time-table-container {
+    margin-top: 20px;
+}
+.createTable{
+    width: 96%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.createTable th, .createTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+.createTable th {
+    background: #28a745;
+    color: white;
+}
+.createTable th > input {
+    background: transparent;
+    color: white;
+}
+input {
+    width: 100%;
+    border: none;
+    padding: 10px 5px;
+    text-align: center;
+}
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button:hover {
+    background: #218838;
+}
+</style>
+<label for="class">Class:</label>
+<input type="text" id="class" name="class" required>
+
+<label for="stream">Class Stream:</label>
+<input type="text" id="stream" name="stream" required>
+
+<div class="time-table-container">
+    <table id="timetable" class="createTable">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th><input type="text" value="8:00 - 8:30"></th>
+                <th><input type="text" value="8:30 - 9:00"></th>
+                <th><input type="text" value="9:00 - 9:30"></th>
+                <th><input type="text" value="9:30 - 10:00"></th>
+                <th><input type="text" value="10:00 - 10:30"></th>
+                <th><input type="text" value="10:30 - 11:00"></th>
+                <th><input type="text" value="11:00 - 11:30"></th>
+                <th><input type="text" value="11:30 - 12:00"></th>
+                <th><input type="text" value="12:00 - 12:30"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Mon</td></tr>
+            <tr><td>Tue</td></tr>
+            <tr><td>Wed</td></tr>
+            <tr><td>Thu</td></tr>
+            <tr><td>Fri</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<button onclick="addColumn()">Add Column</button>
+<button onclick="removeColumn()">Remove Column</button>
+<button onclick="submitTimetable()">Submit</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const rows = document.querySelectorAll("tbody tr");
+        rows.forEach(row => {
+            for (let i = 1; i <= 9; i++) {
+                const td = document.createElement("td");
+                const input = document.createElement("input");
+                input.type = "text";
+                td.appendChild(input);
+                row.appendChild(td);
+            }
+        });
+    });
+
+    function addColumn() {
+        const th = document.createElement("th");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = "New Slot";
+        th.appendChild(input);
+        document.querySelector("thead tr").appendChild(th);
+
+        document.querySelectorAll("tbody tr").forEach(row => {
+            const td = document.createElement("td");
+            const input = document.createElement("input");
+            input.type = "text";
+            td.appendChild(input);
+            row.appendChild(td);
+        });
+    }
+
+    function removeColumn() {
+        const ths = document.querySelectorAll("thead tr th");
+        if (ths.length > 2) {
+            ths[ths.length - 1].remove();
+            document.querySelectorAll("tbody tr").forEach(row => {
+                row.lastElementChild.remove();
+            });
+        }
+    }
+
+async function submitTimetable() {
+const timetable = [];
+const timeSlots = [];
+let hasEmptyField = false; // Flag to track empty fields
+
+// Extract time slots from the table header
+document.querySelectorAll("thead tr th input").forEach((input, index) => {
+    if (index > 0) { // Skip "Day" column
+        if (input.value.trim() === "") hasEmptyField = true;
+        timeSlots.push(input.value.trim());
+    }
+});
+
+// Extract subjects from the table body
+document.querySelectorAll("tbody tr").forEach(row => {
+    const day = row.cells[0].textContent;
+    const subjects = [];
+    for (let i = 1; i < row.cells.length; i++) {
+        const subject = row.cells[i].querySelector("input").value.trim();
+        if (subject === "") hasEmptyField = true;
+        subjects.push(subject);
+    }
+    timetable.push({ day, subjects });
+});
+
+const classValue = document.getElementById("class").value.trim();
+const streamValue = document.getElementById("stream").value.trim();
+
+if (!classValue || !streamValue || hasEmptyField) {
+    alert("Please fill in all fields before submitting.");
+    return;
+}
+
+const formData = {
+    class: classValue,
+    stream: streamValue,
+    timeSlots,
+    timetable
+};
+
+console.log(formData); // Debugging: See what is being sent
+
+try {
+    const response = await fetch("http://localhost:3000/api/saveTimetable", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    alert(result.message);
+} catch (error) {
+    alert("Error saving timetable. Please try again.");
+    console.error(error);
+}
+}
+
+
+
+</script>
