@@ -1,248 +1,184 @@
+/* ======= SEARCH SYSTEM ======= */
+.student-container {
+    background: none;
+}
 
-
-/* #========== SEARCH SYSTEM ===========*/
-.search{
+.student-container .search {
     background: #fff;
     display: flex;
     justify-content: space-between;
     padding: 1rem;
     border-radius: 8px;
     margin: 20px;
-    }
-    
-    h2{
-    color: #303972;
-    font-weight: 600;
-    font-size: 1.4rem;
-    margin-left: 20px;
-    }
-    
-    .left select{
+}
+
+.student-container .left select {
     padding: 8px 12px;
-    }
-    
-    .right > input{
+}
+
+.student-container .right {
+    display: flex;
+    align-items: center;
+    border: 1px solid #858386;
+    border-radius: 8px;
+    width: 20rem;
+}
+
+.student-container .right input {
     border: none;
     outline: none;
     width: 100%;
-    }
-    
-    .right{
-    border: 1px solid #858386;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
-    width: 20rem;
-    }
-    
-    .right > i{
+}
+
+.student-container .right i {
     color: #858386;
     padding: 0 10px;
-    }
-    
-    /*==== STUDENT TABLE ==========*/
-    .student-container{
-        background: none;
-    }
-    
-    table{
-        width: 97%;
-        caret-color: transparent;
-        background: #fff;
-        border-radius: 8px;
-        margin: 20px;
-        padding: 10px;
-    }
-    
-    tr{
-        background-color: #ffffff;
-    }
-    
-    th{
-        text-align: start;
-    }
-    
-    td, th{
-        padding: 7px;
-    }
-    
-    tr:hover{
-        background: #d7d3dd;
-        cursor: pointer;
-    }
-    
-    .name{
-        color: #303972;
-        font-weight: 600;
-    }
-    
-    .darasa{
-        margin: 0;
-        padding: 0;
-    }
-    
-    .darasa > p{
-        margin: 5px;
-        border-radius: 8px;
-        padding: 7px 10px;
-        color: #ffffff;
-    }
-    
-    .darasa .other1{
-        background: #fb7d5b;
-    }
-   
-    .darasa .other2{
-        background: #fcc43e;
-    }
+}
 
-    .darasa .other3{
-        background: #4d44b5;
-    }
+/* ======= STUDENT TABLE ======= */
+.admin-parent {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    border-collapse: collapse;
+    margin: 20px auto;
+    padding: 10px;
+    caret-color: transparent;
+}
 
-    .darasa .other4{
-        background: #3F4F44;
-    }
+.admin-parent th, .admin-parent td {
+    padding: 8px;
+    text-align: center;
+    border: 1.4px solid #aaa9a9;
+}
 
-    .darasa .other5{
-        background: #4d4;
-    }
+.admin-parent th {
+    background-color: #ebe6e6;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #0D1282;
+}
 
-    .darasa .other6{
-        background: #7886C7;
-    }
+.admin-parent tr {
+    background-color: #ffffff;
+}
 
-    .darasa .other7{
-        background: #854836;
-    }
+.admin-parent tr:nth-child(even) {
+    background: #f8f7f7;
+}
 
-    .darasa .other8{
-        background: #B5828C;
-    }
+.admin-parent tr:hover {
+    background: #d7d3dd;
+    cursor: pointer;
+}
 
-    .darasa .other9{
-        background: #DD88CF;
-    }
+/* ======= STUDENT DETAILS ======= */
+.name {
+    color: #303972;
+    font-weight: 600;
+}
 
-    .head > th{
-        color: #0D1282;
-        font-weight: 700;
-        font-size: 1.1rem;
-    }
-    
-    .head, .id, .parent{
-        color: #4D44B5;
-    }
-    
-    .id, .parent{
-        font-weight: 500;
-    }
-    
-    
-    
-    .fa-message{
-        font-weight: 600;
-        font-size: 1.5rem;
-        color: #A098AE;
-        cursor: pointer;
-        caret-color: transparent;
-    }
-    
-    td .del{
-        color: #3F72AF;
-        background: #DBE2EF;
-    }
-    
-    td > button{
-        border: none;
-        border-radius: 4px;
-        margin: 5px 6px;
-        padding: 6px 12px;
-        cursor: pointer;
-    }
-    
-    
-    .search .admin-parent-search{
-        caret-color: black;
-    }
+.id, .parent {
+    color: #4D44B5;
+    font-weight: 500;
+}
 
-    .pagination-admin-students {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 20px;
-    }
-    
-    .pagination-admin-students button {
-        padding: 8px 15px;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    
-    .pagination-admin-students button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-    }
-    
-    #pageInfo {
-        font-size: 14px;
-        font-weight: bold;
-    }
+.head th {
+    color: #0D1282;
+}
 
-    #pageInfoAdminStudent{
-        padding-top: 15px;
-    }
+/* ======= CLASS COLOR TAGS ======= */
+.darasa p {
+    margin: 5px;
+    border-radius: 8px;
+    padding: 7px 10px;
+    color: #ffffff;
+}
 
-    .select-date{
-        border: 2px solid #868585;
-        border-radius: 6px;
-        padding: 20px 10px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 20px;
-    }
-    
-    .select-date > div{
-        display: inline;
-    }
-    
-    table{
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px auto;
-    }
-    
-    th{
-        background-color: #ebe6e6;
-        border: 1.4px solid #aaa9a9;
-        padding: 8px;
-        text-align: center;
-    }
-    
-    td{
-        border: 1.4px solid #aaa9a9;
-        padding: 8px;
-        text-align: center;
-    }
-    
+.darasa .other1 { background: #fb7d5b; }
+.darasa .other2 { background: #fcc43e; }
+.darasa .other3 { background: #4d44b5; }
+.darasa .other4 { background: #3F4F44; }
+.darasa .other5 { background: #4d4; }
+.darasa .other6 { background: #7886C7; }
+.darasa .other7 { background: #854836; }
+.darasa .other8 { background: #B5828C; }
+.darasa .other9 { background: #DD88CF; }
 
-    
-    option, select{
-        padding: 5px;
-        margin: 0 8px;
-    }
-    
-    body{
-        min-width: fit-content;
-    }
-    
-    
-    table tr:nth-child(2n){
-        background: #f8f7f7;
-    }
+/* ======= ACTION BUTTONS ======= */
+.admin-parent td .del {
+    color: #3F72AF;
+    background: #DBE2EF;
+}
+
+.admin-parent td button {
+    border: none;
+    border-radius: 4px;
+    margin: 5px 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* ======= ICONS ======= */
+.fa-message {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #A098AE;
+    cursor: pointer;
+    caret-color: transparent;
+}
+
+/* ======= PAGINATION ======= */
+.pagination-admin-students {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination-admin-students button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.pagination-admin-students button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#pageInfo, #pageInfoAdminStudent {
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+/* ======= DATE SELECTOR ======= */
+.select-date {
+    border: 2px solid #868585;
+    border-radius: 6px;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+}
+
+.select-date div {
+    display: inline;
+}
+
+/* ======= GENERAL STYLES ======= */
+option, select {
+    padding: 5px;
+    margin: 0 8px;
+}
+
+body {
+    min-width: fit-content;
+}
