@@ -15,11 +15,24 @@
     background: #690B22;
 }
 
+.selectViewTable{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
 
 .selectViewTable, .viewTable {
     margin-top: 20px;
     padding: 10px;
     font-size: 16px;
+}
+
+.tableWrapper{
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .viewTable {
@@ -28,8 +41,9 @@
     border-radius: 10px;
     border: 3px double #a8a8a8;
     border-collapse: collapse; /* Remove the space between the cells */
-    margin: 20px auto; /* Center the table horizontally */
+    margin: 20px 15px;
     table-layout: fixed;
+    min-width: 800px;
 }
 
 .viewTable tr{
@@ -48,6 +62,21 @@
     padding: 20px 17px;
 }
 
+.tableTitle{
+    font-size: 1.2rem;
+    color: #2a4d3c;
+}
+
+.tableh3{
+    font-size: 1.1rem;
+    padding-top: 20px;
+    padding-left: 14px;
+    color: #494664;
+}
+
+.tableTitle, .selectViewTable{
+    padding: 10px;
+}
 
 
 .Math{
