@@ -1,0 +1,24 @@
+{
+    "username": "johndoe",
+    "fullName": "John Doe",
+    "email": "johndoe@gmail.com",
+    "password": "securepassword",
+    "tel": "+123456789",
+    "students": [
+        { 
+            "fullName": "Alice Doe", 
+            "class": "Grade 4", 
+            "relationship": "Daughter" 
+        },
+        { 
+            "fullName": "Bob Doe", 
+            "class": "Grade 6", 
+            "relationship": "Adopted Son" 
+        },
+        { 
+            "fullName": "Charlie Smith", 
+            "class": "Grade 2", 
+            "relationship": "Guardian Ward" 
+        }
+    ]
+}
