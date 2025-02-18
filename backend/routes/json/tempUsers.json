@@ -22,5 +22,27 @@
     "isApproved": false,
     "isVerified": false,
     "createdAt": "2025-02-18T05:57:50.888Z"
+  },
+  {
+    "username": "Twahir21",
+    "password": "$2a$10$T3Lvs/2wXM6YqkYhW5PPTecQbF9RpXEubbFMJ3v.MyU.uNzdDOSFC",
+    "fullName": "Twahir Abdi",
+    "email": "twahir@gmail.com",
+    "tel": "+255674293587",
+    "students": [
+      {
+        "fullName": "Twahir Abdi",
+        "className": "standard1",
+        "relationship": "Father"
+      },
+      {
+        "fullName": "Alli",
+        "className": "kg1",
+        "relationship": "father"
+      }
+    ],
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-18T06:21:55.531Z"
   }
 ]

@@ -33,6 +33,7 @@ const ParentRegister = () => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^\+?[1-9]\d{1,14}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+    const relationshipRegex = /^[a-zA-Z\s]{2,50}$/;
 
     // Handle Parent Input Change
     const handleChange = (e) => {
@@ -77,6 +78,9 @@ const ParentRegister = () => {
             if (!fullNameRegex.test(student.fullName)) return toast.error("Enter a valid student full name.");
             if (!fullNameRegex.test(student.relationship)) return toast.error("Enter a valid relationship.");
             if (!student.className) return toast.error("Please select a student class.");
+            if (!relationshipRegex.test(student.relationship)) {
+                return toast.error("Enter a valid relationship (letters only, max 50 characters).");
+            }            
         }
 
         return true;

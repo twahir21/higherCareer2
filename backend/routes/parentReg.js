@@ -22,7 +22,6 @@ parentRegRouter.post(
             .trim().escape(),
         body('parent_email').isEmail().withMessage('Invalid email format').normalizeEmail(),
         body('parent_tel').isMobilePhone().withMessage('Invalid phone number').trim().escape(),
-        body('relationship').notEmpty().withMessage('Relationship is required').trim().escape(),
         body('students').isArray({ min: 1 }).withMessage('At least one student is required'),
         body('students.*.fullName').notEmpty().withMessage('Student full name is required').trim().escape(),
         body('students.*.className').notEmpty().withMessage('Student class is required').trim().escape(),
