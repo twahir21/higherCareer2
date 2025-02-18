@@ -64,6 +64,14 @@
       border-radius: 5px;
       box-sizing: border-box;
     }
+
+    .option{
+      font-family: "Ubuntu";
+    }
+
+    .info{
+      padding: 20px 15px;
+    }
     
     /* Button Styles */
     .btn {
@@ -76,6 +84,18 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+    }
+
+    .btn-add, .btn-remove{
+      padding: 7px 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      font-family: "Ubuntu";
+      cursor: pointer;
+      background: linear-gradient(to left, #39606e, #3b795d);
+      color: white;
     }
     
     .btn:hover {
