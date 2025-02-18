@@ -1,0 +1,36 @@
+[
+    {
+      "username": "twahir21",
+      "password": "$2a$10$DRatkspRk2L4Lac7jTlgN.xjPkm4QZ3101GsGyWWMbr9xirMQ5Zsa",
+      "fullName": "Twahir Sudy",
+      "email": "twahirsoud3@gmail.com",
+      "tel": "+255674291591",
+      "students": [
+        {
+          "fullName": "Ahmed Twahir",
+          "className": "standard3",
+          "relationship": "Father"
+        },
+        {
+          "fullName": "Suhaila Twahir",
+          "className": "standard4",
+          "relationship": "Father"
+        }
+      ],
+      "isApproved": false,
+      "isVerified": false,
+      "createdAt": "2025-02-18T08:09:39.217Z"
+    },
+    {
+      "username": "blackcoder71",
+      "password": "$2a$10$WBeI7aZj1rF2Wc8EaXe6m.dSF8ImRALdE1wK07MCWvJGXq61oM2ai",
+      "fullName": "Black Coder",
+      "email": "blackcoder71@gmail.com",
+      "tel": "+255675378976",
+      "qualifications": "Engineering",
+      "subjectTaught": "Advanced Mathematics",
+      "isApproved": false,
+      "isVerified": false,
+      "createdAt": "2025-02-18T08:11:00.563Z"
+    }
+  ]

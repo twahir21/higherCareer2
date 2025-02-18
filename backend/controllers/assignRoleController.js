@@ -69,6 +69,8 @@ export const updateUserRole = async (req, res) => {
         }
 
         const updatedUsers = users.filter(u => u.username !== username);
+        
+        // ✅ Wait for file write to complete before responding
         await writeUsersToFile(updatedUsers);
 
         res.json({ success: true, message: `User approved as ${role}` });
@@ -79,9 +81,10 @@ export const updateUserRole = async (req, res) => {
     }
 };
 
+
 // 🚀 Insert Parent into Database
 async function insertIntoParentDB(user) {
-    const checkQuery = `SELECT COUNT(*) FROM parent WHERE username = $1 OR email = $2`;
+    const checkQuery = `SELECT COUNT(*) FROM parents WHERE username = $1 OR email = $2`;
     const checkValues = [user.username, user.email];
 
     try {
@@ -90,8 +93,9 @@ async function insertIntoParentDB(user) {
 
         if (userExists) throw new Error("User with the same username or email already exists");
 
+        // ✅ Fix: Ensure `full_name` matches database column names
         const insertParentQuery = `
-            INSERT INTO parent (username, password, fullName, email, tel, isApproved, isVerified, createdAt)
+            INSERT INTO parents (username, password, full_name, email, tel, is_approved, is_verified, created_at)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id
         `;
         const insertParentValues = [
@@ -101,9 +105,10 @@ async function insertIntoParentDB(user) {
         const parentResult = await database.query(insertParentQuery, insertParentValues);
         const parentId = parentResult.rows[0].id;
 
+        // ✅ Fix: Ensure column names match `students` table (`class_name` instead of `class`)
         for (const student of user.students) {
             const insertStudentQuery = `
-                INSERT INTO students (parent_id, fullName, className, relationship)
+                INSERT INTO students (parent_id, full_name, class, relationship)
                 VALUES ($1, $2, $3, $4)
             `;
             await database.query(insertStudentQuery, [parentId, student.fullName, student.className, student.relationship]);
@@ -114,6 +119,8 @@ async function insertIntoParentDB(user) {
         throw error;
     }
 }
+
+
 
 // 🚀 Insert Teacher into Database
 async function insertIntoTeacherDB(user) {
@@ -155,6 +162,8 @@ export const deleteUser = async (req, res) => {
         }
 
         users.splice(userIndex, 1);
+        
+        // ✅ Wait for file write to complete before responding
         await writeUsersToFile(users);
 
         res.json({ success: true, message: "User rejected successfully." });

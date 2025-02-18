@@ -1,8 +1,9 @@
-    let filteredData = []; // Store global data for search & sorting
+let filteredData = []; // Store global data for search & sorting
 
 const fetchAllParents = async () => {
     try {
         const response = await fetch("/api/parents");
+
 
         if (!response.ok) {
             throw new Error("Server broke due to errors");
@@ -10,6 +11,7 @@ const fetchAllParents = async () => {
 
         const result = await response.json();
         const data = result.data;
+        console.table(data);
 
         // Extract required fields and update student_class
         const classMapping = {
