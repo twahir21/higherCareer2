@@ -91,7 +91,18 @@ const TeacherReg = () => {
             });
 
             toast.success(response.data.message);
-            setTimeout(() => {
+            // ✅ Clear form fields after successful submission
+            setFormData({
+                teacher_UserName: "",
+                teacher_fullName: "",
+                teacher_email: "",
+                teacher_tel: "",
+                subject: "",
+                qualifications: "",
+                teacher_password: "",
+                teacher_confirmPswd: "",
+            });
+                setTimeout(() => {
                 window.location.href = response.data.redirect;
             }, 4000);
         } catch (error) {

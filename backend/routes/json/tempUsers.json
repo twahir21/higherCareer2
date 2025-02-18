@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "username": "latipha",
+    "password": "$2a$10$tCPboKmDXtu3/ZHQPYPZjesn4so37SgSUrTHKM1V9ll7kG2ZgINTO",
+    "fullName": "Twahir Abdi",
+    "email": "typhash@gmail.com",
+    "tel": "+255674291587",
+    "qualifications": "Degree",
+    "subjectTaught": "English",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-18T05:53:32.457Z"
+  },
+  {
+    "username": "latipha3",
+    "password": "$2a$10$jFWRSuifcBrbxSFWcuddYu.n8bVx8fNOTXqyzW77aaERXwMoyCQbS",
+    "fullName": "TwahirQ Abdi",
+    "email": "typhash1@gmail.com",
+    "tel": "+255674291584",
+    "qualifications": "Degree",
+    "subjectTaught": "English",
+    "isApproved": false,
+    "isVerified": false,
+    "createdAt": "2025-02-18T05:57:50.888Z"
+  }
+]

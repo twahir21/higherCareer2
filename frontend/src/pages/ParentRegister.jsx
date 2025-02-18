@@ -82,6 +82,9 @@ const ParentRegister = () => {
         return true;
     };
 
+    console.table(formData);
+
+
     // Handle Form Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -91,6 +94,7 @@ const ParentRegister = () => {
             const response = await axios.post("http://localhost:3000/api/auth/parent-register", formData, {
                 headers: { "Content-Type": "application/json" },
             });
+
 
             toast.success(response.data.message);
             setTimeout(() => {

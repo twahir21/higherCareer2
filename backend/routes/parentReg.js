@@ -23,10 +23,12 @@ parentRegRouter.post(
         body('parent_email').isEmail().withMessage('Invalid email format').normalizeEmail(),
         body('parent_tel').isMobilePhone().withMessage('Invalid phone number').trim().escape(),
         body('relationship').notEmpty().withMessage('Relationship is required').trim().escape(),
-        body('student_fullName').notEmpty().withMessage('Student full name is required').trim().escape(),
+        body('students').isArray({ min: 1 }).withMessage('At least one student is required'),
+        body('students.*.fullName').notEmpty().withMessage('Student full name is required').trim().escape(),
+        body('students.*.className').notEmpty().withMessage('Student class is required').trim().escape(),
+        body('students.*.relationship').notEmpty().withMessage('Student relationship is required').trim().escape(),
     ],
     async (req, res, next) => {
-
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
@@ -62,10 +64,8 @@ parentRegRouter.post(
             parent_fullName: fullName,
             parent_email: email,
             parent_tel: tel,
-            relationship,
-            student_fullName,
-            student_className: student_class,
-            parent_password: password
+            parent_password: password,
+            students
         } = req.body;
 
         const filePath = path.join(__dirname, 'json', 'tempUsers.json');
@@ -76,9 +76,7 @@ parentRegRouter.post(
             fullName,
             email,
             tel,
-            relationship,
-            student_fullName,
-            student_class,
+            students,
             isApproved: false,
             isVerified: false,
             createdAt: new Date().toISOString(),

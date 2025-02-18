@@ -9,7 +9,7 @@ const checkUniqueUsername = async (username) => {
                 UNION
                 SELECT username FROM teacher
                 UNION
-                SELECT username FROM parent
+                SELECT username FROM parents
             ) AS all_users
             WHERE username = $1
         `;

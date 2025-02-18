@@ -33,7 +33,6 @@ async function saveToJSONFile(data, filePath) {
             user =>
                 user.username === data.username ||
                 user.email === data.email ||
-                user.fullName === data.fullName ||
                 user.tel === data.tel 
         );
 
