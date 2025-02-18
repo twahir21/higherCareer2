@@ -71,12 +71,11 @@
                 classesRes.json()
             ]);
 
-            console.log(parentsData, teachersData, classesData)
 
             // Assign data to elements
             document.getElementById("parentsTotal").innerText = parentsData.data.length;
             document.getElementById("totalTeachers").innerText = teachersData.data.length;
-            document.getElementById("totalClasses").innerText = classesData.data.length;
+            document.getElementById("totalClasses").innerText = classesData.length;
 
         } catch (error) {
             console.error("Error fetching data:", error.message);
