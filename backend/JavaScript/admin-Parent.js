@@ -13,23 +13,12 @@ const fetchAllParents = async () => {
         const data = result.data;
         console.table(data);
 
-        // Extract required fields and update student_class
-        const classMapping = {
-            standard1: "I",
-            standard2: "II",
-            standard3: "III",
-            standard4: "IV",
-            standard5: "V",
-            standard6: "VI",
-            standard7: "VII"
-        };
-
         // ✅ Include `createdat` for sorting
-        filteredData = data.map(({ student_fullname, id, fullname, student_class, createdat }) => ({
-            student_fullname,
+        filteredData = data.map(({ id, full_name, tel, email, createdat }) => ({
             id,
-            fullname,
-            student_class: classMapping[student_class] || student_class, // Convert standard1-7 to Roman numerals
+            fullname: full_name,
+            tel,
+            email,
             createdat: new Date(createdat) // Convert to Date object for sorting
         }));
 
@@ -43,27 +32,16 @@ const fetchAllParents = async () => {
 
 // ✅ Accept data parameter for dynamic updates
 const displayParent = (data) => {
-    const classMappings = {
-        kg1: "other1",
-        kg2: "other1",
-        I: "other3",
-        II: "other4",
-        III: "other5",
-        IV: "other6",
-        V: "other7",
-        VI: "other8",
-        VII: "other9"
-    };
 
     const tableBody = document.querySelector(".admin-parent");
 
     // ✅ Clear previous data
     tableBody.innerHTML = `
         <tr class="head">
-            <th>Student Name</th>
             <th>ID</th>
             <th>Parent Name</th>
-            <th>Grade</th>
+            <th>Telephone</th>
+            <th>Email</th>
             <th>Action</th>
         </tr>
     `;
@@ -78,15 +56,14 @@ const displayParent = (data) => {
         return;
     }
 
-    data.forEach(({ student_fullname, id, fullname, student_class }) => {
-        const className = classMappings[student_class] || "other1"; // Default class
+    data.forEach(({ id, fullname, tel, email }) => {
 
         const row = `
             <tr>
-                <td class="name student_profile">${student_fullname}</td>
-                <td class="id">${id}</td>
-                <td class="parent parent_profile">${fullname}</td>
-                <td class="darasa"><p class="${className}">${student_class} A</p></td>
+                <td class="name student_profile">${id}</td>
+                <td class="id">${fullname}</td>
+                <td class="parent parent_profile">${tel}</td>
+                <td class="id"><p>${email}</p></td>
                 <td>
                     <button class="del" onclick="deleteParent(${id})">Delete</button>
                 </td>
