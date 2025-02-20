@@ -97,6 +97,12 @@ app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
+// Tracking if the system is using node or bun (to ensure faster API backend)
+console.log(
+  globalThis.Bun
+    ? "Running in Bun 🚀"
+    : "Running in Node.js 🟢"
+);
 
 database.connect()
     .then(() => console.log("Database connected successfully"))
