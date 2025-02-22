@@ -1,270 +1,204 @@
-  <div class="class-management">
-        <h2>Lists of All classes</h2>
-        <style>
-            .edit-btn, .delete-btn{
-                padding: 10px 20px;
-            }
+<div class="class-management">
+    <h2>Lists of All classes</h2>
+    <style>
+        .edit-btn, .delete-btn {
+            padding: 10px 20px;
+        }
 
-            .edit-btn{
-                background: #3674B5;
-                color: #A1E3F9;
-            }
+        .edit-btn {
+            background: #3674B5;
+            color: #A1E3F9;
+        }
 
-            .delete-btn{
-                background: #A1E3F9;
-                color: #3674B5;
-            }
-        </style>
-    
-        <input 
-        type="text" 
-        id="search" placeholder="Search class, stream, teacher..." 
-        style="margin-bottom: 10px; padding: 7px 20px; border-radius: 8px;
-        width: 20rem;"
-        />
-        <select id="sort"
-        style="padding: 7px 20px; border-radius: 8px; width: 10rem;">
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-        </select>
-    
-        <table>
-            <thead>
-                <tr>
-                    <th>Class Name</th>
-                    <th>Stream</th>
-                    <th>Capacity</th>
-                    <th>Teacher Name</th>
-                    <th>Assigned At</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="classTable"></tbody>
-        </table>
-    
-        <div class="pagination">
-            <button id="prevPage" style="background: #BAD8B6;">Prev</button>
-            <span id="pageInfo" style="padding: 10px 20px;">Page 1</span>
-            <button id="nextPage" style="background: #BAD8B6;">Next</button>
-        </div>
-    
-        <!-- Edit Modal -->
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Edit Class</h2>
-                    <button class="close-btn5" onclick="closeModal()">✖</button>
-                </div>
-                <form id="editForm">
-                    <div class="form-group">
-                        <label>Class Name</label>
-                        <input type="text" id="editClassname" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Stream</label>
-                        <input type="text" id="editStream" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Capacity</label>
-                        <input type="number" id="editCapacity" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Teacher Name</label>
-                        <input type="text" id="editTeacher" required>
-                    </div>
-                    <button type="submit" class="update-btn">Update</button>
-                </form>
+        .delete-btn {
+            background: #A1E3F9;
+            color: #3674B5;
+        }
+    </style>
+
+    <input type="text" id="search" placeholder="Search class, stream, teacher..."
+        style="margin-bottom: 10px; padding: 7px 20px; border-radius: 8px; width: 20rem;" />
+    <select id="sort" style="padding: 7px 20px; border-radius: 8px; width: 10rem;">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+    </select>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Stream</th>
+                <th>Capacity</th>
+                <th>Current Count</th>
+                <th>Teacher Name</th>
+                <th>Assigned At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="classTable"></tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prevPage" style="background: #BAD8B6;">Prev</button>
+        <span id="pageInfo" style="padding: 10px 20px;">Page 1</span>
+        <button id="nextPage" style="background: #BAD8B6;">Next</button>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Class</h2>
+                <button class="close-btn5" onclick="closeModal()">✖</button>
             </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label>Class Name</label>
+                    <input type="text" id="editClassname" required>
+                </div>
+                <div class="form-group">
+                    <label>Stream</label>
+                    <select id="editStream" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Capacity</label>
+                    <input type="number" id="editCapacity" required>
+                </div>
+                <div class="form-group">
+                    <label>Teacher Name</label>
+                    <input type="text" id="editTeacher" required>
+                </div>
+                <button type="submit" class="update-btn">Update</button>
+            </form>
         </div>
     </div>
-    
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            let allClasses = [];
-            let filteredClasses = [];
-            let currentPage = 1;
-            const rowsPerPage = 5;
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        let allClasses = [];
+        let filteredClasses = [];
+        let currentPage = 1;
+        const rowsPerPage = 5;
 
-            const fetchAllClasses = async () => {
-                try {
-                    const response = await fetch("http://localhost:3000/api/getClasses");
-
-                    if (!response.ok) {
-                        console.error("Internal server error!");
-                        return;
-                    }
-
-                    const result = await response.json();
-
-                    allClasses = result.map(({ id, classname, stream, capacity, teacher_name, assignedat }) => ({
-                        id,
-                        classname,
-                        stream,
-                        capacity,
-                        teacher_name,
-                        assignedAt: new Date(assignedat)
-                    }));
-
-                    filteredClasses = [...allClasses];
-                    updateDisplay();
-                } catch (error) {
-                    console.error("Server cannot be reached", error.message);
+        const fetchAllClasses = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/api/getClasses");
+                if (!response.ok) {
+                    console.error("Internal server error!");
+                    return;
                 }
-            };
+                const result = await response.json();
+                allClasses = result.data.map(({ id, classname, stream, capacity, current_count, teacher_name, assignedat }) => ({
+                    id,
+                    classname,
+                    stream,
+                    capacity,
+                    current_count,
+                    teacher_name,
+                    assignedAt: new Date(assignedat)
+                }));
+                filteredClasses = [...allClasses];
+                updateDisplay();
+            } catch (error) {
+                console.error("Server cannot be reached", error.message);
+            }
+        };
+        fetchAllClasses();
 
-            fetchAllClasses();
+        const updateDisplay = () => {
+            const searchInput = document.getElementById("search").value.toLowerCase();
+            const sortValue = document.getElementById("sort").value;
+            
+            filteredClasses = allClasses.filter(cls =>
+                cls.classname.toLowerCase().includes(searchInput) ||
+                cls.stream.toLowerCase().includes(searchInput) ||
+                cls.teacher_name.toLowerCase().includes(searchInput)
+            );
 
-            const updateDisplay = () => {
-                const searchInput = document.getElementById("search").value.toLowerCase();
-                const sortValue = document.getElementById("sort").value;
+            if (sortValue === "newest") {
+                filteredClasses.sort((a, b) => b.assignedAt - a.assignedAt);
+            } else {
+                filteredClasses.sort((a, b) => a.assignedAt - b.assignedAt);
+            }
 
-                filteredClasses = allClasses.filter(cls =>
-                    cls.classname.toLowerCase().includes(searchInput) ||
-                    cls.stream.toLowerCase().includes(searchInput) ||
-                    cls.teacher_name.toLowerCase().includes(searchInput)
-                );
+            paginateData();
+        };
 
-                if (sortValue === "newest") {
-                    filteredClasses.sort((a, b) => b.assignedAt - a.assignedAt);
-                } else {
-                    filteredClasses.sort((a, b) => a.assignedAt - b.assignedAt);
-                }
+        const paginateData = () => {
+            const totalPages = Math.ceil(filteredClasses.length / rowsPerPage);
+            currentPage = Math.max(1, Math.min(currentPage, totalPages));
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            displayClasses(filteredClasses.slice(startIndex, startIndex + rowsPerPage));
+            document.getElementById("pageInfo").innerText = `Page ${currentPage} of ${totalPages || 1}`;
+            document.getElementById("prevPage").disabled = currentPage === 1;
+            document.getElementById("nextPage").disabled = currentPage === totalPages || totalPages === 0;
+        };
 
-                paginateData();
-            };
+        const displayClasses = (data) => {
+            document.getElementById("classTable").innerHTML = data.map(cls => `
+                <tr>
+                    <td>${cls.classname}</td>
+                    <td>${cls.stream}</td>
+                    <td>${cls.capacity}</td>
+                    <td>${cls.current_count}</td>
+                    <td>${cls.teacher_name}</td>
+                    <td>${cls.assignedAt.toLocaleString()}</td>
+                    <td class="actions">
+                        <button class="edit-btn" data-id="${cls.id}">Edit</button>
+                        <button class="delete-btn" data-id="${cls.id}">Delete</button>
+                    </td>
+                </tr>
+            `).join("");
+        };
 
-            const paginateData = () => {
-                const totalPages = Math.ceil(filteredClasses.length / rowsPerPage);
+        document.getElementById("search").addEventListener("input", updateDisplay);
+        document.getElementById("sort").addEventListener("change", updateDisplay);
+        document.getElementById("prevPage").addEventListener("click", () => { currentPage--; paginateData(); });
+        document.getElementById("nextPage").addEventListener("click", () => { currentPage++; paginateData(); });
 
-                if (currentPage > totalPages) currentPage = totalPages;
-                if (currentPage < 1) currentPage = 1;
+        document.getElementById("editForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-                const startIndex = (currentPage - 1) * rowsPerPage;
-                const endIndex = startIndex + rowsPerPage;
-                const paginatedData = filteredClasses.slice(startIndex, endIndex);
+    const updatedData = {
+        classname: document.getElementById("editClassname").value,
+        stream: document.getElementById("editStream").value.toUpperCase(),
+        capacity: parseInt(document.getElementById("editCapacity").value, 10),
+        teacher_name: document.getElementById("editTeacher").value
+    };
 
-                displayClasses(paginatedData);
+    // Validate stream (A-F)
+    if (!["A", "B", "C", "D", "E", "F"].includes(updatedData.stream)) {
+        Swal.fire("Error!", "Stream must be one of A, B, C, D, E, or F.", "error");
+        return;
+    }
 
-                document.getElementById("pageInfo").innerText = `Page ${currentPage} of ${totalPages || 1}`;
-                document.getElementById("prevPage").disabled = currentPage === 1;
-                document.getElementById("nextPage").disabled = currentPage === totalPages || totalPages === 0;
-            };
-
-            const displayClasses = (data) => {
-                const tableBody = document.getElementById("classTable");
-                tableBody.innerHTML = "";
-
-                data.forEach(cls => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${cls.classname}</td>
-                        <td>${cls.stream}</td>
-                        <td>${cls.capacity}</td>
-                        <td>${cls.teacher_name}</td>
-                        <td>${cls.assignedAt.toLocaleString()}</td>
-                        <td class="actions">
-                            <button class="edit-btn" data-id="${cls.id}">Edit</button>
-                            <button class="delete-btn" data-id="${cls.id}">Delete</button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            };
-
-            document.getElementById("search").addEventListener("input", updateDisplay);
-            document.getElementById("sort").addEventListener("change", updateDisplay);
-
-            document.getElementById("prevPage").addEventListener("click", () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    paginateData();
-                }
-            });
-
-            document.getElementById("nextPage").addEventListener("click", () => {
-                const totalPages = Math.ceil(filteredClasses.length / rowsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    paginateData();
-                }
-            });
-
-            document.getElementById("classTable").addEventListener("click", async (event) => {
-                if (event.target.classList.contains("delete-btn")) {
-                    const classId = event.target.dataset.id;
-
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to undo this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Yes, delete it!"
-                    }).then(async (result) => {
-                        if (result.isConfirmed) {
-                            try {
-                                const response = await fetch(`http://localhost:3000/api/deleteClass/${classId}`, {
-                                    method: "DELETE",
-                                });
-
-                                if (!response.ok) {
-                                    throw new Error("Failed to delete class!");
-                                }
-
-                                allClasses = allClasses.filter(cls => cls.id != classId);
-                                updateDisplay();
-
-                                Swal.fire("Deleted!", "Class has been deleted.", "success");
-                            } catch (error) {
-                                console.error("Error:", error);
-                                Swal.fire("Error!", "Failed to delete class. Please try again.", "error");
-                            }
-                        }
-                    });
-                }
-
-                if (event.target.classList.contains("edit-btn")) {
-                    editClassId = event.target.dataset.id;
-                    const cls = allClasses.find(c => c.id == editClassId);
-
-                    document.getElementById("editClassname").value = cls.classname;
-                    document.getElementById("editStream").value = cls.stream;
-                    document.getElementById("editCapacity").value = cls.capacity;
-                    document.getElementById("editTeacher").value = cls.teacher_name;
-
-                    document.getElementById("editModal").classList.add("active");
-                }
-            });
-
-            document.getElementById("editForm").addEventListener("submit", async (event) => {
-                event.preventDefault();
-
-                const updatedData = {
-                    classname: document.getElementById("editClassname").value,
-                    stream: document.getElementById("editStream").value,
-                    capacity: document.getElementById("editCapacity").value,
-                    teacher_name: document.getElementById("editTeacher").value
-                };
-
-                await fetch(`http://localhost:3000/api/updateClass/${editClassId}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(updatedData)
-                });
-
-                closeModal();
-                fetchAllClasses();
-            });
-
-
+    try {
+        const response = await fetch(`http://localhost:3000/api/updateClass/${editClassId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedData)
         });
 
-        function closeModal() {
-            document.getElementById("editModal").classList.remove("active");
+        if (!response.ok) {
+            throw new Error("Failed to update class!");
         }
-    </script>
 
-</body>
-</html>
+        closeModal();
+        fetchAllClasses(); // Refresh data
+        Swal.fire("Updated!", "Class updated successfully.", "success");
+    } catch (error) {
+        console.error("Error:", error);
+        Swal.fire("Error!", "Failed to update class. Try again.", "error");
+    }
+});
+
+    });
+</script>
