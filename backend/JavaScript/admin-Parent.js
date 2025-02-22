@@ -1,190 +1,162 @@
-let filteredData = []; // Store global data for search & sorting
+document.addEventListener("DOMContentLoaded", () => {
+    let filteredData = []; // Store global data for search & sorting
+    let currentPage = 1;
+    const rowsPerPage = 5;
 
-const fetchAllParents = async () => {
-    try {
-        const response = await fetch("/api/parents");
+    // ✅ Fetch all parents from API
+    const fetchAllParents = async () => {
+        try {
+            const response = await fetch("/api/parents");
+            if (!response.ok) throw new Error("Server broke due to errors");
 
+            const result = await response.json();
+            const data = result.data;
 
-        if (!response.ok) {
-            throw new Error("Server broke due to errors");
+            // ✅ Include `createdat` for sorting
+            filteredData = data.map(({ id, full_name, tel, email, createdat }) => ({
+                id,
+                fullname: full_name,
+                tel,
+                email,
+                createdat: new Date(createdat) // Convert to Date object for sorting
+            }));
+
+            displayPaginatedData(); // Display first page initially
+
+        } catch (err) {
+            console.error("Network error!", err.message);
+        }
+    };
+
+    // ✅ Display parent data
+    const displayParent = (data) => {
+        const tableBody = document.querySelector(".admin-parent");
+
+        tableBody.innerHTML = `
+            <tr class="head">
+                <th>ID</th>
+                <th>Parent Name</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        `;
+
+        // ✅ If no results, show "No row found"
+        if (data.length === 0) {
+            tableBody.innerHTML += `
+                <tr>
+                    <td colspan="5" style="text-align: center; font-weight: bold; padding: 10px;">No row found</td>
+                </tr>
+            `;
+            return;
         }
 
-        const result = await response.json();
-        const data = result.data;
-        console.table(data);
+        data.forEach(({ id, fullname, tel, email }) => {
+            const row = `
+                <tr>
+                    <td class="id">${id}</td>
+                    <td class="parent_profile">${fullname}</td>
+                    <td class="tel">${tel}</td>
+                    <td class="email"><p>${email}</p></td>
+                    <td>
+                        <button class="del" onclick="deleteParent(${id})">Delete</button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    };
 
-        // ✅ Include `createdat` for sorting
-        filteredData = data.map(({ id, full_name, tel, email, createdat }) => ({
-            id,
-            fullname: full_name,
-            tel,
-            email,
-            createdat: new Date(createdat) // Convert to Date object for sorting
-        }));
+    // ✅ Search Function (Filters by parent name)
+    document.querySelector(".admin-parent-search").addEventListener("input", (event) => {
+        const searchValue = event.target.value.toLowerCase().trim();
 
-        // ✅ Display initially without filtering
-        displayParent(filteredData);
+        const filteredResults = filteredData.filter(({ fullname }) =>
+            fullname.toLowerCase().includes(searchValue)
+        );
 
-    } catch (err) {
-        console.error("Network error!", err.message);
-    }
-};
-
-// ✅ Accept data parameter for dynamic updates
-const displayParent = (data) => {
-
-    const tableBody = document.querySelector(".admin-parent");
-
-    // ✅ Clear previous data
-    tableBody.innerHTML = `
-        <tr class="head">
-            <th>ID</th>
-            <th>Parent Name</th>
-            <th>Telephone</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    `;
-
-    // ✅ If no results, show "No row found"
-    if (data.length === 0) {
-        tableBody.innerHTML += `
-            <tr>
-                <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">No row found</td>
-            </tr>
-        `;
-        return;
-    }
-
-    data.forEach(({ id, fullname, tel, email }) => {
-
-        const row = `
-            <tr>
-                <td class="name student_profile">${id}</td>
-                <td class="id">${fullname}</td>
-                <td class="parent parent_profile">${tel}</td>
-                <td class="id"><p>${email}</p></td>
-                <td>
-                    <button class="del" onclick="deleteParent(${id})">Delete</button>
-                </td>
-            </tr>
-        `;
-
-        tableBody.innerHTML += row;
+        currentPage = 1; // Reset to first page after search
+        displayPaginatedData(filteredResults);
     });
-};
 
-// ✅ Search Function (Filters by student name)
-document.querySelector(".admin-parent-search").addEventListener("input", (event) => {
-    const searchValue = event.target.value.toLowerCase().trim(); // Convert to lowercase
+    // ✅ Sort Function
+    document.getElementById("searchIndexStudent").addEventListener("change", (event) => {
+        const sortOrder = event.target.value;
 
-    const filteredResults = filteredData.filter(({ student_fullname }) =>
-        student_fullname.toLowerCase().includes(searchValue)
-    );
+        filteredData.sort((a, b) =>
+            sortOrder === "Newest" ? b.createdat - a.createdat : a.createdat - b.createdat
+        );
 
-    displayParent(filteredResults);
-});
+        displayPaginatedData(); // Refresh displayed data
+    });
 
-document.getElementById("searchIndexStudent").addEventListener("change", (event) => {
-    const sortOrder = event.target.value;
+    // ✅ Pagination Controls
+    const updatePagination = () => {
+        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
-    // Sort only the currently displayed data instead of full filteredData
-    const tableRows = document.querySelectorAll(".admin-parent tr:not(.head)");
-    
-    let displayedData = [...tableRows].map(row => ({
-        student_fullname: row.querySelector(".student_profile").textContent,
-        id: row.querySelector(".id").textContent,
-        fullname: row.querySelector(".parent_profile").textContent,
-        student_class: row.querySelector(".darasa p").textContent.split(" ")[0],
-        createdat: new Date(filteredData.find(item => item.id == row.querySelector(".id").textContent)?.createdat) 
-    }));
+        document.getElementById("pageInfoAdminStudent").textContent = `Page ${currentPage} of ${totalPages || 1}`;
+        document.getElementById("prevPageAdminStudent").disabled = currentPage === 1;
+        document.getElementById("nextPageAdminStudent").disabled = currentPage === totalPages;
+    };
 
-    const sortedData = displayedData.sort((a, b) =>
-        sortOrder === "Newest" ? b.createdat - a.createdat : a.createdat - b.createdat
-    );
+    // ✅ Display Paginated Data
+    const displayPaginatedData = (data = filteredData) => {
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const paginatedData = data.slice(start, end);
 
-    displayParent(sortedData);
-});
+        displayParent(paginatedData);
+        updatePagination();
+    };
 
-let currentPage = 1;
-const rowsPerPage = 5;
+    // ✅ Handle Next Page Click
+    document.getElementById("nextPageAdminStudent").addEventListener("click", () => {
+        if (currentPage < Math.ceil(filteredData.length / rowsPerPage)) {
+            currentPage++;
+            displayPaginatedData();
+        }
+    });
 
-// ✅ Function to update pagination display
-const updatePagination = () => {
-    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+    // ✅ Handle Previous Page Click
+    document.getElementById("prevPageAdminStudent").addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPaginatedData();
+        }
+    });
 
-    document.getElementById("pageInfoAdminStudent").textContent = `Page ${currentPage} of ${totalPages}`;
+    // ✅ Delete Parent
+    window.deleteParent = async (parentId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to undo this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`/api/parents/${parentId}`, {
+                        method: "DELETE",
+                    });
 
-    // Enable/Disable buttons based on page
-    document.getElementById("prevPageAdminStudent").disabled = currentPage === 1;
-    document.getElementById("nextPageAdminStudent").disabled = currentPage === totalPages;
-};
+                    if (!response.ok) throw new Error("Failed to delete parent!");
 
-// ✅ Function to display paginated data
-const displayPaginatedData = () => {
-    const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedData = filteredData.slice(start, end);
+                    filteredData = filteredData.filter(parent => parent.id !== parentId);
+                    displayPaginatedData(); // Refresh table
 
-    displayParent(paginatedData); // Display only the required data
-    updatePagination(); // Update pagination controls
-};
-
-// ✅ Handle Next Page Click
-document.getElementById("nextPageAdminStudent").addEventListener("click", () => {
-    if (currentPage < Math.ceil(filteredData.length / rowsPerPage)) {
-        currentPage++;
-        displayPaginatedData();
-    }
-});
-
-// ✅ Handle Previous Page Click
-document.getElementById("prevPageAdminStudent").addEventListener("click", () => {
-    if (currentPage > 1) {
-        currentPage--;
-        displayPaginatedData();
-    }
-});
-
-// ✅ Call fetch function to load data
-fetchAllParents().then(() => {
-    displayPaginatedData(); // Display first page initially
-});
-
-// deleting the parent
-const deleteParent = async (parentId) => {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to undo this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!"
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            try {
-                const response = await fetch(`/api/parents/${parentId}`, {
-                    method: "DELETE",
-                });
-
-                if (!response.ok) {
-                    throw new Error("Failed to delete parent!");
+                    Swal.fire("Deleted!", "Parent has been deleted.", "success");
+                } catch (error) {
+                    console.error("Error:", error);
+                    Swal.fire("Error!", "Failed to delete parent. Please try again.", "error");
                 }
-
-                // Remove parent from `filteredData`
-                filteredData = filteredData.filter(parent => parent.id !== parentId);
-
-                // Re-render table
-                displayParent(filteredData);
-
-                Swal.fire("Deleted!", "Parent has been deleted.", "success");
-            } catch (error) {
-                console.error("Error:", error);
-                Swal.fire("Error!", "Failed to delete parent. Please try again.", "error");
             }
-        }
-    });
-};
+        });
+    };
 
-
+    // ✅ Load Data Initially
+    fetchAllParents();
+});
