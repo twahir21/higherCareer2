@@ -7,8 +7,8 @@
 </head>
 <style>
 
-/* Container */
-.container {
+/* Unique Container */
+.container-subject-unique {
     background: #fff;
     padding: 20px 30px;
     border-radius: 10px;
@@ -17,8 +17,8 @@
     text-align: center;
 }
 
-/* Title */
-.container h2 {
+/* Unique Title */
+.container-subject-unique h2 {
     margin-bottom: 20px;
     font-size: 22px;
     color: #333;
@@ -26,14 +26,14 @@
     padding-bottom: 10px;
 }
 
-/* Filters */
-.filters {
+/* Unique Filters */
+.filters-unique {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-.filters input {
+.filters-unique input {
     width: 48%;
     padding: 8px;
     border: 1px solid #ddd;
@@ -41,35 +41,38 @@
     font-size: 14px;
 }
 
-/* Table */
-table {
+/* Unique Table */
+table.unique-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
+    border: 2px solid red;
 }
 
-thead {
+thead.unique-thead {
     background: #3498db;
     color: white;
 }
 
-th, td {
+th.unique-th, td.unique-td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
 }
 
-th {
+th.unique-th
+
+th.unique-th {
     font-weight: bold;
 }
 
-td select {
+td.unique-td select {
     width: 100%;
     padding: 5px;
 }
 
-/* Assign Button */
-.assign-btn {
+/* Unique Assign Button */
+.assign-btn-unique {
     background: #27ae60;
     color: white;
     font-size: 16px;
@@ -81,28 +84,28 @@ td select {
     transition: 0.3s ease-in-out;
 }
 
-.assign-btn:hover {
+.assign-btn-unique:hover {
     background: #218c54;
 }
+
 
 </style>
 <body>
 
-    <div class="container">
+    <div class="container-subject-unique">
         <h2>Assign Subjects to Teachers</h2>
 
-        <div class="filters">
+        <div class="filters-unique">
             <input type="text" id="searchTeacher" placeholder="Search Teacher...">
-            <input type="text" id="searchSubject" placeholder="Search Subject...">
         </div>
 
-        <table>
-            <thead>
+        <table class="unique-table">
+            <thead class="unique-thead">
                 <tr>
-                    <th>Teacher</th>
-                    <th>Subjects</th>
-                    <th>Class</th>
-                    <th>Assign</th>
+                    <th class="unique-th">Teacher</th>
+                    <th class="unique-th">Subjects</th>
+                    <th class="unique-th">Class</th>
+                    <th class="unique-th">Assign</th>
                 </tr>
             </thead>
             <tbody id="teacherTable">
@@ -110,11 +113,22 @@ td select {
             </tbody>
         </table>
 
-        <button class="assign-btn" onclick="submitAssignments()">Submit Assignments</button>
+        <button class="assign-btn-unique" onclick="submitAssignments()">Submit Assignments</button>
     </div>
 
     <script>
+
         document.addEventListener("DOMContentLoaded", function() {
+
+            async function fetchDataAPI () {
+            const teacher = await fetch("http://localhost:3000/api/teachers");
+            const subjects = "http://localhost:3000/api/subjects";
+            const data = await teacher.json();
+
+            }
+
+        fetchDataAPI();
+
             // Dummy data (Replace with real database values)
             let teachers = ["John Doe", "Jane Smith", "Michael Brown", "Emily Johnson", "Daniel Wilson"];
             let subjects = ["Mathematics", "English", "Science", "Social Studies", "Physics", "Chemistry", "Biology", "Computer Science", "History", "Geography", "Art"];
@@ -128,12 +142,12 @@ td select {
                 // Teacher Name
                 let teacherCell = document.createElement("td");
                 teacherCell.textContent = teacher;
+                teacherCell.classList.add("unique-td");
                 row.appendChild(teacherCell);
 
                 // Subjects Dropdown
                 let subjectCell = document.createElement("td");
                 let subjectSelect = document.createElement("select");
-                subjectSelect.classList.add("subject-dropdown");
                 subjects.forEach(subj => {
                     let option = document.createElement("option");
                     option.value = subj;
@@ -141,6 +155,7 @@ td select {
                     subjectSelect.appendChild(option);
                 });
                 subjectCell.appendChild(subjectSelect);
+                subjectCell.classList.add("unique-td");
                 row.appendChild(subjectCell);
 
                 // Grade Selection
@@ -153,40 +168,24 @@ td select {
                     gradeSelect.appendChild(option);
                 });
                 gradeCell.appendChild(gradeSelect);
+                gradeCell.classList.add("unique-td");
                 row.appendChild(gradeCell);
 
                 // Assign Checkbox
                 let assignCell = document.createElement("td");
                 let assignCheckbox = document.createElement("input");
                 assignCheckbox.type = "checkbox";
-                assignCheckbox.classList.add("assign-checkbox");
                 assignCell.appendChild(assignCheckbox);
+                assignCell.classList.add("unique-td");
                 row.appendChild(assignCell);
 
                 tableBody.appendChild(row);
             });
-
-            // Search filter function
-            document.getElementById("searchTeacher").addEventListener("keyup", function() {
-                filterTable(0, this.value.toLowerCase());
-            });
-
-            document.getElementById("searchSubject").addEventListener("keyup", function() {
-                filterTable(1, this.value.toLowerCase());
-            });
-
-            function filterTable(columnIndex, filterValue) {
-                let rows = tableBody.getElementsByTagName("tr");
-                for (let row of rows) {
-                    let cellText = row.cells[columnIndex].textContent.toLowerCase();
-                    row.style.display = cellText.includes(filterValue) ? "" : "none";
-                }
-            }
         });
 
         function submitAssignments() {
             let assignments = [];
-            document.querySelectorAll(".assign-checkbox:checked").forEach((checkbox, index) => {
+            document.querySelectorAll(".unique-td input[type=checkbox]:checked").forEach((checkbox) => {
                 let row = checkbox.closest("tr");
                 let teacher = row.cells[0].textContent;
                 let subject = row.cells[1].querySelector("select").value;
