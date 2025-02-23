@@ -121,10 +121,9 @@ td.unique-td select {
         document.addEventListener("DOMContentLoaded", function() {
 
             async function fetchDataAPI () {
-            const teacher = await fetch("http://localhost:3000/api/teachers");
-            const subjects = "http://localhost:3000/api/subjects";
+            const teacher = await fetch("http://localhost:3000/api/grades");
             const data = await teacher.json();
-
+                console.log(data.data);
             }
 
         fetchDataAPI();

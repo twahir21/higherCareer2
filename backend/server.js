@@ -30,6 +30,8 @@ import routerForm from "./routes/generatePDF.js";
 import handlePDFRouter from "./routes/handlePDF.js";
 import classRouter from "./routes/assignClass.js";
 import timetableRouter from "./routes/timetable.js";
+import subjectRouter from "./routes/subject.js";
+import gradeRouter from "./routes/grade.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -41,6 +43,8 @@ app.use("/api", teacherRouter);
 app.use("/api", teacherRegRouter);
 app.use("/api", classRouter);
 app.use("/api", timetableRouter);
+app.use("/api", subjectRouter)
+app.use("/api", gradeRouter)
 
 // Forms for joining school
 app.use(routerForm)
@@ -58,8 +62,6 @@ app.use('/downloads', express.static(path.join(__dirname, 'downloads')));
 // usage for SSR
 app.use(adminCodes);
 app.use(joiningRouter);
-
-
 
 
 // Serve Admin Page with EJS

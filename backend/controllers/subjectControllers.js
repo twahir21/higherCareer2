@@ -1,17 +1,13 @@
 import database from "../config/db.js";
 
-// fetch all subjects
-export const fetchAllSubjects = async (req, res)  => {
+export const fetchAllSubjects = async (req, res) => {
     try {
-        const response = await database.query(`
-            SELECT * FROM subjects  
-            `);
+        const response = await database.query("SELECT * FROM subjects");
         
-        if (!response.ok){
-            res.status(404).json({ success: false })
-        }
-        
+        return res.status(200).json({ success: true, data: response.rows, message: "Subjects fetched successfully" });
+
     } catch (error) {
-        res.status(500).json({ error: error, message: "Internal Server Error" })
+        console.error("DB Query Error:", error.message); // Debugging
+        return res.status(500).json({ error: error.message, message: "Internal Server Error" });
     }
-}
+};
