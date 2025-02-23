@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('teacherSection');
     });
 
+    document.getElementById('subject').addEventListener('click', function() {
+        showSection('subjectSection');
+    });
+
     document.getElementById('timetable').addEventListener('click', function() {
         showSection('timetableSection');
     });

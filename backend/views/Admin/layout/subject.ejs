@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Subjects to Teachers</title>
+</head>
+<style>
+
+/* Container */
+.container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 900px;
+    text-align: center;
+}
+
+/* Title */
+.container h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.filters input {
+    width: 48%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+thead {
+    background: #3498db;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+}
+
+td select {
+    width: 100%;
+    padding: 5px;
+}
+
+/* Assign Button */
+.assign-btn {
+    background: #27ae60;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.assign-btn:hover {
+    background: #218c54;
+}
+
+</style>
+<body>
+
+    <div class="container">
+        <h2>Assign Subjects to Teachers</h2>
+
+        <div class="filters">
+            <input type="text" id="searchTeacher" placeholder="Search Teacher...">
+            <input type="text" id="searchSubject" placeholder="Search Subject...">
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Teacher</th>
+                    <th>Subjects</th>
+                    <th>Class</th>
+                    <th>Assign</th>
+                </tr>
+            </thead>
+            <tbody id="teacherTable">
+                <!-- Dynamic rows from database -->
+            </tbody>
+        </table>
+
+        <button class="assign-btn" onclick="submitAssignments()">Submit Assignments</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Dummy data (Replace with real database values)
+            let teachers = ["John Doe", "Jane Smith", "Michael Brown", "Emily Johnson", "Daniel Wilson"];
+            let subjects = ["Mathematics", "English", "Science", "Social Studies", "Physics", "Chemistry", "Biology", "Computer Science", "History", "Geography", "Art"];
+            let grades = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9"];
+
+            let tableBody = document.getElementById("teacherTable");
+
+            teachers.forEach(teacher => {
+                let row = document.createElement("tr");
+
+                // Teacher Name
+                let teacherCell = document.createElement("td");
+                teacherCell.textContent = teacher;
+                row.appendChild(teacherCell);
+
+                // Subjects Dropdown
+                let subjectCell = document.createElement("td");
+                let subjectSelect = document.createElement("select");
+                subjectSelect.classList.add("subject-dropdown");
+                subjects.forEach(subj => {
+                    let option = document.createElement("option");
+                    option.value = subj;
+                    option.textContent = subj;
+                    subjectSelect.appendChild(option);
+                });
+                subjectCell.appendChild(subjectSelect);
+                row.appendChild(subjectCell);
+
+                // Grade Selection
+                let gradeCell = document.createElement("td");
+                let gradeSelect = document.createElement("select");
+                grades.forEach(grade => {
+                    let option = document.createElement("option");
+                    option.value = grade;
+                    option.textContent = grade;
+                    gradeSelect.appendChild(option);
+                });
+                gradeCell.appendChild(gradeSelect);
+                row.appendChild(gradeCell);
+
+                // Assign Checkbox
+                let assignCell = document.createElement("td");
+                let assignCheckbox = document.createElement("input");
+                assignCheckbox.type = "checkbox";
+                assignCheckbox.classList.add("assign-checkbox");
+                assignCell.appendChild(assignCheckbox);
+                row.appendChild(assignCell);
+
+                tableBody.appendChild(row);
+            });
+
+            // Search filter function
+            document.getElementById("searchTeacher").addEventListener("keyup", function() {
+                filterTable(0, this.value.toLowerCase());
+            });
+
+            document.getElementById("searchSubject").addEventListener("keyup", function() {
+                filterTable(1, this.value.toLowerCase());
+            });
+
+            function filterTable(columnIndex, filterValue) {
+                let rows = tableBody.getElementsByTagName("tr");
+                for (let row of rows) {
+                    let cellText = row.cells[columnIndex].textContent.toLowerCase();
+                    row.style.display = cellText.includes(filterValue) ? "" : "none";
+                }
+            }
+        });
+
+        function submitAssignments() {
+            let assignments = [];
+            document.querySelectorAll(".assign-checkbox:checked").forEach((checkbox, index) => {
+                let row = checkbox.closest("tr");
+                let teacher = row.cells[0].textContent;
+                let subject = row.cells[1].querySelector("select").value;
+                let grade = row.cells[2].querySelector("select").value;
+                assignments.push({ teacher, subject, grade });
+            });
+
+            console.log(assignments); // Replace with an AJAX request to send data to backend
+            alert("Assignments submitted!");
+        }
+    </script>
+
+</body>
+</html>
