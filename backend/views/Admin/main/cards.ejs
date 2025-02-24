@@ -2,7 +2,7 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
             <div class="inner">
-                <h3 id="totalStudents">150</h3>
+                <h3 id="totalStudents">0</h3>
                 <p>Total Students</p>
             </div>
             <div class="icon">
@@ -14,7 +14,7 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-success">
             <div class="inner">
-                <h3 id="totalClasses">12</h3>
+                <h3 id="totalClasses">0</h3>
                 <p>Total Classes</p>
             </div>
             <div class="icon">
@@ -26,7 +26,7 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3 id="totalTeachers">20</h3>
+                <h3 id="totalTeachers">0</h3>
                 <p>Total Teachers</p>
             </div>
             <div class="icon">
@@ -39,7 +39,7 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-primary">
             <div class="inner">
-                <h3 id="parentsTotal">120</h3>
+                <h3 id="parentsTotal">0</h3>
                 <p>Total Parents</p>
             </div>
             <div class="icon">
@@ -54,28 +54,31 @@
     document.addEventListener("DOMContentLoaded", async function () {
         try {
             // Fetch all API data in parallel
-            const [parentsRes, teachersRes, classesRes] = await Promise.all([
+            const [parentsRes, teachersRes, classesRes, studentsRes] = await Promise.all([
                 fetch("/api/parents"),
                 fetch("/api/teachers"),
-                fetch("/api/getClasses")
+                fetch("/api/getClasses"),
+                fetch("/api/students")
             ]);
 
             // Convert responses to JSON
-            if (!parentsRes.ok || !teachersRes.ok || !classesRes.ok) {
+            if (!parentsRes.ok || !teachersRes.ok || !classesRes.ok || !studentsRes) {
                 console.log("One or more API requests failed.")
             }
 
-            const [parentsData, teachersData, classesData] = await Promise.all([
+            const [parentsData, teachersData, classesData, studentsData] = await Promise.all([
                 parentsRes.json(),
                 teachersRes.json(),
-                classesRes.json()
+                classesRes.json(),
+                studentsRes.json()
             ]);
 
 
             // Assign data to elements
             document.getElementById("parentsTotal").innerText = parentsData.data.length;
             document.getElementById("totalTeachers").innerText = teachersData.data.length;
-            document.getElementById("totalClasses").innerText = classesData.length;
+            document.getElementById("totalClasses").innerText = classesData.data.length;
+            document.getElementById("totalStudents").innerText = studentsData.data.length;
 
         } catch (error) {
             console.error("Error fetching data:", error.message);

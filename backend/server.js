@@ -32,6 +32,7 @@ import classRouter from "./routes/assignClass.js";
 import timetableRouter from "./routes/timetable.js";
 import subjectRouter from "./routes/subject.js";
 import gradeRouter from "./routes/grade.js";
+import studentRouter from "./routes/students.js";
 
 // usage for APIs
 app.use("/api", eventRouter);
@@ -44,7 +45,8 @@ app.use("/api", teacherRegRouter);
 app.use("/api", classRouter);
 app.use("/api", timetableRouter);
 app.use("/api", subjectRouter)
-app.use("/api", gradeRouter)
+app.use("/api", gradeRouter);
+app.use("/api", studentRouter);
 
 // Forms for joining school
 app.use(routerForm)
