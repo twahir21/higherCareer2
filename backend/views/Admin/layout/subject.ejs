@@ -11,6 +11,7 @@
     background: #fff;
     padding: 20px 30px;
     border-radius: 10px;
+    margin-left: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     width: 900px;
     text-align: center;
@@ -45,7 +46,6 @@ table.unique-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
-    border: 2px solid red;
 }
 
 thead.unique-thead {
@@ -83,6 +83,7 @@ td.unique-td select {
 
 .assign-btn-unique:hover {
     background: #218c54;
+    transform: scale(1.02);
 }
 
 </style>
@@ -110,6 +111,7 @@ td.unique-td select {
         </table>
 
         <button class="assign-btn-unique" onclick="submitAssignments()">Submit Assignments</button>
+        <p class="error" id="error-message" style="color: red; display: none; padding: 10px 0;">Please select at least one assignment before submitting.</p>
     </div>
 
     <script>
@@ -212,8 +214,32 @@ td.unique-td select {
                 assignments.push({ teacher, subject, grade });
             });
 
-            console.log(assignments); // Replace with an AJAX request to send data to backend
-            alert("Assignments submitted!");
+            if (assignments.length === 0){
+                document.getElementById("error-message").style.display = "block";
+            }else{
+                document.getElementById("error-message").style.display = "none";
+
+                try {
+                    fetch("http://localhost:3000/api/assign-subject", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ assignments }) // Convert array into a JSON string
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert("Assignments submitted successfully!");
+                    console.log(data);
+                })
+                .catch(error => console.error("Error submitting assignments:", error));
+                    
+                } catch (error) {
+                    console.log("Error while submitting data to backend", error.message)
+                }
+
+            }
+
         }
     </script>
 
