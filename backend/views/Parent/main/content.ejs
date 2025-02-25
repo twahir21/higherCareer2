@@ -1,13 +1,66 @@
+<!--Verify user Section-->
+<%- include("../layout/verifyUser") %>
 
-<section id="teacherSection" class="content-wrapper" style="display:none;">
-    <!-- Teachers Content -->
-    <%- include("../layout/teachers") %>         
-</section>
+        <section id="teacherSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <%- include("../layout/teachers") %>         
+        </section>
 
-<section id="studentParentSection" class="content-wrapper" style="display:none;">
-    <!-- Student Content -->
-    <%- include("../layout/student") %>         
-</section>
+        <section id="parentSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Parents</h1>
+            <%- include("../layout/parent") %>         
+        </section>
 
-<!-- <section id="dashboardParentSection" class="content-wrapper" style="display:none;">
-</section> -->
+        <section id="subjectSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Subject</h1>
+            <%- include("../layout/subject") %>         
+        </section>
+
+        
+        <section id="teacherProfile" class="content-wrapper" style="display:none;">
+            <!-- Teacher Profile -->
+            <h1>Teacher Profile</h1>
+            <%- include("../layout/teachDet") %>         
+        </section>
+
+        <section id="studentSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Parents</h1>
+            <%- include("../layout/parentManage") %>         
+        </section>
+
+        <section id="studentDetails" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Students Details</h1>
+            <%- include("../layout/studentDet") %>         
+        </section>
+
+        <section id="classManagementSection" class="content-wrapper" style="display:none;">
+            <!-- Teacher Management Content -->
+            <h1 style="padding: 5px 0;">Class Management</h1>
+            <%- include("../layout/assignClass") %>        
+        </section>
+
+        <section id="timetableSection" class="content-wrapper" style="display:none;">
+            <!-- Teacher Management Content -->
+            <h1 style="padding: 10px 0;">Timetable Management</h1>
+            <%- include("../layout/timetable") %>        
+        </section>
+
+        <section id="attendanceSection" class="content-wrapper" style="display:none;">
+            <!-- Attendance Content -->
+            <h1 style="padding: 14px;">Linking Student</h1>
+        </section>
+        
+        <section id="communicationSection" class="content-wrapper" style="display:none;">
+            <!-- Event management -->
+            <h1>Event Management</h1>
+            <%- include("../layout/calendar.ejs") %>
+        </section>
+        <section id="settingsSection" class="content-wrapper" style="display:none;">
+            <!-- Settings Content -->
+            <h1>Joining Instructions</h1>
+            <%- include("../layout/viewPDF") %>         
+        </section>

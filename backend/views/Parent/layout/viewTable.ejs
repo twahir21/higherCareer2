@@ -1,0 +1,77 @@
+
+<h2 class="tableTitle">Select Class & Stream</h2>
+    
+<select id="classStreamDropdown" onchange="displayTimetable()" class="selectViewTable">
+    <option value="">Select Class & Stream</option>
+</select>
+
+<div id="timetableContainer"></div>
+
+<script>
+    let timetableData = [];
+
+async function fetchDataAPI() {
+    try {
+        const response = await fetch("http://localhost:3000/api/getTimetable");
+        timetableData = await response.json(); // Store fetched data
+
+        populateDropdown(); // Call to populate dropdown after fetching data
+    } catch (error) {
+        console.error("Error fetching timetable data:", error);
+    }
+}
+
+function populateDropdown() {
+    const dropdown = document.getElementById("classStreamDropdown");
+    dropdown.innerHTML = '<option value="">Select Class & Stream</option>'; // Reset options
+
+    timetableData.forEach(entry => {
+        const option = document.createElement("option");
+        option.value = entry.id;
+        option.textContent = `${entry.class} ${entry.stream}`;
+        dropdown.appendChild(option);
+    });
+}
+
+function displayTimetable() {
+const selectedId = document.getElementById("classStreamDropdown").value;
+const timetableContainer = document.getElementById("timetableContainer");
+
+if (!selectedId) {
+timetableContainer.innerHTML = "";
+return;
+}
+
+const selectedEntry = timetableData.find(entry => entry.id == selectedId);
+if (!selectedEntry) return;
+
+let tableHTML = `
+<h3 class="tableh3">${selectedEntry.class} - ${selectedEntry.stream} Timetable</h3>
+<div class="tableWrapper">
+<table class="viewTable">
+    <thead>
+        <tr>
+            <th>Day</th>`;
+
+selectedEntry.time_slots.forEach(slot => {
+tableHTML += `<th>${slot}</th>`;
+});
+
+tableHTML += `</tr></thead><tbody>`;
+
+selectedEntry.timetable.forEach(row => {
+tableHTML += `<tr><td>${row.day}</td>`;
+row.subjects.forEach(subject => {
+    tableHTML += `<td class="${subject.replace(/\s+/g, '')}">${subject}</td>`;
+});
+tableHTML += `</tr>`;
+});
+
+tableHTML += `</tbody></table></div>`;
+timetableContainer.innerHTML = tableHTML;
+}
+
+
+fetchDataAPI(); // Fetch timetable data when page loads
+
+</script>

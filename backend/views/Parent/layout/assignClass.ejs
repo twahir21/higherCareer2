@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Class</title>
+    <link rel="stylesheet" href="/css/viewClass.css">
+    <link rel="stylesheet" href="/css/addClass.css">
+
+</head>
+
+<body>
+    <div class="classLinks">
+        <button data-component="addClass">Create a class</button>
+        <button data-component="viewClass">View classes</button>
+    </div>
+
+    <div id="contentContainer">
+        <!-- Initial content -->
+        <div id="addClass" class="component"><%- include("./addClass") %></div>
+        <div id="viewClass" class="component" style="display: none;"><%- include("./viewClass") %></div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.classLinks button').forEach(button => {
+            button.addEventListener('click', () => {
+                const component = button.getAttribute('data-component');
+                // Hide all components
+                document.querySelectorAll('.component').forEach(comp => {
+                    comp.style.display = 'none';
+                });
+                // Show the selected component
+                document.getElementById(component).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>

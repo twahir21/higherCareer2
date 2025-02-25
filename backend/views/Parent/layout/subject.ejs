@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Subjects to Teachers</title>
+</head>
+<style>
+/* Unique Container */
+.container-subject-unique {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    margin-left: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 900px;
+    text-align: center;
+}
+
+/* Unique Title */
+.container-subject-unique h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Unique Filters */
+.filters-unique {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.filters-unique input {
+    width: 48%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Unique Table */
+table.unique-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+thead.unique-thead {
+    background: #3498db;
+    color: white;
+}
+
+th.unique-th, td.unique-td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th.unique-th {
+    font-weight: bold;
+}
+
+td.unique-td select {
+    width: 100%;
+    padding: 5px;
+}
+
+/* Unique Assign Button */
+.assign-btn-unique {
+    background: #27ae60;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.assign-btn-unique:hover {
+    background: #218c54;
+    transform: scale(1.02);
+}
+
+</style>
+<body>
+
+    <div class="container-subject-unique">
+        <h2>Assign Subjects to Teachers</h2>
+
+        <div class="filters-unique">
+            <input type="text" id="searchTeacher" placeholder="Search Teacher...">
+        </div>
+
+        <table class="unique-table">
+            <thead class="unique-thead">
+                <tr>
+                    <th class="unique-th">Teacher</th>
+                    <th class="unique-th">Subjects</th>
+                    <th class="unique-th">Class</th>
+                    <th class="unique-th">Assign</th>
+                </tr>
+            </thead>
+            <tbody id="teacherTable">
+                <!-- Dynamic rows from database -->
+            </tbody>
+        </table>
+
+        <button class="assign-btn-unique" onclick="submitAssignments()">Submit Assignments</button>
+        <p class="error" id="error-message" style="color: red; display: none; padding: 10px 0;">Please select at least one assignment before submitting.</p>
+    </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            async function fetchDataAPI() {
+                try {
+                    // Fetch all data in parallel
+                    const [teachersRes, gradesRes, subjectsRes] = await Promise.all([
+                        fetch("http://localhost:3000/api/teachers"),
+                        fetch("http://localhost:3000/api/grades"),
+                        fetch("http://localhost:3000/api/subjects")
+                    ]);
+
+                    // Convert responses to JSON
+                    const [teachersData, gradesData, subjectsData] = await Promise.all([
+                        teachersRes.json(),
+                        gradesRes.json(),
+                        subjectsRes.json()
+                    ]);
+
+                    // Get actual data
+                    const teachers = teachersData.data;
+                    const grades = gradesData.data;
+                    const subjects = subjectsData.data;
+
+                    // Populate table
+                    populateTable(teachers, subjects, grades);
+
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            }
+
+            function populateTable(teachers, subjects, grades) {
+                let tableBody = document.getElementById("teacherTable");
+                tableBody.innerHTML = ""; // Clear previous data
+
+                // Extract only teacher names
+                let teacherNames = teachers.map(teacher => teacher.fullname);
+
+                teacherNames.forEach(teacherName => {
+                    let row = document.createElement("tr");
+
+                    // Teacher Name Cell
+                    let teacherCell = document.createElement("td");
+                    teacherCell.textContent = teacherName;
+                    teacherCell.classList.add("unique-td");
+                    row.appendChild(teacherCell);
+
+                    // Subjects Dropdown
+                    let subjectCell = document.createElement("td");
+                    let subjectSelect = document.createElement("select");
+                    subjects.forEach(subj => {
+                        let option = document.createElement("option");
+                        option.value = subj.name;
+                        option.textContent = subj.name;
+                        subjectSelect.appendChild(option);
+                    });
+                    subjectCell.appendChild(subjectSelect);
+                    subjectCell.classList.add("unique-td");
+                    row.appendChild(subjectCell);
+
+                    // Grades Dropdown
+                    let gradeCell = document.createElement("td");
+                    let gradeSelect = document.createElement("select");
+                    grades.forEach(grade => {
+                        let option = document.createElement("option");
+                        option.value = grade.name;
+                        option.textContent = grade.name;
+                        gradeSelect.appendChild(option);
+                    });
+                    gradeCell.appendChild(gradeSelect);
+                    gradeCell.classList.add("unique-td");
+                    row.appendChild(gradeCell);
+
+                    // Assign Checkbox
+                    let assignCell = document.createElement("td");
+                    let assignCheckbox = document.createElement("input");
+                    assignCheckbox.type = "checkbox";
+                    assignCell.appendChild(assignCheckbox);
+                    assignCell.classList.add("unique-td");
+                    row.appendChild(assignCell);
+
+                    tableBody.appendChild(row);
+                });
+            }
+    
+            fetchDataAPI();
+        });
+
+        function submitAssignments() {
+            let assignments = [];
+            document.querySelectorAll(".unique-td input[type=checkbox]:checked").forEach((checkbox) => {
+                let row = checkbox.closest("tr");
+                let teacher = row.cells[0].textContent;
+                let subject = row.cells[1].querySelector("select").value;
+                let grade = row.cells[2].querySelector("select").value;
+                assignments.push({ teacher, subject, grade });
+            });
+
+            if (assignments.length === 0){
+                document.getElementById("error-message").style.display = "block";
+            }else{
+                document.getElementById("error-message").style.display = "none";
+
+                try {
+                    fetch("http://localhost:3000/api/assign-subject", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ assignments }) // Convert array into a JSON string
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert("Assignments submitted successfully!");
+                    console.log(data);
+                })
+                .catch(error => console.error("Error submitting assignments:", error));
+                    
+                } catch (error) {
+                    console.log("Error while submitting data to backend", error.message)
+                }
+
+            }
+
+        }
+    </script>
+
+</body>
+</html>
