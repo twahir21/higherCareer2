@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('dashboardSection').style.display = 'block'; // Show the dashboard section by default
 
     // Add event listeners to each menu item
-    document.getElementById('sample').addEventListener("click", function () {
-        showSection("sample");
+    document.getElementById('studentParent').addEventListener("click", function () {
+        showSection("studentParentSection");
     });
     
     document.getElementById('teacher').addEventListener('click', function() {
         showSection('teacherSection');
     });
 
-    document.getElementById('timetable').addEventListener('click', function() {
-        showSection('timetableSection');
+    document.getElementById('dashboardParent').addEventListener('click', function() {
+        showSection('dashboardParentSection');
     });
 
     document.getElementById('student').addEventListener('click', function() {
