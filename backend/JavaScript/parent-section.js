@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('dashboard').addEventListener('click', function() {
         showSection('dashboardSection');
     });
-    document.getElementById('verifyUsers').addEventListener('click', function() {
-        showSection('verifyUsersSection');
+    document.getElementById('studentParent').addEventListener('click', function() {
+        showSection('studentParentSection');
     });
     document.getElementById('teacher').addEventListener('click', function() {
         showSection('teacherSection');
