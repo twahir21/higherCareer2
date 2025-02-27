@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Parent</title>
+</head>
+<body>
+    <h2>Students for parents</h2>
+    <p id="data"></p>
+    <script>
+        
+        const fetchStudents = async () => {
+            try {
+                const studentRes = await fetch('http://localhost:3000/api/students');
+
+                if(!studentRes.ok){
+                    console.log("Server error!");
+                }
+                
+                const studentData = await studentRes.json();
+
+                console.log(studentData);
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+
+        fetchStudents();
+    </script>
+</body>
+</html>
