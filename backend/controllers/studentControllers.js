@@ -87,3 +87,26 @@ export const updateStudent = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
+// fetch each class contains how many students
+export const totalCountStudents = async (req, res) => {
+    try {
+        const response = await database.query(`
+            SELECT class, COUNT(*) AS total_students
+            FROM students
+            WHERE class IN ('kg1', 'kg2', 'standard1', 'standard2', 'standard3', 'standard4', 'standard5', 'standard6', 'standard7')
+            GROUP BY class
+            ORDER BY class;
+        `);
+
+        if (response.rows.length === 0) {
+            return res.status(404).json({ message: "No student found in database" });
+        }
+
+        res.status(200).json({ data: response.rows });
+
+    }   catch (error) {        
+        res.status(500).json({ message: error.message });
+    }
+}

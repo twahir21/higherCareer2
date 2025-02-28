@@ -4,6 +4,7 @@ import {
     deleteStudent, 
     fetchSingleStudent, 
     fetchStudents, 
+    totalCountStudents, 
     updateStudent 
 } from "../controllers/studentControllers.js";
 
@@ -20,6 +21,9 @@ studentRouter.get("/students/:id", fetchSingleStudent);
 studentRouter.delete("/students/:id", deleteStudent);
 
 // update
-studentRouter.put("/students/:id", updateStudent)
+studentRouter.put("/students/:id", updateStudent);
+
+// for graph
+studentRouter.get("/studentsGraph", totalCountStudents);
 
 export default studentRouter;

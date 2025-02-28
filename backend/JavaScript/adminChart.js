@@ -1,27 +1,64 @@
-        // Student Population Bar Chart
-        const studentBarChartCtx = document.getElementById('studentBarChart').getContext('2d');
-        new Chart(studentBarChartCtx, {
-            type: 'bar',
-            data: {
-                labels: ['KG1', 'KG2', 'Standard 1', 'Standard 2', 'Standard 3', 'Standard 4', 'Standard 5', 'Standard 6', 'Standard 7'],
-                datasets: [{
-                    label: 'Number of Students',
-                    data: [30, 28, 35, 40, 45, 50, 48, 42, 38],
-                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+        const stdGraph = async () => {
+            try {
+                const res = await fetch("/api/studentsGraph");
+                if (!res.ok) {
+                    console.log("API request failed.");
+                    return;
                 }
-            }
-        });
+                const dataStd = await res.json();
 
+                
+                // Define all possible classes
+                const allClasses = ['kg1', 'kg2', 'standard1', 'standard2', 'standard3', 'standard4', 'standard5', 'standard6', 'standard7'];
+
+                // Convert data into a map for quick lookup
+                const dataMap = new Map(dataStd.data.map(item => [item.class, parseInt(item.total_students, 10)]));
+
+                // Create an array of total students ensuring all classes are represented
+                const studentCounts = allClasses.map(cls => dataMap.get(cls) || 0);
+
+                // Update the bar chart
+                updateStudentBarChart(studentCounts);
+
+            } catch (error) {
+                console.error("Error fetching data:", error.message);
+            }
+        };
+
+        // Function to initialize/update the bar chart
+        let studentBarChart;
+        function updateStudentBarChart(studentCounts) {
+            const ctx = document.getElementById('studentBarChart').getContext('2d');
+
+            if (studentBarChart) {
+                studentBarChart.data.datasets[0].data = studentCounts;
+                studentBarChart.update();
+            } else {
+                studentBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['KG1', 'KG2', 'Standard 1', 'Standard 2', 'Standard 3', 'Standard 4', 'Standard 5', 'Standard 6', 'Standard 7'],
+                        datasets: [{
+                            label: 'Number of Students',
+                            data: studentCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        stdGraph();
 
         // Recent Announcements Animation
         $('.announcement-item').hover(
