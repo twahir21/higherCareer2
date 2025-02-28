@@ -79,8 +79,23 @@
     padding: 10px;
 }
 
+.cas{
+    background: #95d7b8;
+}
 
-.Math{
+.environment{
+    background: #4cbeeb;
+}
+
+.french{
+    background: #f3caa8;
+}
+
+.social{
+    background: #b8f4b8;
+}
+
+.Mathematics{
     background: #f3f3a8;
 }
 
@@ -94,6 +109,10 @@
 
 .Swahili{
     background: #a8a8f3;
+}
+
+.Dini{
+    background: #c39de9;
 }
 
 .Arabic{
