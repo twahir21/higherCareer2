@@ -7,9 +7,7 @@
 </head>
 <body>
     <h2>Students for parents</h2>
-    <p id="data"></p>
     <script>
-        
         const fetchStudents = async () => {
             try {
                 const studentRes = await fetch('http://localhost:3000/api/students');
@@ -20,7 +18,7 @@
                 
                 const studentData = await studentRes.json();
 
-                console.log(studentData);
+                console.log(studentData.data);
 
             } catch (error) {
                 console.log(error.message)

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Info Table</title>
+    <style>
+        .student-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .student-controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .student-table th, .student-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .student-pagination {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="student-container">
+        <div class="student-controls">
+            <input type="text" id="studentSearchInput" placeholder="Search by name or class...">
+            <select id="studentSortSelect">
+                <option value="new">Sort by Newest</option>
+                <option value="old">Sort by Oldest</option>
+            </select>
+        </div>
+        
+        <table class="student-table" id="studentDataTable">
+            <thead>
+                <tr>
+                    <th>Parent ID</th>
+                    <th>Class</th>
+                    <th>Full Name</th>
+                    <th>Relationship</th>
+                    <th>Stream</th>
+                    <th>Edit Stream</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+        </table>
+
+        <div class="student-pagination" id="studentPagination"></div>
+    </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function(){
+    const fetchStudentRecords = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/api/students");
+            if (!response.ok) {
+                throw new Error("Server error!");
+            }
+            const data = await response.json();
+            studentRecords = data.data;
+            filteredRecords = [...studentRecords];
+            sortStudentRecords();
+            renderStudentTable();
+        } catch (error) {
+            console.error("Error fetching students:", error);
+        }
+    };
+
+    let studentRecords = [];
+    let filteredRecords = [];
+    let currentStudentPage = 1;
+    const studentItemsPerPage = 7;
+    let studentSortOrder = "new";
+
+    function sortStudentRecords() {
+        filteredRecords.sort((a, b) => {
+            const dateA = new Date(a.assigned_at);
+            const dateB = new Date(b.assigned_at);
+            return studentSortOrder === "new" ? dateB - dateA : dateA - dateB;
+        });
+    }
+
+    async function updateStudentStream(studentId, newStream) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/students/${studentId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ stream: newStream })
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to update stream.");
+            }
+
+            const studentIndex = studentRecords.findIndex(s => s.id === studentId);
+            if (studentIndex !== -1) {
+                studentRecords[studentIndex].stream = newStream;
+            }
+
+            alert("Stream updated successfully!");
+            renderStudentTable();
+        } catch (error) {
+            console.error("Error updating stream:", error);
+            alert("Failed to update stream.");
+        }
+    }
+
+    function renderStudentTable() {
+        const tbody = document.getElementById('studentTableBody');
+        tbody.innerHTML = '';
+
+        filteredRecords.slice((currentStudentPage - 1) * studentItemsPerPage, currentStudentPage * studentItemsPerPage).forEach(student => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${student.parent_id}</td>
+                <td>${student.class}</td>
+                <td>${student.full_name}</td>
+                <td>${student.relationship}</td>
+                <td>${student.stream || 'N/A'}</td>
+                <td>
+                    <select onchange="updateStudentStream(${student.id}, this.value)">
+                        <option value="">Select</option>
+                        ${['A', 'B', 'C', 'D', 'E', 'F'].map(letter => 
+                            `<option value="${letter}" ${student.stream === letter ? 'selected' : ''}>${letter}</option>`
+                        ).join('')}
+                    </select>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        renderStudentPagination();
+    }
+
+    function renderStudentPagination() {
+        const totalPages = Math.ceil(filteredRecords.length / studentItemsPerPage);
+        const paginationDiv = document.getElementById('studentPagination');
+        paginationDiv.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.className = i === currentStudentPage ? 'active' : '';
+            button.onclick = () => {
+                currentStudentPage = i;
+                renderStudentTable();
+            };
+            paginationDiv.appendChild(button);
+        }
+    }
+
+    document.getElementById('studentSortSelect').addEventListener('change', (e) => {
+        studentSortOrder = e.target.value;
+        sortStudentRecords();
+        renderStudentTable();
+    });
+
+    document.getElementById('studentSearchInput').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        filteredRecords = studentRecords.filter(student => 
+            student.full_name.toLowerCase().includes(searchTerm) ||
+            student.class.toLowerCase().includes(searchTerm)
+        );
+        currentStudentPage = 1;
+        sortStudentRecords();
+        renderStudentTable();
+    });
+
+    await fetchStudentRecords();
+    window.updateStudentStream = updateStudentStream;
+});
+</script>
+</body>
+</html>

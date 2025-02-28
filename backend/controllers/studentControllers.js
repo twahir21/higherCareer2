@@ -64,24 +64,26 @@ export const deleteStudent = async (req, res) => {
     }
 }
 
+
 export const updateStudent = async (req, res) => {
     const { id } = req.params;
+    const { stream } = req.body;
+
     try {
         const response = await database.query(`
-            DELETE FROM students 
-            WHERE id = $1      
-            `, [id]);
-        
-        if (response.rows.length === 0){
-            res.status(404).json({ message: "Student not found in database" });
-            return;
+            UPDATE students 
+            SET stream = $1
+            WHERE id = $2
+            RETURNING *;
+        `, [stream, id]);
+
+        if (response.rows.length === 0) {
+            return res.status(404).json({ message: "Student not found in database" });
         }
 
-        const data = response.rows;
-
-        res.status(200).json({ data: data });
+        res.status(200).json({ message: "Stream updated successfully", data: response.rows[0] });
 
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: error.message });
     }
-}
+};
