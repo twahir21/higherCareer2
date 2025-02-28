@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('timetableSection');
     });
 
+    document.getElementById('eventAdmin').addEventListener('click', function() {
+        showSection('eventAdminSection');
+    });
+
     document.getElementById('student').addEventListener('click', function() {
         showSection('studentSection');
     });
@@ -56,14 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('classManagement').addEventListener('click', function() {
         showSection('classManagementSection');
     });
-    document.getElementById('attendance').addEventListener('click', function() {
-        showSection('attendanceSection');
+
+    document.getElementById('joiningInstruction').addEventListener('click', function() {
+        showSection('joiningInstructionSection');
     });
-    document.getElementById('communication').addEventListener('click', function() {
-        showSection('communicationSection');
-    });
-    document.getElementById('settings').addEventListener('click', function() {
-        showSection('settingsSection');
+    document.getElementById('studentAdmin').addEventListener('click', function() {
+        showSection('stdSection');
     });
 
     // Function to show the selected section

@@ -5,23 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Class</title>
     <link rel="stylesheet" href="/css/timetable.css">
+    <style>
+        .timetable-Admin-Container{
+            padding: 15px;
+            margin: 10px;
+        }
+    </style>
 
 </head>
 
 <body>
-    <div class="timeTableLinks">
-        <button data-component="addTable">Create a Table</button>
-        <button data-component="viewTable">View Tables</button>
-        <button data-component="editTable">Edit a Table</button>
-        <button data-component="deleteTable">Delete a Table</button>
-    </div>
-
-    <div id="contentContainer">
-        <!-- Initial content -->
-        <div id="addTable" class="componentTable"><%- include("./addTable") %></div>
-        <div id="viewTable" class="componentTable" style="display: none;"><%- include("./viewTable") %></div>
-        <div id="editTable" class="componentTable" style="display: none;"><%- include("./editTable") %></div>
-        <div id="deleteTable" class="componentTable" style="display: none;"><%- include("./deleteTable") %></div>
+    <div class="timetable-Admin-Container">
+        <div class="timeTableLinks">
+            <button data-component="addTable">Create a Table</button>
+            <button data-component="viewTable">View Tables</button>
+            <button data-component="editTable">Edit a Table</button>
+            <button data-component="deleteTable">Delete a Table</button>
+        </div>
+    
+        <div id="contentContainer">
+            <!-- Initial content -->
+            <div id="addTable" class="componentTable"><%- include("./addTable") %></div>
+            <div id="viewTable" class="componentTable" style="display: none;"><%- include("./viewTable") %></div>
+            <div id="editTable" class="componentTable" style="display: none;"><%- include("./editTable") %></div>
+            <div id="deleteTable" class="componentTable" style="display: none;"><%- include("./deleteTable") %></div>
+        </div>
     </div>
 
     <script>

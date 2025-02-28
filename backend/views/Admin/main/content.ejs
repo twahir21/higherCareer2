@@ -31,6 +31,12 @@
             <%- include("../layout/parentManage") %>         
         </section>
 
+        <section id="stdSection" class="content-wrapper" style="display:none;">
+            <!-- Management Content -->
+            <h1>Students</h1>
+            <%- include("../layout/student") %>         
+        </section>
+
         <section id="studentDetails" class="content-wrapper" style="display:none;">
             <!-- Management Content -->
             <h1>Students Details</h1>
@@ -48,19 +54,16 @@
             <h1 style="padding: 10px 0;">Timetable Management</h1>
             <%- include("../layout/timetable") %>        
         </section>
-
-        <section id="attendanceSection" class="content-wrapper" style="display:none;">
-            <!-- Attendance Content -->
-            <h1 style="padding: 14px;">Linking Student</h1>
-        </section>
         
-        <section id="communicationSection" class="content-wrapper" style="display:none;">
+        <section id="eventAdminSection" class="content-wrapper" style="display:none;">
             <!-- Event management -->
             <h1>Event Management</h1>
             <%- include("../layout/calendar.ejs") %>
         </section>
-        <section id="settingsSection" class="content-wrapper" style="display:none;">
+
+        <section id="joiningInstructionSection" class="content-wrapper" style="display:none;">
             <!-- Settings Content -->
             <h1>Joining Instructions</h1>
             <%- include("../layout/viewPDF") %>         
         </section>
+
