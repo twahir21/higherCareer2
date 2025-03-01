@@ -1,76 +1,156 @@
-<!-- Calendar -->
-<div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/calendar.css">
-    <div class="cardEvent">
-        <div class="calendar">
-            <div class="header">
-                <button id="prevBtn">
-                    <i class="fa-solid fa-left-long"></i>
-                </button>
-    
-                <div class="monthYear" id="monthYear"></div>
-    
-                <button id="nextBtn">
-                    <i class="fa-solid fa-right-long"></i>
-                </button>
-            </div>
-    
-            <div class="days">
-                <div class="day">Mon</div>
-                <div class="day">Tue</div>
-                <div class="day">Wed</div>
-                <div class="day">Thur</div>
-                <div class="day">Fri</div>
-                <div class="day">Sat</div>
-                <div class="day">Sun</div>
-            </div>
-    
-            <div class="dates" id="dates"></div>
+
+  <style>
+    .custom-form-container {
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .custom-form-container .form-box {
+      background: #fff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .custom-form-container h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .custom-form-container .form-group {
+      margin-bottom: 0.75rem;
+    }
+
+    .custom-form-container label {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #555;
+    }
+
+    .custom-form-container input,
+    .custom-form-container select,
+    .custom-form-container textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .custom-form-container textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    .custom-form-container button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .custom-form-container button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+  <div class="custom-form-container">
+    <div class="form-box">
+      <h1>Submit Event</h1>
+      <form id="customEventForm">
+        <div class="form-group">
+          <label for="customTag">Tag:</label>
+          <select id="customTag" name="tag" required>
+            <option value="">Select a tag</option>
+            <option value="Academic">Academic</option>
+            <option value="Important">Important</option>
+            <option value="Event">Event</option>
+          </select>
         </div>
-        <div class="events">
-            <h2>Events</h2>
-            <div class="info-event">
-                <h3 class="current-day"></h3>
-                <p class="current-date"></p>
-                <button class="add-event" id="openPopup">+ Add Event</button>
-            </div>
-            <div class="overlay" id="overlay"></div>
-    
-            <div class="popup" id="popup">
-                <div class="popup-header">
-                    <h2>Add Event</h2>
-                    <button id="closePopup" class="close-btn">&times;</button>
-                </div>
-                <div class="popup-content">
-                    <form id="eventForm">
-                        <div class="form-group">
-                            <label for="eventTitle">Event Title</label>
-                            <input type="text" id="eventTitle" placeholder="Enter event title" required class="input">
-                        </div>
-                        <div class="form-group">
-                            <label for="eventDescription">Event Description</label>
-                            <textarea id="eventDescription" placeholder="Enter event description" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="startDate">Start Date</label>
-                            <input type="date" id="startDate" required disabled class="input">
-                        </div>
-                        <div class="form-group">
-                            <label for="endDate">End Date</label>
-                            <input type="date" id="endDate" required class="input">
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" id="cancelButton" class="cancel-btn">Cancel</button>
-                            <button type="submit" id="saveButton" class="save-btn">Save</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-    
-            <div class="events-container">
-                <!--Events will be added here -->
-            </div>
-            <script src="/calendar.js"></script>
-        </div>    
-</div>
+        <div class="form-group">
+          <label for="customDate">Date:</label>
+          <input type="text" id="customDate" name="date" placeholder="e.g., 20" required>
+        </div>
+        <div class="form-group">
+          <label for="customMonth">Month:</label>
+          <input type="text" id="customMonth" name="month" placeholder="e.g., Mar" required>
+        </div>
+        <div class="form-group">
+          <label for="customTitle">Title:</label>
+          <input type="text" id="customTitle" name="title" placeholder="e.g., Mid-Term Examination Schedule" required>
+        </div>
+        <div class="form-group">
+          <label for="customDescription">Description:</label>
+          <textarea id="customDescription" name="description" placeholder="e.g., The mid-term examination schedule has been released..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="customClassName">Class Name:</label>
+          <select id="customClassName" name="class_name" required>
+            <option value="">Select a class name</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    (function () {
+      document.addEventListener('DOMContentLoaded', function () {
+        const tagDropdown = document.getElementById('customTag');
+        const classNameDropdown = document.getElementById('customClassName');
+        const form = document.getElementById('customEventForm');
+
+        const tagToClassName = {
+          Academic: 'academic',
+          Important: 'important',
+          Event: 'event',
+        };
+
+        tagDropdown.addEventListener('change', function () {
+          const selectedTag = tagDropdown.value;
+          classNameDropdown.innerHTML = '';
+
+          if (selectedTag) {
+            const className = tagToClassName[selectedTag];
+            const option = document.createElement('option');
+            option.value = className;
+            option.textContent = className.charAt(0).toUpperCase() + className.slice(1);
+            classNameDropdown.appendChild(option);
+          } else {
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select a class name';
+            classNameDropdown.appendChild(defaultOption);
+          }
+        });
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const formData = {
+            tag: tagDropdown.value,
+            date: document.getElementById('customDate').value,
+            month: document.getElementById('customMonth').value,
+            title: document.getElementById('customTitle').value,
+            description: document.getElementById('customDescription').value,
+            class_name: classNameDropdown.value,
+          };
+
+          console.log('Form Data Submitted:', formData);
+          alert('Form submitted successfully!');
+          form.reset();
+          classNameDropdown.innerHTML = '<option value="">Select a class name</option>';
+        });
+      });
+    })();
+</script>
