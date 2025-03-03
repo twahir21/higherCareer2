@@ -17,16 +17,30 @@ const getTimeAgo = (date) => {
 // 🔹 Create a new announcement
 export const createEvent = async (req, res) => {
   try {
-    const { tag, date, month, title, description, className } = req.body;
+    const { tag, date, month, title, description, class_name } = req.body;
+
+    // Check if the same event already exists
+    const existingEvent = await database.query(
+      "SELECT * FROM announcements WHERE tag = $1 AND date = $2 AND month = $3 AND title = $4 AND description = $5 AND class_name = $6",
+      [tag, date, month, title, description, class_name]
+    );
+
+    if (existingEvent.rows.length > 0) {
+      return res.status(400).json({ message: "Duplicate event already exists!" });
+    }
+
+    // Insert the event if no duplicate is found
     const result = await database.query(
       "INSERT INTO announcements (tag, date, month, title, description, class_name) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-      [tag, date, month, title, description, className]
+      [tag, date, month, title, description, class_name]
     );
+
     res.status(201).json(result.rows[0]);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // 🔹 Fetch all announcements
 export const fetchAllEvents = async (req, res) => {

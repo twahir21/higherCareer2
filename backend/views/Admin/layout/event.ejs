@@ -14,15 +14,17 @@
       background: #fff;
       padding: 1rem 2rem;
       border-radius: 8px;
+      margin: 1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 360px;
+      width: 60%;
     }
 
     .custom-form-container h1 {
       text-align: center;
-      margin-bottom: 1rem;
-      color: #333;
+      margin-bottom: .5rem;
+      margin-top: .5rem;
+      color: #007bff;
+      font-size: 2rem;
     }
 
     .custom-form-container .form-group {
@@ -147,7 +149,34 @@
           };
 
           console.log('Form Data Submitted:', formData);
-          alert('Form submitted successfully!');
+          // send data to backend for database insertion
+          try{
+            fetch('/api/events', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+            });
+
+            // give a swal message 
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: "Event created successfully!",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          } catch (error) {
+            console.error('Error:', error);
+            swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Failed to create event!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
           form.reset();
           classNameDropdown.innerHTML = '<option value="">Select a class name</option>';
         });
