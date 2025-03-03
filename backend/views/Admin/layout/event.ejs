@@ -7,104 +7,44 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       width: 100%;
     }
 
-    .custom-form-container .form-box {
-      background: #fff;
-      padding: 1rem 2rem;
-      border-radius: 8px;
+    .custom-form-container .eventLinks {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       margin: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 60%;
-    }
-
-    .custom-form-container h1 {
-      text-align: center;
-      margin-bottom: .5rem;
-      margin-top: .5rem;
-      color: #007bff;
-      font-size: 2rem;
-    }
-
-    .custom-form-container .form-group {
-      margin-bottom: 0.75rem;
-    }
-
-    .custom-form-container label {
-      display: block;
-      margin-bottom: 0.25rem;
-      color: #555;
-    }
-
-    .custom-form-container input,
-    .custom-form-container select,
-    .custom-form-container textarea {
+      padding: 1rem;
       width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      background: #0056b3;
     }
 
-    .custom-form-container textarea {
-      resize: vertical;
-      height: 80px;
-    }
-
-    .custom-form-container button {
-      width: 100%;
-      padding: 0.5rem;
+    .custom-form-container .eventLinks button {
+      padding: 0.7rem;
       background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
-    }
-
-    .custom-form-container button:hover {
-      background-color: #0056b3;
+      width: fit-content;
     }
   </style>
 
-  <div class="custom-form-container">
-    <div class="form-box">
-      <h1>Create Event</h1>
-      <form id="customEventForm">
-        <div class="form-group">
-          <label for="customTag">Tag:</label>
-          <select id="customTag" name="tag" required>
-            <option value="">Select a tag</option>
-            <option value="Academic">Academic</option>
-            <option value="Important">Important</option>
-            <option value="Event">Event</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="customDate">Date:</label>
-          <input type="text" id="customDate" name="date" placeholder="e.g., 20" required>
-        </div>
-        <div class="form-group">
-          <label for="customMonth">Month:</label>
-          <input type="text" id="customMonth" name="month" placeholder="e.g., Mar" required>
-        </div>
-        <div class="form-group">
-          <label for="customTitle">Title:</label>
-          <input type="text" id="customTitle" name="title" placeholder="e.g., Mid-Term Examination Schedule" required>
-        </div>
-        <div class="form-group">
-          <label for="customDescription">Description:</label>
-          <textarea id="customDescription" name="description" placeholder="e.g., The mid-term examination schedule has been released..." required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="customClassName">Class Name:</label>
-          <select id="customClassName" name="class_name" required>
-            <option value="">Select a class name</option>
-          </select>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+
+
+<div class="custom-form-container">
+  <div class="eventLinks">
+    <button data-component="addEvent">Create an Event</button>
+    <button data-component="viewEvents">View Events</button>
   </div>
+  <div id="contentContainer">
+    <!-- Initial content -->
+    <div id="addEvent" class="componentEvent"><%- include("./createEvent") %></div>
+    <div id="viewEvents" class="componentEvent" style="display: none;"><%- include("./viewEvent") %></div>
+  </div>
+</div>
   <script>
     (function () {
       document.addEventListener('DOMContentLoaded', function () {
@@ -182,4 +122,18 @@
         });
       });
     })();
+
+    document.querySelectorAll('.eventLinks button').forEach(button => {
+    button.addEventListener('click', () => {
+      const component = button.getAttribute('data-component');
+      // Hide all components
+      document.querySelectorAll('.componentEvent').forEach(comp => {
+        comp.style.display = 'none';
+      });
+      // Show the selected component
+      document.getElementById(component).style.display = 'block';
+    });
+  });
 </script>
+
+

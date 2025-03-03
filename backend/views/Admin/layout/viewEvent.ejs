@@ -1,0 +1,385 @@
+<h1>View Event</h1>
+<style>
+    /* Table container with horizontal scroll */
+    .eventContainer {
+      width: 100%;
+      overflow-x: auto; /* Ensures horizontal scrolling */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      margin: 1rem .6rem;
+
+    }
+  
+    /* Table styling */
+    .eventTable {
+      width: 100%;
+      border-collapse: collapse; /* Removes space between cells */
+      min-width: 600px; /* Ensures table doesn't shrink too much */
+      max-width: 1000px; 
+    }
+  
+    /* Table header styling */
+    .eventTable thead {
+      background-color: #007bff;
+      color: #fff;
+    }
+  
+    .eventTable thead th {
+      padding: 1.25rem 1rem; /* Increased padding */
+      text-align: left;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 1px solid #bdb9b9;
+    }
+  
+    /* Table body styling */
+    .eventTable tbody td {
+      padding: 1rem .6rem; /* Increased padding */
+      border-bottom: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #333;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+  
+    /* Alternate row background color */
+    .eventTable tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  
+    /* Hover effect for rows */
+    .eventTable tbody tr:hover {
+      background-color: #f1f1f1;
+      transition: background-color 0.3s ease;
+    }
+  
+    /* Description column styling */
+    .eventTable tbody td:nth-child(6) {
+      white-space: normal; /* Allows text wrapping */
+      word-break: break-word; /* Breaks long words */
+      max-width: 500px; /* Adjust as needed */
+    }
+  
+    /* Actions column styling */
+    .eventTable tbody td:last-child {
+      text-align: center;
+      min-width: 150px; /* Ensures enough space for buttons */
+    }
+  
+    /* Buttons in the Actions column */
+    .eventTable tbody td:last-child button {
+      padding: 0.5rem 1rem;
+      background-color: #28a745; /* Green color for buttons */
+      color: #fff;
+      border: none;
+      border-radius: 6px; /* Rounded corners */
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin: .3rem 0.5rem; /* Increased spacing between buttons */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+  
+    .eventTable tbody td:last-child button:hover {
+      background-color: #218838; /* Darker green on hover */
+      transform: translateY(-2px); /* Slight lift effect */
+    }
+  
+    .eventTable tbody td:last-child button:active {
+      transform: translateY(0); /* Reset lift effect */
+    }
+  
+    /* Customize the second button (e.g., Delete) */
+    .eventTable tbody td:last-child button.delete-btn {
+      background-color: #dc3545; /* Red color for delete button */
+    }
+  
+    .eventTable tbody td:last-child button.delete-btn:hover {
+      background-color: #c82333; /* Darker red on hover */
+    }
+
+        /* Modal Styles */
+        .modalEvent {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+  
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+    }
+  
+    .close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #333;
+    }
+  
+    .close:hover {
+      color: #000;
+    }
+  
+    #editForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    #editForm button {
+      align-self: flex-end;
+      padding: 0.75rem 1.5rem;
+    }
+
+  </style>
+
+<div class="eventContainer">
+    <table class="eventTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tag</th>
+                <th>Date</th>
+                <th>Month</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Time Ago</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="eventTableBody">
+            <!-- Events will be rendered here -->  
+        </tbody>
+    
+    </table>
+</div>
+
+
+<!-- Add this modal HTML before the eventContainer -->
+<div id="editModalEvent" class="modalEvent">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Edit Event</h2>
+      <form id="editFormEvent">
+        <input type="hidden" id="editId">
+        <div class="form-group">
+          <label for="editTag">Tag:</label>
+          <input type="text" id="editTag" required>
+        </div>
+        <div class="form-group">
+          <label for="editDate">Date:</label>
+          <input type="text" id="editDate" required>
+        </div>
+        <div class="form-group">
+          <label for="editMonth">Month:</label>
+          <input type="text" id="editMonth" required>
+        </div>
+        <div class="form-group">
+          <label for="editTitle">Title:</label>
+          <input type="text" id="editTitle" required>
+        </div>
+        <div class="form-group">
+          <label for="editDescription">Description:</label>
+          <textarea id="editDescription" required></textarea>
+        </div>
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+  
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const modal = document.getElementById('editModalEvent');
+      const closeBtn = document.querySelector('.close');
+      let currentEventId = null;
+  
+      // Event delegation for edit buttons
+      document.getElementById('eventTableBody').addEventListener('click', async (e) => {
+          if (e.target.classList.contains('edit-btn')) {
+              currentEventId = e.target.dataset.id;
+              await showEditModal(currentEventId);
+          }
+      });
+  
+      // Close modal
+      closeBtn.onclick = () => modal.style.display = 'none';
+      window.onclick = (e) => e.target === modal ? modal.style.display = 'none' : null;
+  
+      async function showEditModal(eventId) {
+          try {
+              const response = await fetch(`http://localhost:3000/api/events/${eventId}`);
+              if (!response.ok) throw new Error('Failed to fetch event');
+              const event = await response.json();
+  
+              // Populate form fields
+              document.getElementById('editId').value = event.id;
+              document.getElementById('editTag').value = event.tag;
+              document.getElementById('editDate').value = event.date;
+              document.getElementById('editMonth').value = event.month;
+              document.getElementById('editTitle').value = event.title;
+              document.getElementById('editDescription').value = event.description;
+  
+              modal.style.display = 'block';
+          } catch (error) {
+              console.error('Error:', error);
+              alert('Failed to load event data');
+          }
+      }
+  
+      // Handle form submission
+      document.getElementById('editFormEvent').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          e.preventDefault();
+
+            const tag = document.getElementById('editTag').value.trim();
+            const date = document.getElementById('editDate').value.trim();
+            const month = document.getElementById('editMonth').value.trim();
+            const title = document.getElementById('editTitle').value.trim();
+            const description = document.getElementById('editDescription').value.trim();
+
+            if (!tag || !date || !month || !title || !description) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Please fill out all fields.',
+                });
+                return;
+            }
+          
+          const updatedEvent = {
+              tag: document.getElementById('editTag').value,
+              date: document.getElementById('editDate').value,
+              month: document.getElementById('editMonth').value,
+              title: document.getElementById('editTitle').value,
+              description: document.getElementById('editDescription').value
+          };
+  
+          try {
+              const response = await fetch(`http://localhost:3000/api/events/${currentEventId}`, {
+                  method: 'PUT',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(updatedEvent)
+              });
+  
+              if (!response.ok) throw new Error('Update failed');
+              
+              modal.style.display = 'none';
+              fetchEvents(); // Refresh the table
+              // swal 
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Event updated successfully!',
+                showConfirmButton: false,
+                timer: 1500
+              });
+          } catch (error) {
+              console.error('Error:', error);
+              alert('Failed to update event');
+          }
+      });
+  
+      // Original fetchEvents function
+      async function fetchEvents() {
+        const response = await fetch('http://localhost:3000/api/events');
+        if (!response.ok) {
+            throw new Error('Server error!');
+        }
+        const data = await response.json();
+
+        const eventData = data.map(({ id, tag, date, month, title, description, timeAgo }) => ({
+        id,
+        tag,
+        date,
+        month,
+        title,
+        description,
+        timeAgo
+        }));
+
+        const eventTableBody = document.getElementById('eventTableBody');
+        eventTableBody.innerHTML = '';
+
+        eventData.forEach(({ id, tag, date, month, title, description, timeAgo }) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${id}</td>
+                <td>${tag}</td>
+                <td>${date}</td>
+                <td>${month}</td>
+                <td>${title}</td>
+                <td>${description}</td>
+                <td>${timeAgo}</td>
+                <td>
+                    <button data-id="${id}" data-action="edit" class="edit-btn">Edit</button>
+                    <button data-id="${id}" data-action="delete" class="delete-btn">Delete</button>
+                </td>
+            `;
+
+            eventTableBody.appendChild(tr);
+        });
+    }
+  
+      fetchEvents();
+      document.getElementById('eventTableBody').addEventListener('click', async (e) => {
+    if (e.target.classList.contains('delete-btn')) {
+        const eventId = e.target.dataset.id;
+
+        // Confirm deletion
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/events/${eventId}`, {
+                        method: 'DELETE',
+                    });
+
+                    if (!response.ok) throw new Error('Delete failed');
+
+                    // Refresh the table
+                    fetchEvents();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'Event has been deleted.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } catch (error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Failed to delete event. Please try again later.',
+                    });
+                }
+            }
+        });
+    }
+});
+  });
+  </script>

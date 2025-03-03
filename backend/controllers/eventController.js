@@ -50,7 +50,7 @@ export const fetchAllEvents = async (req, res) => {
       ...row,
       timeAgo: getTimeAgo(row.created_at),
     }));
-    res.json(announcements);
+    res.status(200).json(announcements);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
