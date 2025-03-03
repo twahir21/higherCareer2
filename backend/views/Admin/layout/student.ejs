@@ -125,11 +125,23 @@ document.addEventListener("DOMContentLoaded", async function(){
                 studentRecords[studentIndex].stream = newStream;
             }
 
-            alert("Stream updated successfully!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Stream updated successfully!',
+                confirmButton: false,
+                timer: 1500
+            })
             renderStudentTable();
         } catch (error) {
             console.error("Error updating stream:", error);
-            alert("Failed to update stream.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to update stream!',
+                confirmButton: false,
+                timer: 1500
+            })
         }
     }
 

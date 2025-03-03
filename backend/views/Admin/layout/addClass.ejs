@@ -69,7 +69,11 @@ classForm.addEventListener("submit", async (e) => {
     const teacher_name = document.getElementById("teacherList").value; // Get name instead of ID
 
     if (!classname || !stream || !capacity || !teacher_name) {
-        alert("All fields are required!");
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'All fields are required!',
+        })
         return;
     }
 
@@ -83,14 +87,26 @@ classForm.addEventListener("submit", async (e) => {
         });
 
         if (response.ok) {
-            alert("Class assigned successfully!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Class assigned successfully!',
+            })
             classForm.reset();
         } else {
-            alert("Error assigning class");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error assigning class!',
+            })
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Failed to connect to the server");
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Failed to connect to the server!',
+        })
     }
 });
 });
