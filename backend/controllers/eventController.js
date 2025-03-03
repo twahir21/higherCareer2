@@ -95,11 +95,11 @@ export const deleteEvent = async (req, res) => {
 export const updateEvent = async (req, res) => {
   try {
     const { id } = req.params;
-    const { tag, date, month, title, description, className } = req.body;
+    const { tag, date, month, title, description } = req.body;
 
     const result = await database.query(
-      "UPDATE announcements SET tag = $1, date = $2, month = $3, title = $4, description = $5, class_name = $6 WHERE id = $7 RETURNING *",
-      [tag, date, month, title, description, className, id]
+      "UPDATE announcements SET tag = $1, date = $2, month = $3, title = $4, description = $5 WHERE id = $6 RETURNING *",
+      [tag, date, month, title, description, id]
     );
 
     if (result.rows.length === 0) {
@@ -109,5 +109,6 @@ export const updateEvent = async (req, res) => {
     res.json(result.rows[0]);
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log(error.message)
   }
 };

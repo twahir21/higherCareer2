@@ -292,7 +292,11 @@
               });
           } catch (error) {
               console.error('Error:', error);
-              alert('Failed to update event');
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to update event. Please try again later.',
+              })
           }
       });
   
