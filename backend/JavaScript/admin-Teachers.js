@@ -105,10 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="lower">
                         <button class="profile teacher_profile">
-                            <i class="fa-solid fa-user"></i> Profile
+                            <i class='bx bxs-user'></i> Profile
                         </button>
                         <button class="delete-teacher">
-                            <i class="fa-solid fa-trash"></i> Delete
+                            <i class='bx bxs-trash' ></i>Delete
                         </button>
                     </div>
                 </div>

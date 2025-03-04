@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async function(){
             })
             renderStudentTable();
         } catch (error) {
-            console.error("Error updating stream:", error);
+            console.error("Error updating stream:", error.message);
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

@@ -44,47 +44,121 @@ export const fetchSingleStudent = async (req, res) => {
 // delete a student
 export const deleteStudent = async (req, res) => {
     const { id } = req.params;
+
     try {
-        const response = await database.query(`
-            DELETE FROM students 
-            WHERE id = $1      
-            `, [id]);
-        
-        if (response.rows.length === 0){
-            res.status(404).json({ message: "Student not found in database" });
-            return;
+        // Start a transaction
+        await database.query('BEGIN');
+
+        // Step 1: Fetch the student's class and stream
+        const fetchStudentQuery = `
+            SELECT class, stream FROM students WHERE id = $1;
+        `;
+        const studentResult = await database.query(fetchStudentQuery, [id]);
+
+        if (studentResult.rows.length === 0) {
+            await database.query('ROLLBACK');
+            return res.status(404).json({ message: "Student not found in database" });
         }
 
-        const data = response.rows;
+        const className = studentResult.rows[0].class; // Get the class
+        const stream = studentResult.rows[0].stream; // Get the stream
 
-        res.status(200).json({ data: data });
+        // Step 2: Delete the student
+        const deleteStudentQuery = `
+            DELETE FROM students 
+            WHERE id = $1
+            RETURNING *;
+        `;
+        const deleteResponse = await database.query(deleteStudentQuery, [id]);
+
+        if (deleteResponse.rows.length === 0) {
+            await database.query('ROLLBACK');
+            return res.status(404).json({ message: "Student not found in database" });
+        }
+
+        // Step 3: Decrement current_count in the classes table
+        const decrementCountQuery = `
+            UPDATE classes
+            SET current_count = current_count - 1
+            WHERE classname = $1 AND stream = $2
+            RETURNING *;
+        `;
+        const classResponse = await database.query(decrementCountQuery, [className, stream]);
+
+        if (classResponse.rows.length === 0) {
+            await database.query('ROLLBACK');
+            return res.status(404).json({ message: "Class or stream not found in database" });
+        }
+
+        // Commit the transaction
+        await database.query('COMMIT');
+
+        // Success response
+        res.status(200).json({
+            message: "Student deleted and class count decremented successfully",
+            student: deleteResponse.rows[0],
+            class: classResponse.rows[0],
+        });
 
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        await database.query('ROLLBACK');
+        res.status(500).json({ message: error.message });
     }
-}
-
+};
 
 export const updateStudent = async (req, res) => {
     const { id } = req.params;
-    const { stream } = req.body;
+    const { stream } = req.body; // Destructure stream from the request body
 
     try {
-        const response = await database.query(`
+        // Step 1: Fetch the student's current class
+        const fetchStudentQuery = `
+            SELECT class FROM students WHERE id = $1;
+        `;
+        const studentResult = await database.query(fetchStudentQuery, [id]);
+
+        if (studentResult.rows.length === 0) {
+            return res.status(404).json({ message: "Student not found in database" });
+        }
+
+        const className = studentResult.rows[0].class; // Get the class from the fetched student data
+
+        // Step 2: Update the student's stream
+        const updateStudentQuery = `
             UPDATE students 
             SET stream = $1
             WHERE id = $2
             RETURNING *;
-        `, [stream, id]);
+        `;
+        const studentResponse = await database.query(updateStudentQuery, [stream, id]);
 
-        if (response.rows.length === 0) {
+        if (studentResponse.rows.length === 0) {
             return res.status(404).json({ message: "Student not found in database" });
         }
 
-        res.status(200).json({ message: "Stream updated successfully", data: response.rows[0] });
+        // Step 3: Increment the current_count in the classes table
+        const incrementCountQuery = `
+            UPDATE classes
+            SET current_count = current_count + 1
+            WHERE classname = $1 AND stream = $2
+            RETURNING *;
+        `;
+        const classResponse = await database.query(incrementCountQuery, [className, stream]);
+
+        if (classResponse.rows.length === 0) {
+            return res.status(404).json({ message: "Class or stream not found in database" });
+        }
+
+        // Success response
+        res.status(200).json({
+            message: "Stream updated and class count incremented successfully",
+            student: studentResponse.rows[0],
+            class: classResponse.rows[0],
+        });
 
     } catch (error) {
         res.status(500).json({ message: error.message });
+        console.log(error.message);
     }
 };
 

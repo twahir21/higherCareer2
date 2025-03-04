@@ -5,14 +5,14 @@
             padding: 10px 20px;
         }
 
-        .edit-btn {
-            background: #3674B5;
-            color: #A1E3F9;
-        }
-
         .delete-btn {
             background: #A1E3F9;
             color: #3674B5;
+        }
+
+        .delete-btn:hover{
+            background: #3674B5;
+            color: #A1E3F9;
         }
     </style>
 
@@ -152,8 +152,7 @@
                     <td>${cls.teacher_name}</td>
                     <td>${cls.assignedAt.toLocaleString()}</td>
                     <td class="actions">
-                        <button class="edit-btn" data-id="${cls.id}">Edit</button>
-                        <button class="delete-btn" data-id="${cls.id}">Delete</button>
+                        <button class="delete-btn" data-id="${cls.id}" id="delClass">Delete</button>
                     </td>
                 </tr>
             `).join("");
@@ -161,6 +160,54 @@
 
         document.getElementById("search").addEventListener("input", updateDisplay);
         document.getElementById("sort").addEventListener("change", updateDisplay);
+        document.getElementById("delClass").addEventListener("click", async (event) => {
+            const classId = event.target.dataset.id;
+
+            // SweetAlert confirmation dialog
+            const { isConfirmed } = await Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!",
+            });
+
+            if (!isConfirmed) return;
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/deleteClass/${classId}`, {
+                    method: "DELETE",
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to delete class!");
+                }
+
+                // Refresh data
+                fetchAllClasses();
+
+                // SweetAlert success message
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Class deleted successfully.",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500, // Auto-close after 1.5 seconds
+                });
+            } catch (error) {
+                console.error("Error:", error);
+
+                // SweetAlert error message
+                Swal.fire({
+                    title: "Error!",
+                    text: "Failed to delete class. Try again.",
+                    icon: "error",
+                    confirmButtonText: "OK",
+                });
+            }
+        });
         document.getElementById("prevPage").addEventListener("click", () => { currentPage--; paginateData(); });
         document.getElementById("nextPage").addEventListener("click", () => { currentPage++; paginateData(); });
 
