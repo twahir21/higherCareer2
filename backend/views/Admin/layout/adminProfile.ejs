@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+
+    .adminProfile-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #eef2f7;
+      height: 80vh;
+    }
+    .sanduku-wasifu {
+      background-color: #fff;
+      border-radius: 0.75rem;
+      box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15);
+      width: 30rem;
+      padding: 1.2rem;
+    }
+
+    .kichwa-wasifu h1 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .maelezo-wasifu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .picha-wasifu img {
+      border-radius: 50%;
+      width: 9rem;
+      height: 9rem;
+      margin-bottom: 1rem;
+    }
+
+    .badilisha-picha {
+      display: block;
+      padding: 0.6rem 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 0.4rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .badilisha-picha:hover {
+      background-color: #0056b3;
+    }
+
+    .maelezo-yote {
+      width: 100%;
+    }
+
+    .maelezo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      padding: 0.6rem;
+      background-color: #f8f9fa;
+      border-radius: 0.4rem;
+    }
+
+    .maelezo label {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .maelezo span {
+      color: #222;
+    }
+
+    .badilisha-kitufe {
+      padding: 0.5rem 0.9rem;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .badilisha-kitufe:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="adminProfile-wrapper">
+    <div class="sanduku-wasifu">
+      <div class="kichwa-wasifu">
+        <h1>Profile</h1>
+      </div>
+      <div class="maelezo-wasifu">
+        <div class="picha-wasifu">
+          <img src="/img/placeholder2.jpg" alt="Picha ya Msimamizi" id="pichaChanzo">
+          <button class="badilisha-picha" id="kitufeBadilishaPicha">Change Image</button>
+        </div>
+        <div class="maelezo-yote">
+          <div class="maelezo">
+            <label>Username:</label>
+            <span id="jinaMsimamizi">Admin</span>
+            <button class="badilisha-kitufe" id="kitufeBadilishaJina">Change</button>
+          </div>
+          <div class="maelezo">
+            <label>Email:</label>
+            <span id="baruaPepeMsimamizi">AdminDefault@example.com</span>
+            <button class="badilisha-kitufe" id="kitufeBadilishaBaruaPepe">Change</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <script>
+    document.getElementById("kitufeBadilishaPicha").addEventListener("click", function() {
+      Swal.fire({
+        title: "Success",
+        text: "Image updated successfully!",
+        icon: "success"
+      });
+      let pichaChanzo = document.getElementById("pichaChanzo");
+      pichaChanzo.src = pichaChanzo.src.includes("placeholder2.jpg") ? "/img/placeholder.jpg" : "/img/placeholder2.jpg";
+    });
+
+    document.getElementById("kitufeBadilishaJina").addEventListener("click", function() {
+      Swal.fire({
+        title: "Input new username",
+        input: "text",
+        inputLabel: "New username",
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        preConfirm: (jina) => {
+          if (!jina) {
+            Swal.showValidationMessage("Please write a correct name!");
+          }
+          return jina;
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById("jinaMsimamizi").textContent = result.value;
+        }
+      });
+    });
+
+    document.getElementById("kitufeBadilishaBaruaPepe").addEventListener("click", function() {
+      Swal.fire({
+        title: "New Email",
+        input: "email",
+        inputLabel: "New Email",
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        preConfirm: (email) => {
+          if (!email) {
+            Swal.showValidationMessage("Please write a valid email!");
+          }
+          return email;
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById("baruaPepeMsimamizi").textContent = result.value;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

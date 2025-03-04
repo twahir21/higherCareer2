@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('eventAdminSection');
     });
 
+    document.getElementById('adminProfile').addEventListener('click', function() {
+        showSection('adminProfileSection');
+    });
+
     document.getElementById('student').addEventListener('click', function() {
         showSection('studentSection');
     });
