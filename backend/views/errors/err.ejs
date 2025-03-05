@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .err-wrapper {
+    background-color: #fff;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .error-container {
+    text-align: center;
+    margin-top: 100px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    margin: auto;
+}
+
+.no-students-error {
+    background-color: #ffcccb;
+    color: #d9534f;
+    border: 2px solid #d43f3a;
+}
+
+.server-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+}
+
+.btn-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-home:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <div class="err-wrapper">
+        <div class="error-container <%= errorClass %>">
+            <h1><%= title %></h1>
+            <p><%= message %></p>
+            <a href="/" class="btn-home">Go Back Home</a>
+        </div>
+    </div>
+</body>
+</html>
