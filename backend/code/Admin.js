@@ -1,5 +1,5 @@
 import express from "express";
-import { displayStudents } from "../controllers/parentProfileControllers.js";
+import { displayStudents, displayTables } from "../controllers/parentProfileControllers.js";
 
 const adminCodes = express.Router();
 
@@ -22,9 +22,15 @@ adminCodes.get("/parent/:id", async (req, res) => {
     try {
         // Fetch students
         const students = await displayStudents(parentIdDashboard);
-        
-        console.log("Student count:", students.length); // Debugging
 
+        // for (let student in students) {
+        //     console.log(student);
+        // }
+        console.log(students[0].class, students[0].stream)
+        const data = await displayTables(students[0].class, students[0].stream);
+        console.log(data);
+    
+        const stdInfo = []; // do not declare globally as it will cause data duplicates
         // If no students found, render the error page
         if (students.length === 0) {
             return res.status(404).render("errors/err", {
@@ -34,8 +40,22 @@ adminCodes.get("/parent/:id", async (req, res) => {
             });
         }
 
+        students.forEach(student => {
+            let stdData = {
+                student_fullname: student.full_name,
+                student_class: student.class,
+                student_stream: student.stream
+            };
+            stdInfo.push(stdData);
+        });
+
+
         // Render the parent page with student data
-        res.render("Parent/index", { message: "Parent", students });
+        res.render("Parent/index", { 
+            message: "Parent", 
+            students,
+            stdInfo
+        });
 
     } catch (error) {
         console.error("Server Error:", error);

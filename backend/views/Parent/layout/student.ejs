@@ -1,31 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Parent</title>
-</head>
-<body>
-    <h2>Students for parents</h2>
-    <script>
-        const fetchStudents = async () => {
-            try {
-                const studentRes = await fetch('http://localhost:3000/api/students');
+<h2>Student List</h2>
+    
+<% if (students.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Serial</th>
+                <th>Full Name</th>
+                <th>Class</th>
+                <th>Stream</th>
+                <th>Relationship</th>
+                <th>Assigned At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let counter = 1; %> 
+            <% students.forEach(student => { %>
+                <tr>
+                    <td><%= counter %></td> 
+                    <td><%= student.full_name %></td>
+                    <td><%= student.class %></td>
+                    <td><%= student.stream %></td>
+                    <td><%= student.relationship %></td>
+                    <td><%= new Date(student.assigned_at).toLocaleString() %></td>
+                </tr>
+                <% counter++; %> 
+            <% }) %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>No students found.</p>
+<% } %>
 
-                if(!studentRes.ok){
-                    console.log("Server error!");
-                }
-                
-                const studentData = await studentRes.json();
-
-                console.log(studentData.data);
-
-            } catch (error) {
-                console.log(error.message)
-            }
-        }
-
-        fetchStudents();
-    </script>
-</body>
-</html>

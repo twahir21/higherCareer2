@@ -15,42 +15,42 @@
     text-align: center;
 }
 .createTable th {
-    background: #28a745;
+    background: #1E3E62;
     color: white;
 }
 .createTable th > input {
     background: transparent;
     color: white;
 }
-input {
+.adminTableInput {
     width: 100%;
     border: none;
     padding: 10px 5px;
     text-align: center;
 }
-button {
+.tableAdmin {
     margin-top: 10px;
     padding: 10px;
-    background: #28a745;
+    background: #1E3E62;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 4px;
 }
-button:hover {
-    background: #218838;
+.tableAdmin:hover {
+    background: #402E7A;
 }
 </style>
 <label for="class">Class:</label>
-<input type="text" id="class" name="class" required>
+<input type="text" id="class" name="class" required class="adminTableInput">
 
 <label for="stream">Class Stream:</label>
-<input type="text" id="stream" name="stream" required>
+<input type="text" id="stream" name="stream" required class="adminTableInput">
 
 <div class="time-table-container">
     <table id="timetable" class="createTable">
         <thead>
-            <tr>
+            <tr id="timeSlotsAdmin" class="timeSlotsAdmin">
                 <th>Day</th>
                 <th><input type="text" value="8:00 - 8:30"></th>
                 <th><input type="text" value="8:30 - 9:00"></th>
@@ -63,7 +63,7 @@ button:hover {
                 <th><input type="text" value="12:00 - 12:30"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="adminTableInput">
             <tr><td>Mon</td></tr>
             <tr><td>Tue</td></tr>
             <tr><td>Wed</td></tr>
@@ -73,13 +73,13 @@ button:hover {
     </table>
 </div>
 
-<button onclick="addColumn()">Add Column</button>
-<button onclick="removeColumn()">Remove Column</button>
-<button onclick="submitTimetable()">Submit</button>
+<button class="tableAdmin" onclick="addColumn()">Add Column</button>
+<button class="tableAdmin" onclick="removeColumn()">Remove Column</button>
+<button class="tableAdmin" onclick="submitTimetable()">Submit</button>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const rows = document.querySelectorAll("tbody tr");
+        const rows = document.querySelectorAll(".adminTableInput tr");
         rows.forEach(row => {
             for (let i = 1; i <= 9; i++) {
                 const td = document.createElement("td");
@@ -97,9 +97,9 @@ button:hover {
         input.type = "text";
         input.value = "New Slot";
         th.appendChild(input);
-        document.querySelector("thead tr").appendChild(th);
+        document.getElementById("timeSlotsAdmin").appendChild(th);
 
-        document.querySelectorAll("tbody tr").forEach(row => {
+        document.querySelectorAll(".adminTableInput tr").forEach(row => {
             const td = document.createElement("td");
             const input = document.createElement("input");
             input.type = "text";
@@ -109,10 +109,10 @@ button:hover {
     }
 
     function removeColumn() {
-        const ths = document.querySelectorAll("thead tr th");
+        const ths = document.querySelectorAll(".timeSlotsAdmin th");
         if (ths.length > 2) {
             ths[ths.length - 1].remove();
-            document.querySelectorAll("tbody tr").forEach(row => {
+            document.querySelectorAll(".adminTableInput tr").forEach(row => {
                 row.lastElementChild.remove();
             });
         }
@@ -124,7 +124,7 @@ const timeSlots = [];
 let hasEmptyField = false; // Flag to track empty fields
 
 // Extract time slots from the table header
-document.querySelectorAll("thead tr th input").forEach((input, index) => {
+document.querySelectorAll(".timeSlotsAdmin th input").forEach((input, index) => {
     if (index > 0) { // Skip "Day" column
         if (input.value.trim() === "") hasEmptyField = true;
         timeSlots.push(input.value.trim());
@@ -132,7 +132,7 @@ document.querySelectorAll("thead tr th input").forEach((input, index) => {
 });
 
 // Extract subjects from the table body
-document.querySelectorAll("tbody tr").forEach(row => {
+document.querySelectorAll(".adminTableInput tr").forEach(row => {
     const day = row.cells[0].textContent;
     const subjects = [];
     for (let i = 1; i < row.cells.length; i++) {
@@ -144,10 +144,17 @@ document.querySelectorAll("tbody tr").forEach(row => {
 });
 
 const classValue = document.getElementById("class").value.trim();
-const streamValue = document.getElementById("stream").value.trim();
+const streamValue = document.getElementById("stream").value.trim().toLowerCase();
+
 
 if (!classValue || !streamValue || hasEmptyField) {
-    alert("Please fill in all fields before submitting.");
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill in all fields before submitting.',
+        showConfirmButton: false,
+        timer: 1500
+    });
     return;
 }
 
@@ -158,7 +165,6 @@ const formData = {
     timetable
 };
 
-console.log(formData); // Debugging: See what is being sent
 
 try {
     const response = await fetch("http://localhost:3000/api/saveTimetable", {
@@ -168,13 +174,23 @@ try {
     });
 
     const result = await response.json();
-    alert(result.message);
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: result.message,
+        showConfirmButton: false,
+        timer: 1500
+    })
 } catch (error) {
-    alert("Error saving timetable. Please try again.");
-    console.error(error);
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error saving timetable. Please try again.',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    console.error(error.message);
 }
 }
-
-
 
 </script>
