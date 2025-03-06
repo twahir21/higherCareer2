@@ -1,0 +1,9 @@
+<style>
+    .timetable-parent{
+        color: #303972;
+    }
+</style>
+<% stdInfo.forEach(function(std) { %>
+    <h5 class="timetable-parent">Timetable for: <%= std.student_fullname %></h5>
+    <!-- Display the timetable for each student  -->
+<% }) %>
